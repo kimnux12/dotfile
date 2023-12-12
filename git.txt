@@ -1,0 +1,24 @@
+주소 : https://github.com/kimnux12/dotfile.git
+토큰 : 
+
+
+…or create a new repository on the command line
+  echo "# dotfile" >> README.md
+  git init
+  git add README.md
+  git commit -m "first commit"
+  git branch -M master # 로컬 브렌치 네임을 master로 정한다.
+					   # 후에1. git branch dotfiles로 새 로컬 브랜치를 만들고,
+					   # 2. git chechout dotfiles 로 로컬디폴트 브랜치를 변경할수있다.
+					   # 3. git branch -v 로 변경사항을 확인.
+					   # 4. git push origin dotfiles (로컬브랜치와 연동할 리모트 브랜치를 리모트저장소에 생성)
+					   # 5. git branch --set-upstream-to origin/dotfiles (새로 생성한 로컬브랜치와 리모트브랜치연동)
+  git remote add origin https://github.com/kimnux12/dotfile.git
+  git push -u origin master
+  
+…or push an existing repository from the command line
+  git remote add origin https://github.com/kimnux12/dotfile.git #원격저장소 이름을 origin으로 정한다.
+  git branch -M master
+  git push -u origin master #origin이라는 원격저장소의 master 브랜치로 로컬저장소의 내용을 push.
+                            #origin의 master에 지정된 HEAD(default brach)를 origin의 dotfiles 브랜치로 변경하려면,
+                            # git remote set-head origin dotfiles 실행.
