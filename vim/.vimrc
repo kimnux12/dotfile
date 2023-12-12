@@ -28,7 +28,8 @@ Plugin 'Raimondi/delimitMate'
 "Regex 하이라이트 플러그인
 Plugin 'Galicarnax/vim-regex-syntax'
 Plugin 'ap/vim-css-color'  "color name highlight"
-
+"Makr 표시기능
+Plugin 'kshenoy/vim-signature'
 "각종 언어 하이라이트 자동들여쓰기등 지원 
 Plugin 'sheerun/vim-polyglot'
 "sysntax hightlight 플러그인
@@ -106,7 +107,10 @@ set nu " 줄번호
 set number relativenumber
 "set autoindent "자동 들여쓰기
 set scrolloff=2
-set wildmode=longest,list
+"bash 자동완성처럼 명령어 일부만 치면 비슷한 이름 보여주는 기능
+set wildmenu
+set wildmode=longest:list,full
+"set wildmode=longest,list
 set ts=4 "tag select
 set sts=4 "st select
 set sw=1 "스크롤바 너비
