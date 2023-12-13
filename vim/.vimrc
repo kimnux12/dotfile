@@ -23,13 +23,15 @@ Plugin 'EdenEast/nightfox.nvim'
 Plugin 'thaerkh/vim-indentguides'
 Plugin 'markonm/traces.vim' "highlights patterns and ranges
 "Plugin 'nordtheme/vim'
-"Plugin 'David-Kunz/markid'
+"Plugin 'David-Kunz/markid' "같은이름의 구분자들을 같은 색으로 표시
 Plugin 'Raimondi/delimitMate'
 "Regex 하이라이트 플러그인
 Plugin 'Galicarnax/vim-regex-syntax'
 Plugin 'ap/vim-css-color'  "color name highlight"
 "Makr 표시기능
 Plugin 'kshenoy/vim-signature'
+"vim 화면 중앙에 터미널 띄우기, Laygit과 Delta를 사용하기 위새 설치함
+Plugin 'voldikss/vim-floaterm'
 "각종 언어 하이라이트 자동들여쓰기등 지원 
 Plugin 'sheerun/vim-polyglot'
 "sysntax hightlight 플러그인
