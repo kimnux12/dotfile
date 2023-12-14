@@ -289,7 +289,11 @@ screens = [
                 ),
                 #widget.CPUGraph(core='6'),
                 widget.CPUGraph(core='all', border_color='fffcff', graph_color='fffcff'),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+                widget.Clock(
+                    format="%m-%d %a %I:%M %p",
+                    font='Noto Sans',
+                    foreground='#ffffff'
+                ),
                 #widget.Systray(),
                 widget.TextBox(
                     foreground = '#cf255e',

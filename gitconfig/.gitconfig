@@ -1,0 +1,32 @@
+[init]
+	defaultBranch = dotfile
+[diff]
+	tool = vim
+	colorMoved = default
+[user]
+	email = kimnux@gmail.com
+	name = Kim jong-sik
+[credential]
+	helper = store
+[core]
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only --features=interactive
+[delta]
+	map-styles = bold purple => syntax magenta, bold cyan => syntax blue
+	features = my-dark-theme zebra-dark
+    features = decorations
+	line-numbers = true
+	side-by-side = true
+[merge]
+	conflictsyle = diff
+[delta "interactive"]
+    keep-plus-minus-markers = false
+[delta "decorations"]
+    commit-decoration-style = blue ol
+    commit-style = raw
+    file-style = omit
+    hunk-header-decoration-style = blue box
+    hunk-header-file-style = red
+    hunk-header-line-number-style = "#067a00"
+    hunk-header-style = file line-number syntax

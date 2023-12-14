@@ -21,7 +21,7 @@ Plugin 'catppuccin/vim', { 'as': 'catppuccin' }
 Plugin 'junegunn/seoul256.vim'
 Plugin 'EdenEast/nightfox.nvim'
 Plugin 'thaerkh/vim-indentguides'
-Plugin 'markonm/traces.vim' "highlights patterns and ranges
+Plugin 'markonm/traces.vim' "highlights patterns and ranges. ex편집기기준이라 BRE만 지원하는듯.
 "Plugin 'nordtheme/vim'
 "Plugin 'David-Kunz/markid' "같은이름의 구분자들을 같은 색으로 표시
 Plugin 'Raimondi/delimitMate'
@@ -45,6 +45,7 @@ Plugin 'dense-analysis/ale' " ALE : syntax 체크와 구문 에러 지원
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'luochen1990/rainbow'  "향상된 괄호 표시
+"Plugin 'othree/eregex.vim'   "검색명령어 /를 누르면 perl regex로 검색되도록 함.traces와 호환안됨.
 "--------------------------------------------------
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'

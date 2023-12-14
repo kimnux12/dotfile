@@ -1,0 +1,50 @@
+[
+	{
+		"group" : "root",
+		"stations" : []
+	},
+	{
+		"group" : "Kor",
+		"stations" : 
+		[
+			{
+				"name" : "\uc62c\ub4dc\ud31d\uc758 \ucd94\uc5b5",
+				"url" : "http://maky3010.saycast.com"
+			},
+			{
+				"name" : "CIUT 89.5 FM",
+				"url" : "http://128.100.197.46:80"
+			},
+			{
+				"name" : "\uba85\ud488\ud2b8\ub85c\ud2b8",
+				"url" : "http://jun28w.saycast.com"
+			}
+		]
+	},
+	{
+		"group" : "\uacf5\uc911\ud30c \ub77c\ub514\uc624",
+		"stations" : 
+		[
+			{
+				"name" : "KBS Cool FM",
+				"url" : "http://serpent0.duckdns.org:8088/kbs2fm.pls"
+			},
+			{
+				"name" : "MBC \ud45c\uc900 FM",
+				"url" : "http://serpent0.duckdns.org:8088/mbcsfm.pls"
+			},
+			{
+				"name" : "MBC FM4U",
+				"url" : "http://serpent0.duckdns.org:8088/mbcfm.pls"
+			},
+			{
+				"name" : "SBS \ud30c\uc6cc FM",
+				"url" : "http://serpent0.duckdns.org:8088/sbsfm.pls"
+			},
+			{
+				"name" : "SBS \ub7ec\ube0c FM",
+				"url" : "http://serpent0.duckdns.org:8088/sbs2fm.pls"
+			}
+		]
+	}
+]
