@@ -30,8 +30,6 @@ Plugin 'Galicarnax/vim-regex-syntax'
 Plugin 'ap/vim-css-color'  "color name highlight"
 "Makr 표시기능
 Plugin 'kshenoy/vim-signature'
-"vim 화면 중앙에 터미널 띄우기, Laygit과 Delta를 사용하기 위새 설치함
-Plugin 'voldikss/vim-floaterm'
 "각종 언어 하이라이트 자동들여쓰기등 지원 
 Plugin 'sheerun/vim-polyglot'
 "sysntax hightlight 플러그인
@@ -49,8 +47,9 @@ Plugin 'luochen1990/rainbow'  "향상된 괄호 표시
 "--------------------------------------------------
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-rhubarb'
-Plugin 'junegunn/gv.vim'
+Plugin 'tpope/vim-rhubarb'   "GBrowse 로 git폴더내의 작업파일의 해당 gitHub 인터넷페이지 오픈
+Plugin 'junegunn/gv.vim'     "A git commit browser
+Plugin 'airblade/vim-gitgutter'  "quickly jump between “modified git chunks” and to operate upon those chunks
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -96,9 +95,26 @@ set termguicolors
 " delimitMate
 let delimitMate_expand_cr=1
 
+"gitgutter용 셋팅: Use fontawesome icons as signs
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '>'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '^'
+let g:gitgutter_sign_modified_removed = '<'
+let g:gitgutter_override_sign_column_highlight = 1
+"highlight SignColumn guibg=bg
+"highlight SignColumn ctermbg=bg
+set updatetime=250
+" Jump between hunks
+nmap <Leader>gn <Plug>GitGutterNextHunk  " git next
+nmap <Leader>gp <Plug>GitGutterPrevHunk  " git previous
+nmap <Leader>ga <Plug>GitGutterStageHunk  " git add (chunk)
+nmap <Leader>gu <Plug>GitGutterUndoHunk   " git undo (chunk)
+
 "탐색기 불러내고 닫기
 inoremap <c-b> <ESC>:Lex<cr>:vertical resize 30<cr>
 nnoremap <c-b> <ESC>:Lex<cr>:vertical resize 30<cr>
+
 set shortmess+=c
 
 set complete+=kspell   "자동완성기능 추가
@@ -244,6 +260,9 @@ let g:airline_section_warning= '' "마지막 status창 사용 안함
 set hidden
 "-----------------------------------------------------
 let g:rustfmt_autosave = 1
+"검색을 정규식으로
+map / /\v
+map <F2> FloatermNew
 "colorscheme catppuccin_mocha
 colorscheme	tokyonight	
 "colorscheme nordfox
