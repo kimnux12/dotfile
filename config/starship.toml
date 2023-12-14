@@ -31,7 +31,7 @@ truncate_to_repo = true # truncates directory to root folder if in github repo
 style = "bold italic blue"
 
 [cmd_duration]
-command_timeout = 2500
+command_timeout = 3500
 min_time = 4
 show_milliseconds = false
 disabled = true

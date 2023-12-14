@@ -1,0 +1,19 @@
+1. sudo pacman -S docker
+
+2. systemctl enable docker.service
+
+3. systemctl start docker.service
+
+4. cat /etc/group | grep -i docker # docker 그룹이 만들어졌는지 확인
+
+5. id -a kimnux   # 먼저 내 계정의 소속 그룹들을 확인
+
+6. sudo usermod -aG docker kimnux   # -a : append, -G : 원하는 그룹
+
+7. id -a kimnux   # 제대로 만들어 졌는지 확인
+
+8. 재로그인
+
+9. docker ps   #컨테이너 확인
+
+10. docker images    #도커 이미지 확인

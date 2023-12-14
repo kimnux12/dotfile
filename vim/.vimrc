@@ -21,7 +21,7 @@ Plugin 'catppuccin/vim', { 'as': 'catppuccin' }
 Plugin 'junegunn/seoul256.vim'
 Plugin 'EdenEast/nightfox.nvim'
 Plugin 'thaerkh/vim-indentguides'
-Plugin 'markonm/traces.vim' "highlights patterns and ranges. ex편집기기준이라 BRE만 지원하는듯.
+Plugin 'markonm/traces.vim' "perldo는 지원안함.highlights patterns and ranges. ex편집기기준이라 BRE만 지원하는듯.
 "Plugin 'nordtheme/vim'
 "Plugin 'David-Kunz/markid' "같은이름의 구분자들을 같은 색으로 표시
 Plugin 'Raimondi/delimitMate'
@@ -184,6 +184,7 @@ au BufReadPost *
 if $LANG[0]=='k' && $LANG[1]=='o'
 	set encoding=utf-8
 	set fileencoding=utf-8
+	set termencoding=utf-8
             "혹은 위 두줄 대신
             "set fileencoding=korea
 endif
@@ -225,6 +226,28 @@ let g:ale_completion_enabled = 1 " ALE에서 지원하는 자동완성기능
 " Set this variable to 1 to fix files when you save them.
 let g:ale_fix_on_save = 1
 
+" 버퍼 목록 켜기
+" 이 옵션은 버퍼를 수정한 직후 버퍼를 감춰지도록 한다.
+" 이 방법으로 버퍼를 사용하려면 거의 필수다.
+set hidden
+
+let mapleader=","   "leader키 설정, 기본값은 \이다 
+
+" 버퍼 새로 열기
+"nmap <leader>T :enew<cr>
+nmap <F2> :enew<cr>
+
+" 다음 버퍼로 이동
+nmap <leader>l :bnext<CR>
+
+" 이전 버퍼로 이동
+nmap <leader>h :bprevious<CR>
+
+" 현재 버퍼를 닫고 이전 버퍼로 이동
+nmap <leader>bq :bp <BAR> bd #<CR>
+
+" 모든 버퍼와 각 버퍼 상태 출력
+nmap <leader>bl :ls<CR>
 "---- grubbox 용 셋팅
 "let g:gruvbox_contrast_dark="hard"
 "set background=dark
@@ -254,15 +277,12 @@ let g:airline_theme = "tokyonight"
 "let g:airline_solarized_bg='dark'
 let g:airline_section_y = '' 
 let g:airline_section_warning= '' "마지막 status창 사용 안함
-" 버퍼 목록 켜기
-" 이 옵션은 버퍼를 수정한 직후 버퍼를 감춰지도록 한다.
-" 이 방법으로 버퍼를 사용하려면 거의 필수다.
 set hidden
 "-----------------------------------------------------
 let g:rustfmt_autosave = 1
 "검색을 정규식으로
 map / /\v
-map <F2> FloatermNew
+
 "colorscheme catppuccin_mocha
 colorscheme	tokyonight	
 "colorscheme nordfox
