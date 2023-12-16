@@ -1,0 +1,8 @@
+[Unit]
+Description=Set the voltage offset to -25 for all cores
+
+[Service]
+ExecStart=python3 /home/kimnux/pbo2/ruv.py -c 8 -o -25
+
+[Install]
+WantedBy=multi-user.target

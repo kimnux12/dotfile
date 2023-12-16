@@ -28,6 +28,7 @@ Plugin 'Raimondi/delimitMate'
 "Regex 하이라이트 플러그인
 Plugin 'Galicarnax/vim-regex-syntax'
 Plugin 'ap/vim-css-color'  "color name highlight"
+Plugin 'ryanoasis/vim-devicons' "파일타입에 맞춰 아이콘 표시
 "Makr 표시기능
 Plugin 'kshenoy/vim-signature'
 "각종 언어 하이라이트 자동들여쓰기등 지원 
@@ -39,6 +40,12 @@ Plugin 'sheerun/vim-polyglot'
 Plugin 'jdhao/better-escape.vim'
 "--------------------------------------------------
 Plugin 'rust-lang/rust.vim'
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+
 Plugin 'dense-analysis/ale' " ALE : syntax 체크와 구문 에러 지원
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -68,7 +75,7 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-packadd YouCompleteMe
+"packadd YouCompleteMe
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -105,6 +112,17 @@ let g:gitgutter_override_sign_column_highlight = 1
 "highlight SignColumn guibg=bg
 "highlight SignColumn ctermbg=bg
 set updatetime=250
+
+"-----------------------------------------------------
+"snippet 설정
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger="<Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips']
+let g:UltiSnipsSnippetDirectories = ['UltiSnips']
+
+"---------------------------------------------------------
 " Jump between hunks
 nmap <Leader>gn <Plug>GitGutterNextHunk  " git next
 nmap <Leader>gp <Plug>GitGutterPrevHunk  " git previous
@@ -225,7 +243,13 @@ let g:is_bash=1
 let g:ale_completion_enabled = 1 " ALE에서 지원하는 자동완성기능
 " Set this variable to 1 to fix files when you save them.
 let g:ale_fix_on_save = 1
-
+"let g:ale_sign_error = '✘'
+"let g:ale_sign_warning = '⚠'
+let g:ale_sign_error = '--'
+let g:ale_sign_warning = '>>'
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+highlight link ALEVirtualTextError Error
 " 버퍼 목록 켜기
 " 이 옵션은 버퍼를 수정한 직후 버퍼를 감춰지도록 한다.
 " 이 방법으로 버퍼를 사용하려면 거의 필수다.
@@ -253,7 +277,7 @@ nmap <leader>bl :ls<CR>
 "set background=dark
 
 "---- Tokyo Night 용 셋팅
-let g:tokyonight_style = 'storm' " available: night, storm
+let g:tokyonight_style = 'night' " available: night, storm
 let g:tokyonight_enable_italic = 1
 let g:tokyonight_transparent_background = 0
 "---- eliminating delay on ESC
@@ -271,9 +295,9 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_highlighting_cache = 1
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme = "tokyonight"
+"let g:airline_theme = "tokyonight"
 "let g:airline_theme = "catppuccin_mocha"
-"let g:airline_theme= 'violet'
+let g:airline_theme= 'violet'
 "let g:airline_solarized_bg='dark'
 let g:airline_section_y = '' 
 let g:airline_section_warning= '' "마지막 status창 사용 안함
@@ -283,11 +307,31 @@ let g:rustfmt_autosave = 1
 "검색을 정규식으로
 map / /\v
 
+"---------------------------------------------------------------------------------------
+"coc.nvim, utilsnips, copilot.vim을 트리거 키 하나로 통일하기
+"그냥 일반 탭을 사용하려면 <C-v><Tab>을 사용한다
+" ultisnips
+let g:UltiSnipsExpandTrigger="<C-y>"
+let g:UltiSnipsJumpForwardTrigger="<Right>"
+let g:UltiSnipsJumpBackwardTrigger="<Left>"
+
+" coc.nvim
+inoremap <silent><script><expr> <Tab> pumvisible() ? "\<C-y>" : copilot#Accept("\<CR>")
+
+" copilot을 특정한 파일 타입에만 부른다
+let g:copilot_filetypes = {
+    \ 'gitcommit': v:true,
+    \ 'markdown': v:true,
+    \ 'yaml': v:true,
+    \ 'perl': v:true
+    \ }
+"---------------------------------------------------------------------------------------
+
 "colorscheme catppuccin_mocha
 colorscheme	tokyonight	
 "colorscheme nordfox
 "colorscheme  dracula
-
+"colorscheme terafox
 " seoul256 (dark):
 "   Range:   233 (darkest) ~ 239 (lightest)
 "   Default: 237

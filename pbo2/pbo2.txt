@@ -1,0 +1,6 @@
+출처 : https://github.com/svenlange2/Ryzen-5800x3d-linux-undervolting
+
+데몬 띄우는 법.
+ sevice 파일을 /etc/systemd/system으로 옮긴다.
+ systemctl enable pbo2.service
+ systemctl start pbo2.service
