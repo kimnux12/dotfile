@@ -1,11 +1,10 @@
 "#--------------------------------------------------------------
-"#--------------------------------------------------------------
+"#
 "#     pacman으로 vundle을 설치하면 git으로 받은것과 충돌남.
 "#     gvim 설치시에 설치될 수도 있으니 꼭 pacman으로 vundle
 "#     삭제할것. 삭제하지 않으면 PluginInstall 시에 에러발생함.
 "#
-"#
-"#
+"#--------------------------------------------------------------
 "vim tool 쉽게 설치하려고 번들 만드는 과정에서 코드 추가.
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -40,14 +39,18 @@ Plugin 'sheerun/vim-polyglot'
 Plugin 'jdhao/better-escape.vim'
 "--------------------------------------------------
 Plugin 'rust-lang/rust.vim'
-Plugin 'prabirshrestha/async.vim'
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+"Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 " Track the engine.
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+Plugin 'prabirshrestha/async.vim'
+Plugin 'prabirshrestha/vim-lsp'
+Plugin 'mattn/vim-lsp-settings'
+Plugin 'thomasfaingnaert/vim-lsp-snippets'
+Plugin 'thomasfaingnaert/vim-lsp-ultisnips'
 Plugin 'Exafunction/codeium.vim'
 Plugin 'dense-analysis/ale' " ALE : syntax 체크와 구문 에러 지원
+Plugin 'rhysd/vim-lsp-ale'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'luochen1990/rainbow'  "향상된 괄호 표시
@@ -72,11 +75,11 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
- Plugin 'ascenator/L9', {'name': 'newL9'}
+Plugin 'ascenator/L9', {'name': 'newL9'}
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-"packadd YouCompleteMe
+packadd YouCompleteMe
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -112,45 +115,54 @@ let g:gitgutter_sign_modified_removed = '<'
 let g:gitgutter_override_sign_column_highlight = 1
 "highlight SignColumn guibg=bg
 "highlight SignColumn ctermbg=bg
-set updatetime=300
-set nobackup
-set nowritebackup
-set signcolumn=yes
+"-----------------------------------------------------------------------------------------------
+"ultisnips 셋팅
 
+" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+" - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+"-----------------------------------------------------------------------------------------------
 "coc.nvim
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
 " no select by `"suggest.noselect": true` in your configuration file
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config
-inoremap <silent><expr> <TAB>
-	  \ pumvisible() ? "\<C-n>" :
-	  \ <SID>check_back_space() ? "\<TAB>" :
-	  \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-"nmap <silent> <C-p> <Plug>(coc-definition)
-"nmap <silent> <C-n> <Plug>(coc-type-definition)
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
-nmap <silent> <C-p> <Plug>(coc-diagnostic-prev)
-nmap <silent> <C-n> <Plug>(coc-diagnostic-next)
-" GoTo code navigation
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-"-----------------------------------------------------
+"inoremap <silent><expr> <TAB>
+"	  \ pumvisible() ? "\<C-n>" :
+"	  \ <SID>check_back_space() ? "\<TAB>" :
+"	  \ coc#refresh()
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+"" Make <CR> to accept selected completion item or notify coc.nvim to format
+"" <C-g>u breaks current undo, please make your own choice
+"inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+"                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+""nmap <silent> <C-p> <Plug>(coc-definition)
+""nmap <silent> <C-n> <Plug>(coc-type-definition)
+"
+"" Use `[g` and `]g` to navigate diagnostics
+"" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
+"nmap <silent> <C-p> <Plug>(coc-diagnostic-prev)
+"nmap <silent> <C-n> <Plug>(coc-diagnostic-next)
+"" GoTo code navigation
+"nmap <silent> gd <Plug>(coc-definition)
+"nmap <silent> gy <Plug>(coc-type-definition)
+"nmap <silent> gi <Plug>(coc-implementation)
+"nmap <silent> gr <Plug>(coc-references)
+""-----------------------------------------------------
 "snippet 설정
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 let g:UltiSnipsEditSplit="vertical"
-" let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips']
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips']
 let g:UltiSnipsSnippetDirectories = ['UltiSnips']
 
 "---------------------------------------------------------
@@ -161,26 +173,26 @@ nmap <Leader>ga <Plug>GitGutterStageHunk  " git add (chunk)
 nmap <Leader>gu <Plug>GitGutterUndoHunk   " git undo (chunk)
 "---------------------------------------------------------
 "coc 설정
-set nobackup
-set nowritebackup
+"set nobackup
+"set nowritebackup
 
 " Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
 " delays and poor user experience
-set updatetime=300
+"set updatetime=300
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved
-set signcolumn=yes
+"set signcolumn=yes
 "---------------------------------------------------------------------------------------
 "coc.nvim, utilsnips, copilot.vim을 트리거 키 하나로 통일하기
 "그냥 일반 탭을 사용하려면 <C-v><Tab>을 사용한다
 " ultisnips
-let g:UltiSnipsExpandTrigger="<C-y>"
-let g:UltiSnipsJumpForwardTrigger="<Right>"
-let g:UltiSnipsJumpBackwardTrigger="<Left>"
+"let g:UltiSnipsExpandTrigger="<C-y>"
+"let g:UltiSnipsJumpForwardTrigger="<Right>"
+"let g:UltiSnipsJumpBackwardTrigger="<Left>"
 
 " coc.nvim과 codeiumd연동. 
-inoremap <silent><script><expr> <Tab> pumvisible() ? "\<C-y>" : codeium#Accept()
+"inoremap <silent><script><expr> <Tab> pumvisible() ? "\<C-y>" : codeium#Accept()
 " 이렇게 하면 <Tab>키를 누르는 것으로 coc.nvim, ultsnips, codeium을 모두
 " 사용가능
 "---------------------------------------------------------------------------------------
@@ -224,14 +236,16 @@ set tabstop=4
 set ruler "현재 커서 위치 표시
 " highlight current line
 set cursorline 
-:highlight Cursorline cterm=bold ctermbg=black
+highlight Cursorline cterm=bold ctermbg=black
 set incsearch
 "set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 "set nowrap
+
 "vim-regex-syntax highlight 셋팅
 au FileType python call EnableEmbeddedSyntaxHighlight('pcre', "\\v\\C<R''@!", "\\v([^\\\\]\\\\(\\\\\\\\)*)@<!'", 'Comment')
 au FileType cpp call EnableEmbeddedSyntaxHighlight('sql', "\\C\\<R\\\"sql(", ")sql\\\"", 'Comment')
 au FileType lua call EnableEmbeddedSyntaxHighlight('pcre', "\\[=\\[", "\\]=\\]", 'Comment')
+
 " Semmi 용 셋팅
 "hi semshiLocal           ctermfg=209 guifg=#ff875f
 "hi semshiGlobal          ctermfg=214 guifg=#ffaf00
@@ -296,8 +310,9 @@ let g:rainbow_active = 1
 let g:is_bash=1
 "filetype on
 "set filetype=sh
+"----------------------------------------------------------------------------
 "ale용 설정
-let g:ale_completion_enabled = 1 " ALE에서 지원하는 자동완성기능
+let g:ale_completion_enabled = 0 " ALE에서 지원하는 자동완성기능
 " Set this variable to 1 to fix files when you save them.
 let g:ale_fix_on_save = 1
 "let g:ale_sign_error = '✘'
@@ -307,6 +322,8 @@ let g:ale_sign_warning = '>>'
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 highlight link ALEVirtualTextError Error
+"
+" ------------------------------------------------------------------------------
 " 버퍼 목록 켜기
 " 이 옵션은 버퍼를 수정한 직후 버퍼를 감춰지도록 한다.
 " 이 방법으로 버퍼를 사용하려면 거의 필수다.
