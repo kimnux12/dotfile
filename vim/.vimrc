@@ -20,7 +20,7 @@ Plugin 'ghifarit53/tokyonight-vim'
 Plugin 'catppuccin/vim', { 'as': 'catppuccin' } 
 Plugin 'junegunn/seoul256.vim'
 Plugin 'EdenEast/nightfox.nvim'
-Plugin 'thaerkh/vim-indentguides'
+"Plugin 'thaerkh/vim-indentguides'
 Plugin 'markonm/traces.vim' "perldo는 지원안함.highlights patterns and ranges. ex편집기기준이라 BRE만 지원하는듯.
 "Plugin 'nordtheme/vim'
 "Plugin 'David-Kunz/markid' "같은이름의 구분자들을 같은 색으로 표시
@@ -132,6 +132,18 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " <C-g>u breaks current undo, please make your own choice
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+"nmap <silent> <C-p> <Plug>(coc-definition)
+"nmap <silent> <C-n> <Plug>(coc-type-definition)
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
+nmap <silent> <C-p> <Plug>(coc-diagnostic-prev)
+nmap <silent> <C-n> <Plug>(coc-diagnostic-next)
+" GoTo code navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 "-----------------------------------------------------
 "snippet 설정
 let g:UltiSnipsExpandTrigger="<Tab>"
@@ -148,7 +160,31 @@ nmap <Leader>gp <Plug>GitGutterPrevHunk  " git previous
 nmap <Leader>ga <Plug>GitGutterStageHunk  " git add (chunk)
 nmap <Leader>gu <Plug>GitGutterUndoHunk   " git undo (chunk)
 "---------------------------------------------------------
+"coc 설정
+set nobackup
+set nowritebackup
 
+" Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
+" delays and poor user experience
+set updatetime=300
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved
+set signcolumn=yes
+"---------------------------------------------------------------------------------------
+"coc.nvim, utilsnips, copilot.vim을 트리거 키 하나로 통일하기
+"그냥 일반 탭을 사용하려면 <C-v><Tab>을 사용한다
+" ultisnips
+let g:UltiSnipsExpandTrigger="<C-y>"
+let g:UltiSnipsJumpForwardTrigger="<Right>"
+let g:UltiSnipsJumpBackwardTrigger="<Left>"
+
+" coc.nvim과 codeiumd연동. 
+inoremap <silent><script><expr> <Tab> pumvisible() ? "\<C-y>" : codeium#Accept()
+" 이렇게 하면 <Tab>키를 누르는 것으로 coc.nvim, ultsnips, codeium을 모두
+" 사용가능
+"---------------------------------------------------------------------------------------
+"let g:indent_guides_enable_on_vim_startup = 0
 "탐색기 불러내고 닫기
 inoremap <c-b> <ESC>:Lex<cr>:vertical resize 30<cr>
 nnoremap <c-b> <ESC>:Lex<cr>:vertical resize 30<cr>
@@ -327,34 +363,6 @@ set hidden
 let g:rustfmt_autosave = 1
 "검색을 정규식으로
 map / /\v
-
-"==========================================================================
-"coc 설정
-set nobackup
-set nowritebackup
-
-" Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
-" delays and poor user experience
-set updatetime=300
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved
-set signcolumn=yes
-
-"==============================================================================
-"---------------------------------------------------------------------------------------
-"coc.nvim, utilsnips, copilot.vim을 트리거 키 하나로 통일하기
-"그냥 일반 탭을 사용하려면 <C-v><Tab>을 사용한다
-" ultisnips
-let g:UltiSnipsExpandTrigger="<C-y>"
-let g:UltiSnipsJumpForwardTrigger="<Right>"
-let g:UltiSnipsJumpBackwardTrigger="<Left>"
-
-" coc.nvim과 codeiumd연동. 
-inoremap <silent><script><expr> <Tab> pumvisible() ? "\<C-y>" : codeium#Accept()
-" 이렇게 하면 <Tab>키를 누르는 것으로 coc.nvim, ultsnips, codeium을 모두
-" 사용가능
-"---------------------------------------------------------------------------------------
 
 "colorscheme catppuccin_mocha
 colorscheme	tokyonight	
