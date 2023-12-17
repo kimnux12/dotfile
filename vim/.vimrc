@@ -40,12 +40,13 @@ Plugin 'sheerun/vim-polyglot'
 Plugin 'jdhao/better-escape.vim'
 "--------------------------------------------------
 Plugin 'rust-lang/rust.vim'
+Plugin 'prabirshrestha/async.vim'
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 " Track the engine.
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
-
+Plugin 'Exafunction/codeium.vim'
 Plugin 'dense-analysis/ale' " ALE : syntax 체크와 구문 에러 지원
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -111,8 +112,26 @@ let g:gitgutter_sign_modified_removed = '<'
 let g:gitgutter_override_sign_column_highlight = 1
 "highlight SignColumn guibg=bg
 "highlight SignColumn ctermbg=bg
-set updatetime=250
+set updatetime=300
+set nobackup
+set nowritebackup
+set signcolumn=yes
 
+"coc.nvim
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
+inoremap <silent><expr> <TAB>
+	  \ pumvisible() ? "\<C-n>" :
+	  \ <SID>check_back_space() ? "\<TAB>" :
+	  \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 "-----------------------------------------------------
 "snippet 설정
 let g:UltiSnipsExpandTrigger="<Tab>"
@@ -128,6 +147,7 @@ nmap <Leader>gn <Plug>GitGutterNextHunk  " git next
 nmap <Leader>gp <Plug>GitGutterPrevHunk  " git previous
 nmap <Leader>ga <Plug>GitGutterStageHunk  " git add (chunk)
 nmap <Leader>gu <Plug>GitGutterUndoHunk   " git undo (chunk)
+"---------------------------------------------------------
 
 "탐색기 불러내고 닫기
 inoremap <c-b> <ESC>:Lex<cr>:vertical resize 30<cr>
@@ -212,6 +232,7 @@ if has("syntax")
 endif
 
 "터미널 창 열기(수평,수직)
+" ctrl+(w,n)으로 최대화, i로 다시 원래 크키로 돌아옴.
 function! Term(...)
 	if a:0 == 0
 		term ++rows=12
@@ -307,6 +328,20 @@ let g:rustfmt_autosave = 1
 "검색을 정규식으로
 map / /\v
 
+"==========================================================================
+"coc 설정
+set nobackup
+set nowritebackup
+
+" Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
+" delays and poor user experience
+set updatetime=300
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved
+set signcolumn=yes
+
+"==============================================================================
 "---------------------------------------------------------------------------------------
 "coc.nvim, utilsnips, copilot.vim을 트리거 키 하나로 통일하기
 "그냥 일반 탭을 사용하려면 <C-v><Tab>을 사용한다
@@ -315,16 +350,10 @@ let g:UltiSnipsExpandTrigger="<C-y>"
 let g:UltiSnipsJumpForwardTrigger="<Right>"
 let g:UltiSnipsJumpBackwardTrigger="<Left>"
 
-" coc.nvim
-inoremap <silent><script><expr> <Tab> pumvisible() ? "\<C-y>" : copilot#Accept("\<CR>")
-
-" copilot을 특정한 파일 타입에만 부른다
-let g:copilot_filetypes = {
-    \ 'gitcommit': v:true,
-    \ 'markdown': v:true,
-    \ 'yaml': v:true,
-    \ 'perl': v:true
-    \ }
+" coc.nvim과 codeiumd연동. 
+inoremap <silent><script><expr> <Tab> pumvisible() ? "\<C-y>" : codeium#Accept()
+" 이렇게 하면 <Tab>키를 누르는 것으로 coc.nvim, ultsnips, codeium을 모두
+" 사용가능
 "---------------------------------------------------------------------------------------
 
 "colorscheme catppuccin_mocha
