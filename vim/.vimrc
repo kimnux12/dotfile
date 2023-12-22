@@ -23,7 +23,7 @@ Plugin 'EdenEast/nightfox.nvim'
 Plugin 'markonm/traces.vim' "perldo는 지원안함.highlights patterns and ranges. ex편집기기준이라 BRE만 지원하는듯.
 "Plugin 'nordtheme/vim'
 "Plugin 'David-Kunz/markid' "같은이름의 구분자들을 같은 색으로 표시
-Plugin 'Raimondi/delimitMate'
+"Plugin 'Raimondi/delimitMate' "괄호 자동생성
 "Regex 하이라이트 플러그인
 Plugin 'Galicarnax/vim-regex-syntax'
 Plugin 'ap/vim-css-color'  "color name highlight"
@@ -38,12 +38,16 @@ Plugin 'sheerun/vim-polyglot'
 " 빠른 insert mode 탈출 플러그인
 Plugin 'jdhao/better-escape.vim'
 "--------------------------------------------------
+"vim용 live-server
+Plugin 'https://github.com/wolandark/vim-live-server.git' " StartBrowerSync(localhost:3000),KillBrowerSync
 Plugin 'rust-lang/rust.vim'
 "Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 " Track the engine.
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
-Plugin 'prabirshrestha/async.vim'
+"Plugin 'prabirshrestha/async.vim'
+Plugin 'Valloric/YouCompleteMe'
+"Plugin 'ervandew/supertab'
 Plugin 'prabirshrestha/vim-lsp'
 Plugin 'mattn/vim-lsp-settings'
 Plugin 'thomasfaingnaert/vim-lsp-snippets'
@@ -55,6 +59,11 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'luochen1990/rainbow'  "향상된 괄호 표시
 "Plugin 'othree/eregex.vim'   "검색명령어 /를 누르면 perl regex로 검색되도록 함.traces와 호환안됨.
+"----------------------------------------------
+" Docker 지원 플러그인 셋팅 (deno 필요)
+Plugin 'vim-denops/denops.vim'    "선행 플러그인
+Plugin 'skanehira/denops-docker.vim'
+"Plugin 'vim-denops/denops-helloworld.vim'
 "--------------------------------------------------
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
@@ -79,7 +88,7 @@ Plugin 'ascenator/L9', {'name': 'newL9'}
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-packadd YouCompleteMe
+"packadd YouCompleteMe
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -116,18 +125,38 @@ let g:gitgutter_override_sign_column_highlight = 1
 "highlight SignColumn guibg=bg
 "highlight SignColumn ctermbg=bg
 "-----------------------------------------------------------------------------------------------
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:ycm_auto_trigger = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+"let g:SuperTabDefaultCompletionType = '<C-n>'
 "ultisnips 셋팅
-
 " Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
 " - https://github.com/Valloric/YouCompleteMe
 " - https://github.com/nvim-lua/completion-nvim
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
+let g:UltiSnipsExpandTrigger="<S-t>"
+let g:UltiSnipsJumpForwardTrigger="<S-f>"
+let g:UltiSnipsJumpBackwardTrigger="<S-b>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-
+"-----------------------------------------------------
+nmap <F3>:StartBrowerSync <CR>
+nmap <F4>:KillBrowerSync <CR>
+""-----------------------------------------------------
+"snippet 설정
+let g:UltiSnipsExpandTrigger="<Tab>"
+"let g:UltiSnipsJumpForwardTrigger="<Tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips']
+let g:UltiSnipsSnippetDirectories = ['UltiSnips']
+"-----------------------------------------------------
+let g:codeium_disable_bindings = 1
+imap <script><silent><nowait><expr> <C-g> codeium#Accept()
+imap <C-;>   <Cmd>call codeium#CycleCompletions(1)<CR>
+imap <C-,>   <Cmd>call codeium#CycleCompletions(-1)<CR>
+imap <C-x>   <Cmd>call codeium#Clear()<CR>
 "-----------------------------------------------------------------------------------------------
 "coc.nvim
 " Use tab for trigger completion with characters ahead and navigate
@@ -156,14 +185,6 @@ let g:UltiSnipsEditSplit="vertical"
 "nmap <silent> gy <Plug>(coc-type-definition)
 "nmap <silent> gi <Plug>(coc-implementation)
 "nmap <silent> gr <Plug>(coc-references)
-""-----------------------------------------------------
-"snippet 설정
-let g:UltiSnipsExpandTrigger="<Tab>"
-let g:UltiSnipsJumpForwardTrigger="<Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips']
-let g:UltiSnipsSnippetDirectories = ['UltiSnips']
 
 "---------------------------------------------------------
 " Jump between hunks
@@ -382,10 +403,10 @@ let g:rustfmt_autosave = 1
 map / /\v
 
 "colorscheme catppuccin_mocha
-colorscheme	tokyonight	
+"colorscheme	tokyonight	
 "colorscheme nordfox
 "colorscheme  dracula
-"colorscheme terafox
+colorscheme terafox
 " seoul256 (dark):
 "   Range:   233 (darkest) ~ 239 (lightest)
 "   Default: 237
