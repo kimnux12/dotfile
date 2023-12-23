@@ -23,7 +23,7 @@ Plugin 'EdenEast/nightfox.nvim'
 Plugin 'markonm/traces.vim' "perldo는 지원안함.highlights patterns and ranges. ex편집기기준이라 BRE만 지원하는듯.
 "Plugin 'nordtheme/vim'
 "Plugin 'David-Kunz/markid' "같은이름의 구분자들을 같은 색으로 표시
-"Plugin 'Raimondi/delimitMate' "괄호 자동생성
+Plugin 'Raimondi/delimitMate' "괄호 자동생성
 "Regex 하이라이트 플러그인
 Plugin 'Galicarnax/vim-regex-syntax'
 Plugin 'ap/vim-css-color'  "color name highlight"
@@ -52,7 +52,7 @@ Plugin 'prabirshrestha/vim-lsp'
 Plugin 'mattn/vim-lsp-settings'
 Plugin 'thomasfaingnaert/vim-lsp-snippets'
 Plugin 'thomasfaingnaert/vim-lsp-ultisnips'
-Plugin 'Exafunction/codeium.vim'
+"Plugin 'Exafunction/codeium.vim'
 Plugin 'dense-analysis/ale' " ALE : syntax 체크와 구문 에러 지원
 Plugin 'rhysd/vim-lsp-ale'
 Plugin 'vim-airline/vim-airline'
@@ -143,7 +143,7 @@ let g:UltiSnipsEditSplit="vertical"
 "-----------------------------------------------------
 nmap <F3>:StartBrowerSync <CR>
 nmap <F4>:KillBrowerSync <CR>
-""-----------------------------------------------------
+"-----------------------------------------------------
 "snippet 설정
 let g:UltiSnipsExpandTrigger="<Tab>"
 "let g:UltiSnipsJumpForwardTrigger="<Tab>"
@@ -152,11 +152,11 @@ let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips']
 let g:UltiSnipsSnippetDirectories = ['UltiSnips']
 "-----------------------------------------------------
-let g:codeium_disable_bindings = 1
-imap <script><silent><nowait><expr> <C-g> codeium#Accept()
-imap <C-;>   <Cmd>call codeium#CycleCompletions(1)<CR>
-imap <C-,>   <Cmd>call codeium#CycleCompletions(-1)<CR>
-imap <C-x>   <Cmd>call codeium#Clear()<CR>
+"let g:codeium_disable_bindings = 1
+"imap <script><silent><nowait><expr> <C-g> codeium#Accept()
+"imap <C-;>   <Cmd>call codeium#CycleCompletions(1)<CR>
+"imap <C-,>   <Cmd>call codeium#CycleCompletions(-1)<CR>
+"imap <C-x>   <Cmd>call codeium#Clear()<CR>
 "-----------------------------------------------------------------------------------------------
 "coc.nvim
 " Use tab for trigger completion with characters ahead and navigate

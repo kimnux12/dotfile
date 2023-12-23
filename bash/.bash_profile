@@ -6,3 +6,6 @@ export GTK_IM_MODULE=kime
 export QT_IM_MODULE=kime
 export XMODIFIERS=@im=kime 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"

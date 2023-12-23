@@ -10,8 +10,10 @@ esac
 #old_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin"
 
 #export PATH="~/.pyenv/bin:$old_path"
-export PATH="~/.pyenv/versions/3.12.0/bin:$PATH"
-eval "$(pyenv init --path)"
+#--------PYTHON용 셋팅----------------
+#export PYENV_ROOT="$HOME/.pyenv"
+#export PATH="~/.pyenv/versions/3.12.0/bin:$PATH"
+#eval "$(pyenv init --path)"
 #eval "$(pyenv virtualenv-init -)"
 unset MANPATH
 #[[ $- != *i* ]] && return
@@ -41,3 +43,7 @@ PERL_LOCAL_LIB_ROOT="/home/kimnux/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_
 PERL_MB_OPT="--install_base \"/home/kimnux/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/kimnux/perl5"; export PERL_MM_OPT;
 fortune | cowsay | lolcat
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

@@ -1,0 +1,26 @@
+pyenv activate <name>
+pyenv deactivate
+
+Delete existing virtualenv
+Removing the directories in $(pyenv root)/versions and $(pyenv root)/versions/{version}/envs will delete the virtualenv, or you can run:
+
+pyenv uninstall my-virtual-env
+
+You can also delete existing virtualenvs by using virtualenv-delete command, e.g. you can run:
+
+pyenv virtualenv-delete my-virtual-env
+
+If conda is available, pyenv virtualenv will use it to create environment by conda create.
+
+$ pyenv version
+miniconda3-3.9.1 (set by /home/yyuu/.pyenv/version)
+$ pyenv virtualenv myenv2
+$ conda env list
+# conda environments:
+#
+myenv                    /home/yyuu/.pyenv/versions/miniconda3-3.9.1/envs/myenv
+myenv                    /home/yyuu/.pyenv/versions/miniconda3-3.9.1/envs/myenv2
+root                  *  /home/yyuu/.pyenv/versions/miniconda3-3.9.1
+
+conda env 삭제
+conda env remove -n my-venv
