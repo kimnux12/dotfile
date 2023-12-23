@@ -1,4 +1,4 @@
-pyenv activate <name>
+pyenv activate my-venv
 pyenv deactivate
 
 Delete existing virtualenv

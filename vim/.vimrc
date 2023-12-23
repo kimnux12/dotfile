@@ -22,8 +22,8 @@ Plugin 'EdenEast/nightfox.nvim'
 "Plugin 'thaerkh/vim-indentguides'
 Plugin 'markonm/traces.vim' "perldo는 지원안함.highlights patterns and ranges. ex편집기기준이라 BRE만 지원하는듯.
 "Plugin 'nordtheme/vim'
-"Plugin 'David-Kunz/markid' "같은이름의 구분자들을 같은 색으로 표시
-Plugin 'Raimondi/delimitMate' "괄호 자동생성
+Plugin 'David-Kunz/markid' "같은이름의 구분자들을 같은 색으로 표시
+"Plugin 'Raimondi/delimitMate' "괄호 자동생성
 "Regex 하이라이트 플러그인
 Plugin 'Galicarnax/vim-regex-syntax'
 Plugin 'ap/vim-css-color'  "color name highlight"
@@ -33,28 +33,18 @@ Plugin 'kshenoy/vim-signature'
 "각종 언어 하이라이트 자동들여쓰기등 지원 
 Plugin 'sheerun/vim-polyglot'
 "sysntax hightlight 플러그인
-"Plugin 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
 "================================================
 " 빠른 insert mode 탈출 플러그인
 Plugin 'jdhao/better-escape.vim'
 "--------------------------------------------------
 "vim용 live-server
 Plugin 'https://github.com/wolandark/vim-live-server.git' " StartBrowerSync(localhost:3000),KillBrowerSync
-Plugin 'rust-lang/rust.vim'
-"Plugin 'neoclide/coc.nvim', {'branch': 'release'}
-" Track the engine.
-Plugin 'SirVer/ultisnips'
-" Snippets are separated from the engine. Add this if you want them:
-"Plugin 'prabirshrestha/async.vim'
-Plugin 'Valloric/YouCompleteMe'
-"Plugin 'ervandew/supertab'
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'prabirshrestha/vim-lsp'
 Plugin 'mattn/vim-lsp-settings'
-Plugin 'thomasfaingnaert/vim-lsp-snippets'
-Plugin 'thomasfaingnaert/vim-lsp-ultisnips'
-"Plugin 'Exafunction/codeium.vim'
-Plugin 'dense-analysis/ale' " ALE : syntax 체크와 구문 에러 지원
-Plugin 'rhysd/vim-lsp-ale'
+Plugin 'Exafunction/codeium.vim'
+"Plugin 'dense-analysis/ale' " ALE : syntax 체크와 구문 에러 지원
+"Plugin 'rhysd/vim-lsp-ale'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'luochen1990/rainbow'  "향상된 괄호 표시
@@ -63,7 +53,6 @@ Plugin 'luochen1990/rainbow'  "향상된 괄호 표시
 " Docker 지원 플러그인 셋팅 (deno 필요)
 Plugin 'vim-denops/denops.vim'    "선행 플러그인
 Plugin 'skanehira/denops-docker.vim'
-"Plugin 'vim-denops/denops-helloworld.vim'
 "--------------------------------------------------
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
@@ -125,102 +114,48 @@ let g:gitgutter_override_sign_column_highlight = 1
 "highlight SignColumn guibg=bg
 "highlight SignColumn ctermbg=bg
 "-----------------------------------------------------------------------------------------------
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:ycm_auto_trigger = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-"let g:SuperTabDefaultCompletionType = '<C-n>'
-"ultisnips 셋팅
-" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
-" - https://github.com/Valloric/YouCompleteMe
-" - https://github.com/nvim-lua/completion-nvim
-let g:UltiSnipsExpandTrigger="<S-t>"
-let g:UltiSnipsJumpForwardTrigger="<S-f>"
-let g:UltiSnipsJumpBackwardTrigger="<S-b>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+set nobackup
+set nowritebackup
+set signcolumn=yes
+
+" use tab for trigger completion with characters ahead and navigate
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() && coc#pum#info()['index'] == -1
+  \ ? "\<C-e>\<CR>"
+  \ : coc#pum#visible()
+    \ ? coc#_select_confirm()
+    \ : "\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 "-----------------------------------------------------
 nmap <F3>:StartBrowerSync <CR>
 nmap <F4>:KillBrowerSync <CR>
 "-----------------------------------------------------
-"snippet 설정
-let g:UltiSnipsExpandTrigger="<Tab>"
-"let g:UltiSnipsJumpForwardTrigger="<Tab>"
-"let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips']
-let g:UltiSnipsSnippetDirectories = ['UltiSnips']
-"-----------------------------------------------------
-"let g:codeium_disable_bindings = 1
-"imap <script><silent><nowait><expr> <C-g> codeium#Accept()
-"imap <C-;>   <Cmd>call codeium#CycleCompletions(1)<CR>
-"imap <C-,>   <Cmd>call codeium#CycleCompletions(-1)<CR>
-"imap <C-x>   <Cmd>call codeium#Clear()<CR>
+let g:codeium_disable_bindings = 1
+imap <script><silent><nowait><expr> <C-g> codeium#Accept()
+imap <C-;>   <Cmd>call codeium#CycleCompletions(1)<CR>
+imap <C-,>   <Cmd>call codeium#CycleCompletions(-1)<CR>
+imap <C-x>   <Cmd>call codeium#Clear()<CR>
 "-----------------------------------------------------------------------------------------------
-"coc.nvim
-" Use tab for trigger completion with characters ahead and navigate
-" NOTE: There's always complete item selected by default, you may want to enable
-" no select by `"suggest.noselect": true` in your configuration file
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config
-"inoremap <silent><expr> <TAB>
-"	  \ pumvisible() ? "\<C-n>" :
-"	  \ <SID>check_back_space() ? "\<TAB>" :
-"	  \ coc#refresh()
-"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-"" Make <CR> to accept selected completion item or notify coc.nvim to format
-"" <C-g>u breaks current undo, please make your own choice
-"inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-"                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-""nmap <silent> <C-p> <Plug>(coc-definition)
-""nmap <silent> <C-n> <Plug>(coc-type-definition)
-"
-"" Use `[g` and `]g` to navigate diagnostics
-"" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
-"nmap <silent> <C-p> <Plug>(coc-diagnostic-prev)
-"nmap <silent> <C-n> <Plug>(coc-diagnostic-next)
-"" GoTo code navigation
-"nmap <silent> gd <Plug>(coc-definition)
-"nmap <silent> gy <Plug>(coc-type-definition)
-"nmap <silent> gi <Plug>(coc-implementation)
-"nmap <silent> gr <Plug>(coc-references)
-
-"---------------------------------------------------------
-" Jump between hunks
 nmap <Leader>gn <Plug>GitGutterNextHunk  " git next
 nmap <Leader>gp <Plug>GitGutterPrevHunk  " git previous
 nmap <Leader>ga <Plug>GitGutterStageHunk  " git add (chunk)
 nmap <Leader>gu <Plug>GitGutterUndoHunk   " git undo (chunk)
 "---------------------------------------------------------
-"coc 설정
-"set nobackup
-"set nowritebackup
-
-" Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
-" delays and poor user experience
-"set updatetime=300
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved
-"set signcolumn=yes
-"---------------------------------------------------------------------------------------
-"coc.nvim, utilsnips, copilot.vim을 트리거 키 하나로 통일하기
-"그냥 일반 탭을 사용하려면 <C-v><Tab>을 사용한다
-" ultisnips
-"let g:UltiSnipsExpandTrigger="<C-y>"
-"let g:UltiSnipsJumpForwardTrigger="<Right>"
-"let g:UltiSnipsJumpBackwardTrigger="<Left>"
-
-" coc.nvim과 codeiumd연동. 
-"inoremap <silent><script><expr> <Tab> pumvisible() ? "\<C-y>" : codeium#Accept()
-" 이렇게 하면 <Tab>키를 누르는 것으로 coc.nvim, ultsnips, codeium을 모두
-" 사용가능
-"---------------------------------------------------------------------------------------
-"let g:indent_guides_enable_on_vim_startup = 0
 "탐색기 불러내고 닫기
-inoremap <c-b> <ESC>:Lex<cr>:vertical resize 30<cr>
-nnoremap <c-b> <ESC>:Lex<cr>:vertical resize 30<cr>
+inoremap <F5> <ESC>:Lex<cr>:vertical resize 30<cr>
+nnoremap <F5> <ESC>:Lex<cr>:vertical resize 30<cr>
 
 set shortmess+=c
 
@@ -266,23 +201,6 @@ set incsearch
 au FileType python call EnableEmbeddedSyntaxHighlight('pcre', "\\v\\C<R''@!", "\\v([^\\\\]\\\\(\\\\\\\\)*)@<!'", 'Comment')
 au FileType cpp call EnableEmbeddedSyntaxHighlight('sql', "\\C\\<R\\\"sql(", ")sql\\\"", 'Comment')
 au FileType lua call EnableEmbeddedSyntaxHighlight('pcre', "\\[=\\[", "\\]=\\]", 'Comment')
-
-" Semmi 용 셋팅
-"hi semshiLocal           ctermfg=209 guifg=#ff875f
-"hi semshiGlobal          ctermfg=214 guifg=#ffaf00
-"hi semshiImported        ctermfg=214 guifg=#ffaf00 cterm=bold gui=bold
-"hi semshiParameter       ctermfg=75  guifg=#5fafff
-"hi semshiParameterUnused ctermfg=117 guifg=#87d7ff cterm=underline gui=underline
-"hi semshiFree            ctermfg=218 guifg=#ffafd7
-"hi semshiBuiltin         ctermfg=207 guifg=#ff5fff
-"hi semshiAttribute       ctermfg=49  guifg=#00ffaf
-"hi semshiSelf            ctermfg=249 guifg=#b2b2b2
-"hi semshiUnresolved      ctermfg=226 guifg=#ffff00 cterm=underline gui=underline
-"hi semshiSelected       ctermfg=231 guifg=#ffffff ctermbg=161 guibg=#d7005f
-
-"hi semshiErrorSign       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#d70000
-"hi semshiErrorChar       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#d70000
-"sign define semshiError text=E> texthl=semshiErrorSign
 
 " 마지막으로 수정된 곳에 커서를 위치함
 au BufReadPost *
@@ -405,8 +323,8 @@ map / /\v
 "colorscheme catppuccin_mocha
 "colorscheme	tokyonight	
 "colorscheme nordfox
-"colorscheme  dracula
-colorscheme terafox
+colorscheme  dracula
+"colorscheme terafox
 " seoul256 (dark):
 "   Range:   233 (darkest) ~ 239 (lightest)
 "   Default: 237
