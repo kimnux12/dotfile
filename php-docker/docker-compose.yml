@@ -8,11 +8,12 @@ services:
                                    # exit 후 일반 터미널 창에서 docker exec laravel-docker bash -c "composer update"실행
                                    # docker exec laravel-app bach -c "php artisan migrate"
                                    # docker exec laravel-app bash -c "php artisan db:seed"
-      context: .
+      context: .  # Dockerfile의 경로지정 
       dockerfile: Dockerfile  
     # Mount the local ./app directory to /var/www/html in the container
     volumes:
-      - ./app:/var/www/html 
+      - ./app:/var/www/html  # bind mount, short syntax는 app 디렉토리가 없으면 만들어서 연결하고,
+                             # long syntax는 연결할 호스트 디렉트로가 미리 만들어져 있어야한다.
     # Map port 8000 on the host to port 80 on the container 
     # 브라우저로에서  localhost:8000 으로 홈페이지에 접속할수 있음.
     # 출처 : https://thriveread.com/docker-compose-with-apache-php-and-postgresql/
@@ -30,8 +31,12 @@ services:
       POSTGRES_PASSWORD: db_password
     ports:
       - "5432:5432"
-    volumes:
-      - ./data/postgres:/var/lib/postgresql/data
+        #volumes:
+        # - ./db_data/postgres:/var/lib/postgresql/data
+        # - testdata:/var/lib/postgresql/data  
+        # 만약 bind mounting을 사용하지 않고 named volumes만적으면
+        # container 내부에도 저장되고 내 pc의 /var/lib/postgresql/data에도 저장된다.
+        # docker-compose down -v 를 하면 내 pc /var/lib/postgresql/data도 지워진다.
         # http://localhost:5050 으로 pgAdmin4에 접속할수 있음
   pgadmin:
     image: dpage/pgadmin4:latest
@@ -44,9 +49,25 @@ services:
       # Expose pgadmin on 5050
       - "5050:80"
     volumes:
-      - pgadmin_data:/var/lib/pgadmin
+      - pgadmin_data:/var/lib/pgadmin  
+        # named volume, but it using the old string format 
+        #for mounting a named volume. Named volumes must be listed under the top-level volumes key.
+        # single service용이라면 host path를 마운트하는 방식을 사용하고, top lovel의 'volumes' 키를 
+        # 사용할 필요는 없다.그러나 복수개의 서비스에 사용되는 볼륨을 재사용하려면 탑레벨 volumes키를
+        # 사용해야한다.
+        # docker compuse up 명령을 실행했을때, 컨터네이너 내부에 디렉토리가 없으면 새로 만들고,
+        # 만약 기존 디렉토리가 있다면, 기존것을 사용한다.
     depends_on:
       - postgres
     restart: always
-volumes:
-  pgadmin_data:
+volumes: #The top-level volumes key defines a "named volume" 
+         #and references it from each service's volumes list
+  pgadmin_data:    # 탑레벨 볼폼키는 비워둘 수도 있으며, 이 경우 각 서비스에 선언된 voloume를 사용하고
+  #testdata:       # driver 또한 기본값인 local을 사용하기에 굳이local을 또 써줄 이유는 없다 
+  #  driver: local 
+  #  ==================================================
+  #  --- db를 다른 누군가가 업데이트를 했다면,
+  #  docker-compose down
+  #  docker volume ls
+  #  docker volume run testdata(이전 volume 지우기)
+  #  docker-compose up

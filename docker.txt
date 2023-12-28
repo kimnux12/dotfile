@@ -77,6 +77,11 @@
 13. 모든 이미지 삭제
 	docker rmi $(docker images -q) -f
 
+** /var/lib/docker/overlay2에 l을 제외하고 찌꺼기가 많이 있다면
+docker system prune -af 로 삭제할 수 있다.
+
+
+
 14. 도커 컨테이너 생성
 	docker run    (접속까지 하려면 docker exec -it 컨테이너ID /bin/bash)
 	              (컨테이너 빠져나오기는 exit 입력)

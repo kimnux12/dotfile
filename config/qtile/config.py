@@ -211,23 +211,23 @@ screens = [
 
                 #widget.Systray(), # systray가 뭐하는건지 아직 모름.
                 widget.Cmus(
-                    width=90,
+                    width=150,
                     scroll=True,
                     scroll_fixed_width=True,
                     scroll_repeat=True,
-                    scroll_delay=0.5,
-                    play_color = 'fffcff',
-                    noplay_color = '4c4a4d',
-                    max_chars =25,
-                    #fmt='  : {}', 
-                    padding=8, 
-                    format = '{play_icon} {artist}-{title}'
+                    scroll_delay=0.1,
+                    play_color='fffcff',
+                    noplay_color='4c4a4d',
+                    max_chars=35,
+                    # fmt='  : {}',
+                    padding=8,
+                    format='{play_icon} {artist}-{title}'
                 ),
                 # 2023.10.22일 현재 wighet.Wallpaper는 feh를 설치해야 작동한다.!!!!
                 # 이이상한게 경로를 반드시 홈디렉토리에 /Picures/wallpapers를 만들고
                 #거기에 그림파일들을 집어넣어야 한다.???? feh 설정을 봐야할듯.
                 # feh 설치하면 ~/.fehgb가 생성되고 거기에 임의의 경로가 적혀있는데 바꿔도 경로 설정이 안된다.
-                #무조건 ~/Pictures/wallpapers 인가??
+                # 무조건 ~/Pictures/wallpapers 인가??
                 widget.Wallpaper(      
                     #fmt = '  : {}',   
                     #fmt = ' 🅆🄰🄻🄻🄿🄰🄿🄴🅁 : {}',

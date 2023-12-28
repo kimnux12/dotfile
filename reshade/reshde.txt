@@ -1,0 +1,7 @@
+출처 : https://github.com/kevinlekiller/reshade-steam-proton
+
+
+
+If you're using Steam, right click the game, click properties, set the 'LAUNCH OPTIONS' to: WINEDLLOVERRIDES="d3dcompiler_47=n;dxgi=n,b" %command%
+If not, run the game with this environment variable set: WINEDLLOVERRIDES="d3dcompiler_47=n;dxgi=n,b"
+The next time you start the game, open the ReShade settings, go to the 'Settings' tab, if they are missing, add the Shaders folder location to the 'Effect Search Paths', add the Textures folder to the 'Texture Search Paths', these folders are located inside the ReShade_shaders folder, finally go to the 'Home' tab, click 'Reload'.
