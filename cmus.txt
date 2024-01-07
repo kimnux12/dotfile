@@ -1,0 +1,141 @@
+@h2 Common: Playback
+@pre
+b                           player-next
+c                           player-pause
+x                           player-play
+z                           player-prev
+v                           player-stop
+
+B                           player-next-album
+Z                           player-prev-album
+
+]                           vol +0 +1%
+[                           vol +1% +0
++                           vol +10%
+=                           vol +10%
+}                           vol -0 -1%
+{                           vol -1% -0
+-                           vol -10%
+
+,                           seek -1m
+.                           seek +1m
+
+h                           seek -5
+l                           seek +5
+
+left                        seek -5
+right                       seek +5
+
+mlb_click_bar               player-pause
+mlb_click_bar_right         player-pause
+mouse_scroll_up_bar         seek +5
+mouse_scroll_down_bar       seek -5
+mouse_scroll_up_bar_right   vol +1%
+mouse_scroll_down_bar_right vol -1%
+@endpre
+
+@h2 Common: Setting Toggles
+@pre
+m                       toggle aaa_mode
+C                       toggle continue
+M                       toggle play_library
+o                       toggle play_sorted
+r                       toggle repeat
+^R                      toggle repeat_current
+t                       toggle show_remaining_time
+s                       toggle shuffle
+f                       toggle follow
+@endpre
+
+@h2 Common: Commands
+@pre
+q                       quit -i
+^C                      echo Type :quit<enter> to exit cmus.
+I                       echo {}
+
+!                       push shell<space>
+@endpre
+
+@h2 Common: View/Window Navigation
+@pre
+1                       view tree
+2                       view sorted
+3                       view playlist
+4                       view queue
+5                       view browser
+6                       view filters
+7                       view settings
+
+mouse_scroll_up_title   left-view
+mouse_scroll_down_title right-view
+
+tab                     win-next
+
+^L                      refresh
+@endpre
+
+@h2 Common: Navigation
+@pre
+^Y                      win-scroll-up
+^E                      win-scroll-down
+^B                      win-page-up
+^F                      win-page-down
+^U                      win-half-page-up
+^D                      win-half-page-down
+
+k                       win-up
+j                       win-down
+g                       win-top
+G                       win-bottom
+
+up                      win-up
+down                    win-down
+home                    win-top
+end                     win-bottom
+page_up                 win-page-up
+page_down               win-page-down
+
+mouse_scroll_up         win-up
+mouse_scroll_down       win-down
+@endpre
+
+@h2 Common: Selection
+@pre
+i                       win-sel-cur
+enter                   win-activate
+mlb_click_selected      win-activate
+
+space                   win-toggle
+D                       win-remove
+delete                  win-remove
+p                       win-mv-after
+P                       win-mv-before
+
+E                       win-add-Q
+a                       win-add-l
+y                       win-add-p
+e                       win-add-q
+
+u                       update-cache
+U                       win-update-cache
+@endpre
+
+@h2 Common: Filters
+@pre
+/                       search-start
+?                       search-b-start
+n                       search-next
+N                       search-prev
+
+F                       push filter<space>
+L                       push live-filter<space>
+@endpre
+
+@h2 File Browser
+@pre
+space                   win-activate
+backspace               browser-up
+i                       toggle show_hidden
+u                       win-update
+@endpre
+

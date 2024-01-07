@@ -19,20 +19,24 @@ Plugin 'ghifarit53/tokyonight-vim'
 Plugin 'catppuccin/vim', { 'as': 'catppuccin' } 
 Plugin 'junegunn/seoul256.vim'
 Plugin 'EdenEast/nightfox.nvim'
+"Plugin 'AlphaTechnolog/pywal.nvim', { 'as': 'pywal' }
 "Plugin 'thaerkh/vim-indentguides'
 Plugin 'markonm/traces.vim' "perldo는 지원안함.highlights patterns and ranges. ex편집기기준이라 BRE만 지원하는듯.
 "Plugin 'nordtheme/vim'
-Plugin 'David-Kunz/markid' "같은이름의 구분자들을 같은 색으로 표시
+Plugin 'mattn/emmet-vim' " <! 쓰고 ctrl+y , 누르면 기본 html 구조들을 만드는 플러그인
+"Plugin 'KabbAmine/vCoolor.vim' "칼라 선택창 표시기능
 "Plugin 'Raimondi/delimitMate' "괄호 자동생성
 "Regex 하이라이트 플러그인
 Plugin 'Galicarnax/vim-regex-syntax'
 Plugin 'ap/vim-css-color'  "color name highlight"
+"Plugin 'ervandew/supertab'
 Plugin 'ryanoasis/vim-devicons' "파일타입에 맞춰 아이콘 표시
 "Makr 표시기능
 Plugin 'kshenoy/vim-signature'
 "각종 언어 하이라이트 자동들여쓰기등 지원 
 Plugin 'sheerun/vim-polyglot'
 "sysntax hightlight 플러그인
+Plugin 'AndrewRadev/tagalong.vim'
 "================================================
 " 빠른 insert mode 탈출 플러그인
 Plugin 'jdhao/better-escape.vim'
@@ -40,9 +44,9 @@ Plugin 'jdhao/better-escape.vim'
 "vim용 live-server
 Plugin 'https://github.com/wolandark/vim-live-server.git' " StartBrowerSync(localhost:3000),KillBrowerSync
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
-Plugin 'prabirshrestha/vim-lsp'
-Plugin 'mattn/vim-lsp-settings'
-Plugin 'Exafunction/codeium.vim'
+"Plugin 'prabirshrestha/vim-lsp'
+"Plugin 'mattn/vim-lsp-settings'
+"Plugin 'Exafunction/codeium.vim'
 "Plugin 'dense-analysis/ale' " ALE : syntax 체크와 구문 에러 지원
 "Plugin 'rhysd/vim-lsp-ale'
 Plugin 'vim-airline/vim-airline'
@@ -68,9 +72,8 @@ Plugin 'tpope/vim-fugitive'
 " Git plugin not hosted on GitHub
 " git repos on your local machine (i.e. when working on your own plugin)
 "Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}  " 자동완성기능들과 사용시 c-n
+"작동 방해한다.
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
 Plugin 'ascenator/L9', {'name': 'newL9'}
@@ -78,7 +81,7 @@ Plugin 'ascenator/L9', {'name': 'newL9'}
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 "packadd YouCompleteMe
-filetype plugin indent on    " required
+"filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -100,10 +103,38 @@ let g:better_escape_interval = 250
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
-
+"set t_Co=256
 " delimitMate
 let delimitMate_expand_cr=1
+"coc=vimlsp용 세팅
+let g:markdown_fenced_languages = [
+      \ 'vim',
+      \ 'help'
+      \]
+" emmet용 셋팅
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
 
+let g:user_emmet_settings = {
+\  'variables': {'lang': 'ko'},
+\  'html': {
+\    'default_attributes': {
+\      'option': {'value': v:null},
+\      'textarea': {'id': v:null, 'name': v:null, 'cols': 10, 'rows': 10},
+\    },
+\    'snippets': {
+\      'html:5': "<!DOCTYPE html>\n"
+\              ."<html lang=\"${lang}\">\n"
+\              ."<head>\n"
+\              ."\t<meta charset=\"${charset}\">\n"
+\              ."\t<title></title>\n"
+\              ."\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+\              ."</head>\n"
+\              ."<body>\n\t${child}|\n</body>\n"
+\              ."</html>",
+\    },
+\  },
+\}
 "gitgutter용 셋팅: Use fontawesome icons as signs
 let g:gitgutter_sign_added = '+'
 let g:gitgutter_sign_modified = '>'
@@ -116,37 +147,43 @@ let g:gitgutter_override_sign_column_highlight = 1
 "-----------------------------------------------------------------------------------------------
 set nobackup
 set nowritebackup
+
+set updatetime=300
 set signcolumn=yes
 
-" use tab for trigger completion with characters ahead and navigate
+" ------------------------------------------
+" Tab - 위아래 이동
+" Ctrl+Space - 선택
+" \b - 지시자 제거, 기존 자동완성 양식 폐기
+"  ------------------------------------------
+" Supertab용 셋팅
+"let g:SuperTabCrMapping=1
+" <Tab> 을 눌러서 현재 지시자를 옮김.
 inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
+   \ coc#pum#visible() ? coc#pum#next(1) :
+   \ CheckBackspace() ? "\<Tab>" :
+   \ coc#refresh()
+
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice
-inoremap <silent><expr> <CR> coc#pum#visible() && coc#pum#info()['index'] == -1
-  \ ? "\<C-e>\<CR>"
-  \ : coc#pum#visible()
-    \ ? coc#_select_confirm()
-    \ : "\<CR>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+						   \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+let col = col('.') - 1
+return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
 "-----------------------------------------------------
-nmap <F3>:StartBrowerSync <CR>
-nmap <F4>:KillBrowerSync <CR>
+nmap <F3> :StartBrowserSync <CR>
+nmap <F4> :KillBrowserSync <CR>
 "-----------------------------------------------------
-let g:codeium_disable_bindings = 1
-imap <script><silent><nowait><expr> <C-g> codeium#Accept()
-imap <C-;>   <Cmd>call codeium#CycleCompletions(1)<CR>
-imap <C-,>   <Cmd>call codeium#CycleCompletions(-1)<CR>
-imap <C-x>   <Cmd>call codeium#Clear()<CR>
+"let g:codeium_disable_bindings = 1
+"imap <script><silent><nowait><expr> <C-g> codeium#Accept()
+"imap <C-;>   <Cmd>call codeium#CycleCompletions(1)<CR>
+"imap <C-,>   <Cmd>call codeium#CycleCompletions(-1)<CR>
+"imap <C-x>   <Cmd>call codeium#Clear()<CR>
 "-----------------------------------------------------------------------------------------------
 nmap <Leader>gn <Plug>GitGutterNextHunk  " git next
 nmap <Leader>gp <Plug>GitGutterPrevHunk  " git previous
@@ -163,14 +200,13 @@ set complete+=kspell   "자동완성기능 추가
 set completeopt=menuone,longest
 
 set clipboard=unnamedplus,unnamed
-set hlsearch "검색어 하이라이팅
 set nu " 줄번호
 set number relativenumber
 "set autoindent "자동 들여쓰기
 set scrolloff=2
 "bash 자동완성처럼 명령어 일부만 치면 비슷한 이름 보여주는 기능
-set wildmenu
-set wildmode=longest:list,full
+"set wildmenu
+"set wildmode=longest:list,full
 "set wildmode=longest,list
 set ts=4 "tag select
 set sts=4 "st select
@@ -180,7 +216,6 @@ set autoread "작업 중인 파일 외부에서 변경됬을 경우 자동으로
 set cindent "C언어 자동 들여쓰기
 set bs=eol,start,indent
 set history=256
-set laststatus=2 "상태바 표시 항상
 "set paste " 붙여넣기 계단현상 없애기
 set shiftwidth=4 "자동 들여쓰기 너비 설정
 set showmatch "일치하는 괄호 하이라이팅
@@ -192,15 +227,17 @@ set tabstop=4
 set ruler "현재 커서 위치 표시
 " highlight current line
 set cursorline 
-highlight Cursorline cterm=bold ctermbg=black
+"highlight Cursorline cterm=bold ctermbg=black
 set incsearch
+set hlsearch "검색어 하이라이팅
 "set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 "set nowrap
 
-"vim-regex-syntax highlight 셋팅
-au FileType python call EnableEmbeddedSyntaxHighlight('pcre', "\\v\\C<R''@!", "\\v([^\\\\]\\\\(\\\\\\\\)*)@<!'", 'Comment')
-au FileType cpp call EnableEmbeddedSyntaxHighlight('sql', "\\C\\<R\\\"sql(", ")sql\\\"", 'Comment')
-au FileType lua call EnableEmbeddedSyntaxHighlight('pcre', "\\[=\\[", "\\]=\\]", 'Comment')
+"coc-prettier
+command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+" 범위 지정해서 <leader>f로 prettier 실행, javascript typesctript만 지원함.
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 " 마지막으로 수정된 곳에 커서를 위치함
 au BufReadPost *
@@ -216,10 +253,9 @@ if $LANG[0]=='k' && $LANG[1]=='o'
             "set fileencoding=korea
 endif
 " 구문 강조 사용
-if has("syntax")
- syntax on
+if exists("syntax_on")
+	syntax reset
 endif
-
 "터미널 창 열기(수평,수직)
 " ctrl+(w,n)으로 최대화, i로 다시 원래 크키로 돌아옴.
 function! Term(...)
@@ -251,22 +287,21 @@ let g:is_bash=1
 "set filetype=sh
 "----------------------------------------------------------------------------
 "ale용 설정
-let g:ale_completion_enabled = 0 " ALE에서 지원하는 자동완성기능
+"let g:ale_completion_enabled = 0 " ALE에서 지원하는 자동완성기능
 " Set this variable to 1 to fix files when you save them.
-let g:ale_fix_on_save = 1
+"let g:ale_fix_on_save = 1
 "let g:ale_sign_error = '✘'
 "let g:ale_sign_warning = '⚠'
-let g:ale_sign_error = '--'
-let g:ale_sign_warning = '>>'
-highlight ALEErrorSign ctermbg=NONE ctermfg=red
-highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
-highlight link ALEVirtualTextError Error
+"let g:ale_sign_error = '--'
+"let g:ale_sign_warning = '>>'
+"highlight ALEErrorSign ctermbg=NONE ctermfg=red
+"highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+"highlight link ALEVirtualTextError Error
 "
 " ------------------------------------------------------------------------------
 " 버퍼 목록 켜기
 " 이 옵션은 버퍼를 수정한 직후 버퍼를 감춰지도록 한다.
 " 이 방법으로 버퍼를 사용하려면 거의 필수다.
-set hidden
 
 let mapleader=","   "leader키 설정, 기본값은 \이다 
 
@@ -290,7 +325,7 @@ nmap <leader>bl :ls<CR>
 "set background=dark
 
 "---- Tokyo Night 용 셋팅
-let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_style = 'storm' " available: night, storm
 let g:tokyonight_enable_italic = 1
 let g:tokyonight_transparent_background = 0
 "---- eliminating delay on ESC
@@ -308,9 +343,9 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_highlighting_cache = 1
 
 let g:airline_powerline_fonts = 1
-"let g:airline_theme = "tokyonight"
+let g:airline_theme = "tokyonight"
 "let g:airline_theme = "catppuccin_mocha"
-let g:airline_theme= 'violet'
+"let g:airline_theme= 'violet'
 "let g:airline_solarized_bg='dark'
 let g:airline_section_y = '' 
 let g:airline_section_warning= '' "마지막 status창 사용 안함
@@ -320,11 +355,10 @@ let g:rustfmt_autosave = 1
 "검색을 정규식으로
 map / /\v
 
-"colorscheme catppuccin_mocha
-"colorscheme	tokyonight	
-"colorscheme nordfox
-colorscheme  dracula
-"colorscheme terafox
+"colorscheme catppuccin_mocha    "터미널 256bit로는 적용안됨
+colorscheme	tokyonight	
+"colorscheme  dracula
+"colorscheme duskfox
 " seoul256 (dark):
 "   Range:   233 (darkest) ~ 239 (lightest)
 "   Default: 237

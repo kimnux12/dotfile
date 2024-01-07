@@ -15,6 +15,7 @@ esac
 #export PATH="~/.pyenv/versions/3.12.0/bin:$PATH"
 #eval "$(pyenv init --path)"
 #eval "$(pyenv virtualenv-init -)"
+export TERM=xterm-256color
 unset MANPATH
 #[[ $- != *i* ]] && return
 eval "$(starship init bash)"
@@ -37,13 +38,9 @@ alias dockerc='docker-compose'
 alias dcup='docker-compose up -d'
 alias dcdown='docker-compose down'  # -v를하면 postgres의 data가 날아감
 #================================
-PATH="/home/kimnux/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/kimnux/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/kimnux/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/kimnux/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/kimnux/perl5"; export PERL_MM_OPT;
-fortune | cowsay | lolcat
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+#PATH="/home/kimnux/perl5/bin${PATH:+:${PATH}}"; export PATH;
+#PERL5LIB="/home/kimnux/perl5/lib/5.38.2${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+#PERL_LOCAL_LIB_ROOT="/home/kimnux/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+#PERL_MB_OPT="--install_base \"/home/kimnux/perl5\""; export PERL_MB_OPT;
+#PERL_MM_OPT="INSTALL_BASE=/home/kimnux/perl5"; export PERL_MM_OPT;
+#fortune | cowsay | lolcat

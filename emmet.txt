@@ -1,0 +1,47 @@
+<C-Y>A        emmet-anchorize-summary
+<C-Y>a        emmet-anchorize-url
+<C-Y>k        emmet-remove-tag
+<C-Y>j        emmet-split-join-tag
+<C-Y>/        emmet-toggle-comment
+<C-Y>i        emmet-image-size
+<C-Y>N        emmet-move-prev
+<C-Y>n        emmet-move-next
+<C-Y>D        emmet-balance-tag-outword
+<C-Y>d        emmet-balance-tag-inward
+<C-Y>u        emmet-update-tag
+<C-Y>;        emmet-expand-word
+<C-Y>,        emmet-expand-abbr ( table>tr>td*3{월요일}만 쓰고 단축키 누르면 알아서 td 3개까지 만들어서 배열됨)
+                                  p+br+p 동급태크는 +사용.
+                                  a[href="http://..." target="_blank"]단축키치면 앞뒤로 <a></a>로 둘러쌈
+                                  또는 주석처리를 할 수도 있다.
+                                  table>tr>td{$ 번째}*3쓰고 단축키누르면 $가 1,2,3으로 대체됨.
+                                  .abc>(ul>ol)+(table>tr>td)단축키치면 폼에 맞춰서 써 준다.
+11. Toggle Comment
+  Move cursor inside the block
+  ---------------------
+  <div>
+  	hello world
+  </div>
+  ---------------------
+  Type '<c-y>/' in insert mode.
+  ---------------------
+  <!-- <div>
+  	hello world
+  </div> -->
+  ---------------------
+  Type '<c-y>/' in there again.
+  ---------------------
+  <div>
+  	hello world
+  </div>
+  --------------------
+
+
+  Emmet Abbreviation
+  -하위요소 >
+  -동급요소 +
+  -반복 *
+  -속성사용[]
+  -텍스트사용{}
+  -숫자 $
+  -그룹화 ()
