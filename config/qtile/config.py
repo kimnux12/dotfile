@@ -280,6 +280,7 @@ screens = [
                         ),
                 widget.ThermalSensor(
                     padding=5,
+                    tag_sensor='Tctl',
                     update_interval=1,
                     format="󰔐 {temp:.0f}{unit}"
                     #tag_sensor="Tctl",
