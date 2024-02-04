@@ -43,7 +43,7 @@ Plugin 'jdhao/better-escape.vim'
 "--------------------------------------------------
 "vim용 live-server
 Plugin 'https://github.com/wolandark/vim-live-server.git' " StartBrowerSync(localhost:3000),KillBrowerSync
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+Plugin 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm ci'}
 "Plugin 'prabirshrestha/vim-lsp'
 "Plugin 'mattn/vim-lsp-settings'
 "Plugin 'Exafunction/codeium.vim'
@@ -97,7 +97,7 @@ call vundle#end()            " required
 "-----------------------------------------------------------------------------------------------
 "빠른 INSERT 모드 탈출
 let g:better_escape_shortcut = 'jj'
-let g:better_escape_interval = 250
+let g:better_escape_interval = 200
 
 " 24bit color
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -111,10 +111,15 @@ let g:markdown_fenced_languages = [
       \ 'vim',
       \ 'help'
       \]
+
+" regex-syntax용
+au FileType python call EnableEmbeddedSyntaxHighlight('pcre', "\\v\\C<R''@!", "\\v([^\\\\]\\\\(\\\\\\\\)*)@<!'", 'Comment')
+au FileType lua call EnableEmbeddedSyntaxHighlight('pcre', "\\[=\\[", "\\]=\\]", 'Comment')
+
+
 " emmet용 셋팅
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
-
 let g:user_emmet_settings = {
 \  'variables': {'lang': 'ko'},
 \  'html': {
@@ -358,7 +363,7 @@ map / /\v
 "colorscheme catppuccin_mocha    "터미널 256bit로는 적용안됨
 colorscheme	tokyonight	
 "colorscheme  dracula
-"colorscheme duskfox
+"colorscheme nightfox
 " seoul256 (dark):
 "   Range:   233 (darkest) ~ 239 (lightest)
 "   Default: 237
