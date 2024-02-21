@@ -6,8 +6,6 @@
 [user]
 	email = kimnux@gmail.com
 	name = kimnux12
-[credential]
-	helper = store
 [core]
     pager = delta
 [interactive]
