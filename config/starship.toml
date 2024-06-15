@@ -25,7 +25,7 @@ error_symbol = "[✗](bold red)"
 #  
 # configure directory
 [directory]
-read_only = " "
+read_only = " 󰌾"
 truncation_length = 10
 truncate_to_repo = true # truncates directory to root folder if in github repo
 style = "bold italic blue"
@@ -126,7 +126,7 @@ symbol = " "
 symbol = "󰏗 "
 
 [perl]
-symbol = " "
+symbol = " "
 
 [php]
 symbol = " "
@@ -157,7 +157,7 @@ symbol = " "
 symbol = " "
 
 [swift]
-symbol = "ﯣ "
+symbol = " "
 
 [nodejs]
 symbol = " "
