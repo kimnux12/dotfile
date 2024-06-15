@@ -7,12 +7,13 @@
 "#--------------------------------------------------------------
 "vim tool 쉽게 설치하려고 번들 만드는 과정에서 코드 추가.
 set nocompatible              " be iMproved, required
-filetype off                  " required
+"filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 "----- ColorScheme용 플러그인들--------------------
 Plugin 'gilgigilgil/anderson.vim'
+Plugin 'rhysd/vim-color-spring-night'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'dracula/vim', { 'name': 'dracula' }
 Plugin 'ghifarit53/tokyonight-vim'
@@ -43,19 +44,20 @@ Plugin 'jdhao/better-escape.vim'
 "--------------------------------------------------
 "vim용 live-server
 Plugin 'https://github.com/wolandark/vim-live-server.git' " StartBrowerSync(localhost:3000),KillBrowerSync
-Plugin 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm ci'}
-"Plugin 'prabirshrestha/vim-lsp'
-"Plugin 'mattn/vim-lsp-settings'
+"Plugin 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm ci'}
+Plugin 'prabirshrestha/vim-lsp'
+Plugin 'mattn/vim-lsp-settings'
 "Plugin 'Exafunction/codeium.vim'
-"Plugin 'dense-analysis/ale' " ALE : syntax 체크와 구문 에러 지원
-"Plugin 'rhysd/vim-lsp-ale'
+Plugin 'ycm-core/YouCompleteMe'
+Plugin 'dense-analysis/ale' " ALE : syntax 체크와 구문 에러 지원
+Plugin 'rhysd/vim-lsp-ale'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'luochen1990/rainbow'  "향상된 괄호 표시
 "Plugin 'othree/eregex.vim'   "검색명령어 /를 누르면 perl regex로 검색되도록 함.traces와 호환안됨.
 "----------------------------------------------
 " Docker 지원 플러그인 셋팅 (deno 필요)
-Plugin 'vim-denops/denops.vim'    "선행 플러그인
+"Plugin 'vim-denops/denops.vim'    "선행 플러그인
 Plugin 'skanehira/denops-docker.vim'
 "--------------------------------------------------
 " let Vundle manage Vundle, required
@@ -81,7 +83,7 @@ Plugin 'ascenator/L9', {'name': 'newL9'}
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 "packadd YouCompleteMe
-"filetype plugin indent on    " required
+filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -97,20 +99,18 @@ call vundle#end()            " required
 "-----------------------------------------------------------------------------------------------
 "빠른 INSERT 모드 탈출
 let g:better_escape_shortcut = 'jj'
-let g:better_escape_interval = 200
-
-" 24bit color
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-set termguicolors
+let g:better_escape_interval = 350
+"--------------------------------------------------------------------
+" For Vim 7.4.1799 or later
+if has('termguicolors')
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    set termguicolors
+endif
+"---------------------------------------------------------------------
 "set t_Co=256
 " delimitMate
-let delimitMate_expand_cr=1
-"coc=vimlsp용 세팅
-let g:markdown_fenced_languages = [
-      \ 'vim',
-      \ 'help'
-      \]
+"let delimitMate_expand_cr=1
 
 " regex-syntax용
 au FileType python call EnableEmbeddedSyntaxHighlight('pcre', "\\v\\C<R''@!", "\\v([^\\\\]\\\\(\\\\\\\\)*)@<!'", 'Comment')
@@ -150,36 +150,11 @@ let g:gitgutter_override_sign_column_highlight = 1
 "highlight SignColumn guibg=bg
 "highlight SignColumn ctermbg=bg
 "-----------------------------------------------------------------------------------------------
-set nobackup
-set nowritebackup
-
-set updatetime=300
 set signcolumn=yes
-
 " ------------------------------------------
 " Tab - 위아래 이동
 " Ctrl+Space - 선택
 " \b - 지시자 제거, 기존 자동완성 양식 폐기
-"  ------------------------------------------
-" Supertab용 셋팅
-"let g:SuperTabCrMapping=1
-" <Tab> 을 눌러서 현재 지시자를 옮김.
-inoremap <silent><expr> <TAB>
-   \ coc#pum#visible() ? coc#pum#next(1) :
-   \ CheckBackspace() ? "\<Tab>" :
-   \ coc#refresh()
-
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-						   \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-function! CheckBackspace() abort
-let col = col('.') - 1
-return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
 "-----------------------------------------------------
 nmap <F3> :StartBrowserSync <CR>
 nmap <F4> :KillBrowserSync <CR>
@@ -199,10 +174,8 @@ nmap <Leader>gu <Plug>GitGutterUndoHunk   " git undo (chunk)
 inoremap <F5> <ESC>:Lex<cr>:vertical resize 30<cr>
 nnoremap <F5> <ESC>:Lex<cr>:vertical resize 30<cr>
 
-set shortmess+=c
-
-set complete+=kspell   "자동완성기능 추가
-set completeopt=menuone,longest
+"set complete+=kspell   "자동완성기능 추가
+"set completeopt=menuone,longest
 
 set clipboard=unnamedplus,unnamed
 set nu " 줄번호
@@ -230,7 +203,7 @@ set smartindent
 set softtabstop=4
 set tabstop=4
 set ruler "현재 커서 위치 표시
-" highlight current line
+"highlight current line
 set cursorline 
 "highlight Cursorline cterm=bold ctermbg=black
 set incsearch
@@ -238,11 +211,9 @@ set hlsearch "검색어 하이라이팅
 "set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 "set nowrap
 
-"coc-prettier
-command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 " 범위 지정해서 <leader>f로 prettier 실행, javascript typesctript만 지원함.
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+"vmap <leader>f  <Plug>(coc-format-selected)
+"nmap <leader>f  <Plug>(coc-format-selected)
 
 " 마지막으로 수정된 곳에 커서를 위치함
 au BufReadPost *
@@ -294,14 +265,12 @@ let g:is_bash=1
 "ale용 설정
 "let g:ale_completion_enabled = 0 " ALE에서 지원하는 자동완성기능
 " Set this variable to 1 to fix files when you save them.
-"let g:ale_fix_on_save = 1
-"let g:ale_sign_error = '✘'
-"let g:ale_sign_warning = '⚠'
-"let g:ale_sign_error = '--'
-"let g:ale_sign_warning = '>>'
-"highlight ALEErrorSign ctermbg=NONE ctermfg=red
-"highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
-"highlight link ALEVirtualTextError Error
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = "◉"
+let g:ale_sign_warning = "◉"
+highlight ALEErrorSign ctermfg=9 ctermbg=15 guifg=#C30500 guibg=#F5F5F5
+highlight ALEWarningSign ctermfg=11 ctermbg=15 guifg=#ED6237 guibg=#F5F5F5
+highlight link ALEVirtualTextError Error
 "
 " ------------------------------------------------------------------------------
 " 버퍼 목록 켜기
@@ -348,24 +317,26 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_highlighting_cache = 1
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme = "tokyonight"
-"let g:airline_theme = "catppuccin_mocha"
+"let g:airline_theme = "tokyonight"
+let g:airline_theme = "catppuccin_mocha"
 "let g:airline_theme= 'violet'
 "let g:airline_solarized_bg='dark'
 let g:airline_section_y = '' 
 let g:airline_section_warning= '' "마지막 status창 사용 안함
 set hidden
 "-----------------------------------------------------
+let g:ycm_rust_src_path = '/home/kimnux/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
 let g:rustfmt_autosave = 1
 "검색을 정규식으로
 map / /\v
 
 "colorscheme catppuccin_mocha    "터미널 256bit로는 적용안됨
-colorscheme	tokyonight	
-"colorscheme  dracula
-"colorscheme nightfox
+"colorscheme	tokyonight "set termguicolors 안켜면 색상 제대로 지원 안됨	
+colorscheme  dracula
+"colorscheme duskfox
 " seoul256 (dark):
 "   Range:   233 (darkest) ~ 239 (lightest)
 "   Default: 237
 "let g:seoul256_background = 234
 "colorscheme seoul256
+"colorscheme spring-night

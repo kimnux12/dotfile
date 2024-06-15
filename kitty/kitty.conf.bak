@@ -1,0 +1,27 @@
+font_family      JetBrains Mono Regular 
+bold_font        JetBrains Mono Regular Bold
+italic_font      JetBrains Mono Regular Italic
+bold_italic_font JetBrains Mono Regular Bold Italic
+
+font_size 15
+
+cursor_shape block
+cursor_blink_interval 0
+cursor_stop_blinking_after 0
+# cursor #f1c232
+
+scrollback_lines 200000
+
+shell /usr/bin/bash
+
+editor /usr/bin/vim
+
+tab_bar_style powerline
+
+
+# BEGIN_KITTY_THEME
+# ENCOM
+include current-theme.conf
+# END_KITTY_THEME
+
+background_opacity 0.9

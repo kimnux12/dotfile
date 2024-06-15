@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+# 출처 : https://www.youtube.com/watch?v=j61aXdElImE
+DIR=$HOME/wallpapers/
+PICS=($(ls ${DIR}))
+
+RANDOMPICS=${PICS[ $RANDOM % ${#PICS[@]} ]}
+
+if [[ $(pidof swaybg) ]]; then
+	pkill swaybg
+fi
+
+#swaybg -m fit -i ${DIR}/${RANDOMPICS}
+swaybg -i ${DIR}/${RANDOMPICS}
+notify-send "${RANDOMPICS}"
