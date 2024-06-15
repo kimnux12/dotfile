@@ -1,0 +1,18 @@
+● bluetooth.service - Bluetooth service
+     Loaded: loaded (/usr/lib/systemd/system/bluetooth.service; enabled; preset: disabled)
+     Active: active (running) since Sat 2024-06-15 23:59:13 KST; 53s ago
+       Docs: man:bluetoothd(8)
+   Main PID: 34665 (bluetoothd)
+     Status: "Running"
+      Tasks: 1 (limit: 38407)
+     Memory: 692.0K (peak: 972.0K)
+        CPU: 16ms
+     CGroup: /system.slice/bluetooth.service
+             └─34665 /usr/lib/bluetooth/bluetoothd
+
+Jun 15 23:59:13 archlinux systemd[1]: Starting Bluetooth service...
+Jun 15 23:59:13 archlinux bluetoothd[34665]: Bluetooth daemon 5.76
+Jun 15 23:59:13 archlinux systemd[1]: Started Bluetooth service.
+Jun 15 23:59:13 archlinux bluetoothd[34665]: Starting SDP server
+Jun 15 23:59:13 archlinux bluetoothd[34665]: src/plugin.c:init_plugin() System does not support ccp plugin
+Jun 15 23:59:13 archlinux bluetoothd[34665]: Bluetooth management interface 1.22 initialized
