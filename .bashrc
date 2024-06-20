@@ -1,6 +1,7 @@
 #
 # ~/.bashrc
 #
+export EDITOR=vim
 export TERM=xterm-256color
 eval "$(starship init bash)"
 [[ $- == *i* ]] && source ~/.local/share/blesh/ble.sh --noattach
@@ -32,6 +33,41 @@ alias hy='Hyprland'
 alias dockerc='docker-compose'
 alias dcup='docker-compose up -d'
 alias dcdown='docker-compose down'  # -v를하면 postgres의 data가 날아감
+#------------------------------------------------------------------------------------
+# fzf settings
+# Use ~~ as the trigger sequence instead of the default **
+eval "$(fzf --bash)"
+export FZF_COMPLETION_TRIGGER='~~'
+export FZF_DEFAULT_COMMAND='find . -type d \( -name node_modules -o -name .git \) -prune -o -type f -print'
+# Options to fzf command
+export FZF_COMPLETION_OPTS='--border --info=inline'
+
+# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+
+# Advanced customization of fzf options via _fzf_comprun function
+# - The first argument to the function is the name of the command.
+# - You should make sure to pass the rest of the arguments to fzf.
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
+    export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
+    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
+  esac
+}
 #------------------------------------------------------------------------------------
 #export DENO_UNSTABLE_BARE_NODE_BUILTINS=true
 #------------------------------------------------------------------------------------
