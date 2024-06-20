@@ -36,12 +36,17 @@ alias dcdown='docker-compose down'  # -v를하면 postgres의 data가 날아감
 #------------------------------------------------------------------------------------
 # fzf settings
 # Use ~~ as the trigger sequence instead of the default **
-eval "$(fzf --bash)"
+shell="$(basename $SHELL)"
+eval "$(fzf --$shell)"
 export FZF_COMPLETION_TRIGGER='~~'
 export FZF_DEFAULT_COMMAND='find . -type d \( -name node_modules -o -name .git \) -prune -o -type f -print'
 # Options to fzf command
 export FZF_COMPLETION_OPTS='--border --info=inline'
-
+# Using highlight (http://www.andre-simon.de/doku/highlight/en/highlight.html)
+export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+bind "$(bind -s | grep '^"\\C-r"' | sed 's/"/"\\C-x/' | sed 's/"$/\\C-m"/')"
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
