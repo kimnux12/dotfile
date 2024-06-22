@@ -2,6 +2,7 @@
 # ~/.bash_profile
 #
 export DELTA_FEATURES=+side-by-side #activate
+export GTK_USE_PORTAL=0
 # GTK_IM_MODULE 주석처리하면 chromium에서 한글 입력 안됨.
 # 환경변수들을 전역설정하면 hyprland의 kitty에서 한글 입력이
 # 한번만 되고, kitty를 재실행하거나 하면 한글입력이 되지 않는

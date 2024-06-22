@@ -1,0 +1,32 @@
+1. sudo pacman -S ruby base-devel
+
+2. echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc
+   echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc
+   echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
+   source ~/.bashrc
+
+3. gem install jekyll bundler
+
+4. Gemfile 내용 변경
+	source "https://rubygems.org"
+
+	gem "github-pages", group: :jekyll_plugins
+	gem "jekyll-include-cache", group: :jekyll_plugins
+
+5. _config.yml 파일의 plugins에 jekyll-include-cache 추가
+
+6. bundle 실행
+
+7. _config.yml 파일에 remote_theme: "mmistakes/minimal-mistakes@4.26.2"
+   추가하고 다른 theme: 이나 remote_theme: 은 삭제
+
+--------------------------------------------------------------------------
+jekyll installation on Arch linux
+
+sudo pacman -S ruby ruby-rdoc gcc make
+
+gem update --user-install
+gem install jekyll --user-install
+
+# finally add $HOME/.gem/ruby/2.7.0/bin to your PATH variable
+export PATH=/home/kimnux/.local/share/gem/ruby/3.0.0/bin:$PATH

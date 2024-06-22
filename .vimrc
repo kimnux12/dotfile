@@ -215,6 +215,8 @@ set hlsearch "검색어 하이라이팅
 "vmap <leader>f  <Plug>(coc-format-selected)
 "nmap <leader>f  <Plug>(coc-format-selected)
 
+" copy to system clipboard. gvim에서만 작동함.
+vmap <C-y> "+y
 " 마지막으로 수정된 곳에 커서를 위치함
 au BufReadPost *
 \ if line("'\"") > 0 && line("'\"") <= line("$") |

@@ -2,7 +2,7 @@
 # ~/.bashrc
 #
 export EDITOR=vim
-export TERM=xterm-256color
+#export TERM=xterm-256color
 eval "$(starship init bash)"
 [[ $- == *i* ]] && source ~/.local/share/blesh/ble.sh --noattach
 [[ ${BLE_VERSION-} ]] && ble-attach
@@ -15,6 +15,7 @@ eval "$(starship init bash)"
 unset MANPATH
 #[[ $- != *i* ]] && return
 alias vi='vim'
+alias cat='bat'
 #alias ls='colorls --sd --gs -a'
 #alias ls='lsd -h --git --group-dirs=first'
 alias ls='eza --sort=type --icons=auto --git'
@@ -82,3 +83,5 @@ _fzf_comprun() {
 #PERL_MB_OPT="--install_base \"/home/kimnux/perl5\""; export PERL_MB_OPT;
 #PERL_MM_OPT="INSTALL_BASE=/home/kimnux/perl5"; export PERL_MM_OPT;
 #export API_KEY=UFtCH8oDgiX6Pe6BDH09l3RG4DmVox08MZJGfuAH
+export GEM_HOME="$(gem env user_gemhome)"
+export PATH="$PATH:$GEM_HOME/bin"
