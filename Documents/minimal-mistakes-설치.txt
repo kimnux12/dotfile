@@ -27,6 +27,7 @@ sudo pacman -S ruby ruby-rdoc gcc make
 
 gem update --user-install
 gem install jekyll --user-install
-
+bundle add webrick
+bundle exec jekyll serve # 127.0.0.1:4000에 접속하여 로컬로 화면을 검수할 수 있다
 # finally add $HOME/.gem/ruby/2.7.0/bin to your PATH variable
 export PATH=/home/kimnux/.local/share/gem/ruby/3.0.0/bin:$PATH

@@ -17,6 +17,7 @@ Plugin 'rhysd/vim-color-spring-night'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'dracula/vim', { 'name': 'dracula' }
 Plugin 'ghifarit53/tokyonight-vim'
+Plugin 'instant-markdown/vim-instant-markdown'
 Plugin 'catppuccin/vim', { 'as': 'catppuccin' } 
 Plugin 'junegunn/seoul256.vim'
 Plugin 'EdenEast/nightfox.nvim'
@@ -86,7 +87,20 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
-"
+"for markdown
+"Uncomment to override defaults:
+"let g:instant_markdown_slow = 1
+"let g:instant_markdown_autostart = 0
+"let g:instant_markdown_open_to_the_world = 1
+"let g:instant_markdown_allow_unsafe_content = 1
+"let g:instant_markdown_allow_external_content = 0
+"let g:instant_markdown_mathjax = 1
+"let g:instant_markdown_mermaid = 1
+"let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+"let g:instant_markdown_autoscroll = 0
+"let g:instant_markdown_port = 8888
+"let g:instant_markdown_python = 1
+"let g:instant_markdown_theme = 'dark'
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
