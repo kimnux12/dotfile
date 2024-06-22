@@ -2,7 +2,7 @@
 # ~/.bashrc
 #
 export EDITOR=vim
-#export TERM=xterm-256color
+export TERM=xterm-256color
 eval "$(starship init bash)"
 [[ $- == *i* ]] && source ~/.local/share/blesh/ble.sh --noattach
 [[ ${BLE_VERSION-} ]] && ble-attach
