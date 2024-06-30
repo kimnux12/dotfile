@@ -1,7 +1,7 @@
 # -*- conf -*-
 
 # shell=$SHELL (if set, otherwise user's default shell from /etc/passwd)
-# term=foot (or xterm-256color if built with -Dterminfo=disabled)
+#term=foot (or xterm-256color if built with -Dterminfo=disabled)
 # login-shell=no
 
 # app-id=foot # globally set wayland app-id. Default values are "foot" and "footclient" for desktop and server mode
@@ -79,53 +79,35 @@ color=282a36 f8f8f2
 
 [colors]
 alpha=0.8
-foreground=f8f8f2
-background=282a36
-regular0=000000  # black
-regular1=ff5555  # red
-regular2=50fa7b  # green
-regular3=f1fa8c  # yellow
-regular4=bd93f9  # blue
-regular5=ff79c6  # magenta
-regular6=8be9fd  # cyan
-regular7=bfbfbf  # white
-bright0=4d4d4d   # bright black
-bright1=ff6e67   # bright red
-bright2=5af78e   # bright green
-bright3=f4f99d   # bright yellow
-bright4=caa9fa   # bright blue
-bright5=ff92d0   # bright magenta
-bright6=9aedfe   # bright cyan
-bright7=e6e6e6   # bright white
-#foreground=cdd6f4
-#background=1e1e2e
-#
-#regular0=45475a
-#regular1=f38ba8
-#regular2=a6e3a1
-#regular3=f9e2af
-#regular4=89b4fa
-#regular5=f5c2e7
-#regular6=94e2d5
-#regular7=bac2de
-#
-#bright0=585b70
-#bright1=f38ba8
-#bright2=a6e3a1
-#bright3=f9e2af
-#bright4=89b4fa
-#bright5=f5c2e7
-#bright6=94e2d5
-#bright7=a6adc8
-#
-#selection-foreground=cdd6f4
-#selection-background=414356
-#
-#search-box-no-match=11111b f38ba8
-#search-box-match=cdd6f4 313244
-#
-#jump-labels=11111b fab387
-#urls=89b4fa
+foreground=cdd6f4
+background=1e1e2e
+
+regular0=45475a
+regular1=f38ba8
+regular2=a6e3a1
+regular3=f9e2af
+regular4=89b4fa
+regular5=f5c2e7
+regular6=94e2d5
+regular7=bac2de
+
+bright0=585b70
+bright1=f38ba8
+bright2=a6e3a1
+bright3=f9e2af
+bright4=89b4fa
+bright5=f5c2e7
+bright6=94e2d5
+bright7=a6adc8
+
+selection-foreground=cdd6f4
+selection-background=414356
+
+search-box-no-match=11111b f38ba8
+search-box-match=cdd6f4 313244
+
+jump-labels=11111b fab387
+urls=89b4fa
 # background=242424
 # foreground=ffffff
 # flash=7f7f00
@@ -162,13 +144,13 @@ bright7=e6e6e6   # bright white
 # 255 = <256-color palette #255>
 
 ## Misc colors
-# selection-foreground=<inverse foreground/background>
-# selection-background=<inverse foreground/background>
+selection-foreground=ffffff
+selection-background=44475a
 # jump-labels=<regular0> <regular3>          # black-on-yellow
 # scrollback-indicator=<regular0> <bright4>  # black-on-bright-blue
 # search-box-no-match=<regular0> <regular1>  # black-on-red
 # search-box-match=<regular0> <regular3>     # black-on-yellow
-# urls=<regular3>
+urls=8be9fd
 
 [csd]
 # preferred=server

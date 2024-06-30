@@ -17,6 +17,8 @@ Plugin 'rhysd/vim-color-spring-night'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'dracula/vim', { 'name': 'dracula' }
 Plugin 'ghifarit53/tokyonight-vim'
+Plugin 'godlygeek/tabular'   " markdown folding,TOC, LaTeX math 등 셋팅
+Plugin 'preservim/vim-markdown'
 Plugin 'instant-markdown/vim-instant-markdown'
 Plugin 'catppuccin/vim', { 'as': 'catppuccin' } 
 Plugin 'junegunn/seoul256.vim'
@@ -100,7 +102,8 @@ filetype plugin indent on    " required
 "let g:instant_markdown_autoscroll = 0
 "let g:instant_markdown_port = 8888
 "let g:instant_markdown_python = 1
-"let g:instant_markdown_theme = 'dark'
+let g:instant_markdown_theme = 'dark'
+let g:vim_markdown_folding_disabled = 1
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -300,16 +303,20 @@ let mapleader=","   "leader키 설정, 기본값은 \이다
 nmap <F2> :enew<cr>
 
 " 다음 버퍼로 이동
-nmap <leader>l :bnext<CR>
+nmap <leader>n :bnext<CR>
 
 " 이전 버퍼로 이동
-nmap <leader>h :bprevious<CR>
+nmap <leader>p :bprevious<CR>
 
 " 현재 버퍼를 닫고 이전 버퍼로 이동
-nmap <leader>bq :bp <BAR> bd #<CR>
+nmap <leader>q :bp <BAR> bd #<CR>
 
 " 모든 버퍼와 각 버퍼 상태 출력
-nmap <leader>bl :ls<CR>
+nmap <leader>l :ls<CR>
+
+" 저장 단축키
+"nmap <leader>w :w<CR>
+"nmap <leader>c :wq<CR>
 "---- grubbox 용 셋팅
 "let g:gruvbox_contrast_dark="hard"
 "set background=dark
@@ -342,10 +349,9 @@ let g:airline_section_warning= '' "마지막 status창 사용 안함
 set hidden
 "-----------------------------------------------------
 let g:ycm_rust_src_path = '/home/kimnux/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+let g:slimv_swank_cmd = '! xterm -e sbcl --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
 let g:rustfmt_autosave = 1
-"검색을 정규식으로
 map / /\v
-
 "colorscheme catppuccin_mocha    "터미널 256bit로는 적용안됨
 "colorscheme	tokyonight "set termguicolors 안켜면 색상 제대로 지원 안됨	
 colorscheme  dracula

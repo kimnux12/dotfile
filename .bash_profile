@@ -13,6 +13,7 @@ export DELTA_FEATURES=+side-by-side #activate
 #export SDL_IM_MODULE=fcitx
 #export GLFW_IM_MODULE=fcitx
 #if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-    export MOZ_ENABLE_WAYLAND=1
+   # export MOZ_ENABLE_WAYLAND=1
+#	export MOZ_WEBRENDER=1
 #fi
 [[ -f ~/.bashrc ]] && . ~/.bashrc

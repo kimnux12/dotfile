@@ -4,7 +4,7 @@
 export EDITOR=vim
 export TERM=xterm-256color
 eval "$(starship init bash)"
-[[ $- == *i* ]] && source ~/.local/share/blesh/ble.sh --noattach
+[[ $- == *i* ]] && source /home/kimnux/.local/share/blesh/ble.sh --noattach
 [[ ${BLE_VERSION-} ]] && ble-attach
 #old_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin"
 #if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} ]]
@@ -29,6 +29,7 @@ alias grep='grep --color=auto'
 alias en='export LANG=en_US.UTF-8'
 alias ko='export LANG=ko_KR.UTF-8'
 alias hy='Hyprland'
+alias em='emacs'
 #alias startx='export LANG=ko_KR.UTF-8;startx'
 #====== docker-compose alias =====
 alias dockerc='docker-compose'
@@ -84,4 +85,27 @@ _fzf_comprun() {
 #PERL_MM_OPT="INSTALL_BASE=/home/kimnux/perl5"; export PERL_MM_OPT;
 #export API_KEY=UFtCH8oDgiX6Pe6BDH09l3RG4DmVox08MZJGfuAH
 export GEM_HOME="$(gem env user_gemhome)"
-export PATH="$PATH:$GEM_HOME/bin"
+export PATH="$PATH:$GEM_HOME/bin:~/.cargo/bin:~/.config/emacs/bin"
+# emacs용 vterm 설정
+vterm_printf() {
+    if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ]); then
+        # Tell tmux to pass the escape sequences through
+        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+    elif [ "${TERM%%-*}" = "screen" ]; then
+        # GNU screen (screen, screen-256color, screen-256color-bce)
+        printf "\eP\e]%s\007\e\\" "$1"
+    else
+        printf "\e]%s\e\\" "$1"
+    fi
+}
+if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
+    function clear() {
+        vterm_printf "51;Evterm-clear-scrollback";
+        tput clear;
+    }
+fi
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }"'echo -ne "\033]0;${HOSTNAME}:${PWD}\007"'
+vterm_prompt_end(){
+    vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
+}
+PS1=$PS1'\[$(vterm_prompt_end)\]'
