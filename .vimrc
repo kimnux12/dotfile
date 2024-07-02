@@ -14,6 +14,7 @@ call vundle#begin()
 "----- ColorScheme용 플러그인들--------------------
 Plugin 'gilgigilgil/anderson.vim'
 Plugin 'rhysd/vim-color-spring-night'
+Plugin 'jceb/vim-orgmode'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'dracula/vim', { 'name': 'dracula' }
 Plugin 'ghifarit53/tokyonight-vim'

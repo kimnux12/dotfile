@@ -33,9 +33,45 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (beacon-mode 1)
-(setq doom-theme 'doom-one)
-(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 21))
-(set-fontset-font "fontset-default" 'hangul (font-spec :family "NanumGothicCoding" :size 21))
+
+(setq doom-theme 'doom-dracula)
+
+(after! org
+  (custom-set-faces
+   ;; TODO 및 DONE 키워드
+   '(org-todo ((t (:foreground "Red" :weight bold))))
+   '(org-done ((t (:foreground "Green" :weight bold))))
+   ;; Agenda 날짜 및 구조
+   '(org-agenda-date ((t (:foreground "Blue" :height 1.2))))
+   '(org-agenda-date-weekend ((t (:foreground "Orange" :weight bold))))
+   '(org-agenda-structure ((t (:foreground "Purple" :height 1.5 :weight bold))))
+   ;; 제목
+   '(org-level-1 ((t (:foreground "LightSkyBlue" :weight bold :height 1.3))))
+   '(org-level-2 ((t (:foreground "LightGoldenrod" :weight bold :height 1.2))))
+   '(org-level-3 ((t (:foreground "Cyan1" :weight bold :height 1.1))))
+   ;; 표
+   '(org-table ((t (:foreground "LightSteelBlue" :weight normal))))
+   ;; 링크
+   '(org-link ((t (:foreground "SkyBlue2" :underline t))))
+   ;; 날짜와 시간
+   '(org-date ((t (:foreground "LightSalmon" :underline t))))
+   '(org-scheduled ((t (:foreground "Green"))))
+   '(org-deadline ((t (:foreground "Red"))))
+   ;; 코드 블록
+   '(org-block ((t (:background "gray20" :foreground "gray80"))))
+   '(org-block-begin-line ((t (:background "gray30" :foreground "gray70"))))
+   '(org-block-end-line ((t (:background "gray30" :foreground "gray70"))))
+   ;; 인용
+   '(org-quote ((t (:foreground "LightGoldenrod" :slant italic))))
+   ;; 리스트
+   '(org-list-dt ((t (:foreground "LightSkyBlue" :weight bold))))
+   ;; 태그
+   '(org-tag ((t (:foreground "LightSalmon" :weight bold))))
+  )
+)
+
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 20))
+(set-fontset-font "fontset-default" 'hangul (font-spec :family "NanumGothicCoding" :size 20))
 ;; 출처: https://codepractice.tistory.com/167 [코딩 연습:티스토리]
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -225,7 +261,16 @@
 ;;        :m "]l"  #'markdown-next-link))
 
 ;; Change "theme name" to the selected highlightjs theme.
-(add-to-list 'load-path "~/.config/doom")
 (setq markdown-soma-highlightjs-theme "dracula")
-(setq markdown-soma-custom-css "~/.config/doom/github-dark.css")
+(setq markdown-soma-custom-css "~/.config/doom/plugins/github-dark.css")
+;;(add-hook! org-mode 'rainbow-mode)
+;;(add-hook! prog-mode 'rainbow-mode)
+;; plugins/org-preview-html/init.el
+
+;; Add custom load path
+(add-to-list 'load-path "~/.config/doom/plugins")
+
+;; Load org-preview-html package
 (require 'org-preview-html)
+(map!
+ [remap evil-quit] #'kill-current-buffer)

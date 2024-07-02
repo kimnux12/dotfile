@@ -1,0 +1,525 @@
+doom emacs를 사용하는 경우 (add-to-list 'load-path "~/.config/doom/")는 어디에 기입을 해야되는거야?
+
+doom emacs에서 (add-to-list 'load-path "~/.config/doom/")와 같은 설정을 추가하려면, config.el 파일에 해당 설정을 기입하면 됩니다. config.el 파일은 사용자 설정을 저장하는 파일로, 보통 ~/.doom.d/config.el 경로에 위치합니다.
+
+아래에 구체적인 단계를 설명합니다:
+
+config.el 파일 열기:
+
+~/.doom.d/config.el 파일을 엽니다. 만약 이 파일이 존재하지 않는다면, 직접 생성할 수도 있습니다.
+설정 추가:
+
+config.el 파일에 (add-to-list 'load-path "~/.config/doom/") 코드를 추가합니다.
+emacs
+코드 복사
+;; ~/.doom.d/config.el
+
+;; Add custom load path
+(add-to-list 'load-path "~/.config/doom/")
+
+;; 다른 사용자 설정들
+설정 적용:
+Emacs를 재시작하거나 doom sync 명령을 실행하여 설정을 적용합니다.
+sh
+코드 복사
+doom sync
+이렇게 하면 ~/.config/doom/ 경로가 Emacs의 load-path에 추가되어, 해당 경로에 있는 파일들을 로드할 수 있게 됩니다.
+
+init.el 파일 대신 config.el 파일을 사용하는 이유는, Doom Emacs는 init.el을 주로 패키지 구성 및 모듈 설정에 사용하고, config.el은 사용자 설정을 위한 파일로 분리하여 사용하기 때문입니다. 따라서, 사용자 설정은 config.el 파일에 추가하는 것이 일반적입니다.
+
+(require 'org-preview-html) 이것도 기입하라는데 이건 어디에 넣어야해?
+ChatGPT
+(require 'org-preview-html)와 같은 패키지 로드 설정도 마찬가지로 config.el 파일에 추가하는 것이 적절합니다. config.el 파일은 사용자 설정과 패키지 로드를 포함하는 데 사용됩니다.
+
+따라서 config.el 파일에 (require 'org-preview-html)를 추가하는 방법은 다음과 같습니다:
+
+config.el 파일 열기:
+
+~/.doom.d/config.el 파일을 엽니다. 만약 파일이 존재하지 않으면 직접 생성할 수 있습니다.
+설정 추가:
+
+config.el 파일에 (require 'org-preview-html) 코드를 추가합니다.
+emacs
+코드 복사
+;; ~/.doom.d/config.el
+
+;; Add custom load path
+(add-to-list 'load-path "~/.config/doom/")
+
+;; Load org-preview-html package
+(require 'org-preview-html)
+
+;; 다른 사용자 설정들
+설정 적용:
+Emacs를 재시작하거나 doom sync 명령을 실행하여 설정을 적용합니다.
+sh
+코드 복사
+doom sync
+이렇게 하면 org-preview-html 패키지가 Emacs에서 로드됩니다.
+
+요약
+(add-to-list 'load-path "~/.config/doom/")와 (require 'org-preview-html)는 모두 ~/.doom.d/config.el 파일에 추가합니다.
+Emacs를 재시작하거나 doom sync 명령을 실행하여 변경 사항을 적용합니다.
+doom emacs는 MELPA는 사용못하는거야?
+ChatGPT
+Doom Emacs에서도 MELPA를 사용할 수 있습니다. Doom Emacs는 패키지 관리 시스템으로 straight.el을 사용하며, 기본적으로 MELPA, GNU ELPA, 그리고 Emacsmirror 리포지토리를 지원합니다.
+
+MELPA 패키지를 Doom Emacs에 추가하는 방법
+packages.el 파일 열기:
+
+사용자 패키지 설정을 위해 ~/.doom.d/packages.el 파일을 엽니다. 만약 파일이 없다면 생성합니다.
+패키지 추가:
+
+설치하려는 패키지를 packages.el 파일에 추가합니다. 예를 들어, org-preview-html 패키지를 MELPA에서 설치하려면 다음과 같이 추가합니다.
+emacs
+코드 복사
+;; ~/.doom.d/packages.el
+
+(package! org-preview-html)
+패키지 설치:
+터미널에서 doom sync 명령을 실행하여 새로운 패키지를 설치하고 설정을 갱신합니다.
+sh
+코드 복사
+doom sync
+Emacs 재시작:
+Emacs를 재시작하여 패키지 설정을 적용합니다.
+전체 예제
+아래는 MELPA에서 org-preview-html 패키지를 설치하고 사용하는 설정의 전체 예제입니다:
+
+packages.el 파일 설정:
+emacs
+코드 복사
+;; ~/.doom.d/packages.el
+
+(package! org-preview-html)
+config.el 파일 설정:
+emacs
+코드 복사
+;; ~/.doom.d/config.el
+
+;; Load org-preview-html package
+(require 'org-preview-html)
+
+;; 다른 사용자 설정들
+패키지 설치 및 설정 적용:
+sh
+코드 복사
+doom sync
+Emacs 재시작:
+Emacs를 재시작하여 설정이 적용되었는지 확인합니다.
+이 과정을 따르면 MELPA에서 패키지를 설치하고 사용할 수 있습니다. Doom Emacs는 패키지 관리와 설정이 매우 효율적으로 이루어지므로, 위의 절차를 따라 필요한 패키지를 손쉽게 추가할 수 있습니다.
+
+-------------------------------------------------------------------------
+ MELPA말고 다른 저장소도 있나?
+ChatGPT
+네, MELPA 외에도 여러 패키지 저장소가 있습니다. Doom Emacs는 기본적으로 여러 저장소를 지원하며, 사용자가 추가적인 저장소를 설정할 수도 있습니다. 다음은 주요 패키지 저장소와 그 역할입니다:
+
+주요 패키지 저장소
+MELPA (Milkypostman’s Emacs Lisp Package Archive):
+
+최신 패키지들이 자주 업데이트되는 저장소입니다.
+URL: https://melpa.org
+GNU ELPA (GNU Emacs Lisp Package Archive):
+
+Emacs의 기본 패키지 저장소로 안정적인 패키지들을 제공합니다.
+URL: https://elpa.gnu.org
+MELPA Stable:
+
+MELPA와 유사하지만, 안정화된 버전의 패키지들만을 포함합니다.
+URL: https://stable.melpa.org
+Emacsmirror:
+
+Emacs 패키지들의 거대한 저장소로, 다양한 패키지들이 포함되어 있습니다.
+URL: https://emacsmirror.net
+
+-----------------------------------------------------------------------------
+commands
+org-preview-html-mode - enables minor mode and opens preview.
+org-preview-html-refresh - manually refresh preview (only needed in manual mode).
+org-preview-html-pop-window-to-frame - pops out the current window in to a frame.
+
+😆😁😀
+
+버퍼 끄기
+SPC b k
+
+새 버퍼 만들기
+SPC b N
+
+새 문서 만들기
+C-x b
+
+Run Command(M-x)
+SPC :
+
+Switch Buffer(버퍼 나열)
+SPC b B
+
+버퍼 저장하기
+SPC f s
+
+다른이름으로 저장하기
+SPC f S
+
+설정파일 열기
+SPC f p
+
+터미널 열기
+SPC o t
+
+이맥스 재실행
+SPC q r
+
+파일 찾기
+SPC f f
+
+doom sync/doom reload
+SPC h r r
+
+이전 버퍼
+SPC b p
+
+다음 버퍼
+SPC b n
+
+switch buffer
+SPC b B
+
+clone buffer
+SPC b c
+
+문서 변환해서 내보내기(org-pandoc-export)
+SPC m e
+
+export dispatcher 이용해서 내보내기(org-export-dispatch)
+C-c C-e (https://orgmode.org/manual/The-Export-Dispatcher.html#The-Export-Dispatcher)
+
+최근 작업한 문서들 나열
+SPC f r
+
+List Errors
+SCP c x
+
+Next Error
+]e
+
+Previous Error
+[e
+
+Switch Project(프로젝트 나열)
+SPC p p
+
+프로젝트내의 파일찾기
+SPC SPC (SPC p f)
+
+새 프로젝트 등록하기
+SPC p a
+
+Window management
+
+The following keys are all available under SPCw as well, if you prefer.
+Key 	Description
+C-ws 	Split the window horizontally
+C-wv 	Split the window vertically
+C-wd 	Delete current window
+C-w {h,j,k,l} 	Select window in direction (left, below, above, right, respectively)
+C-w {S-h,S-j,S-k,S-l} 	Swap current window with window in direction
+C-w {C-S-h,C-S-j,C-S-k,C-S-l} 	Move current window to edge of frame in direction
+C-wu or C-wC-r 	Undo or redo last change to window configuration
+C-wo 	Enlargen current window. Again to undo.
+C-wmm 	Delete other windows. Again to undo.
+{N}C-w| 	Change width of current window to N (a number)
+{N}C-w_ 	Change height of current window to N lines
+
+Windows
+
+    SPC w v window split vertically
+    SPC w s window split horizontally
+    SPC w w to switch windows
+    SPC w q to close window, frame, quit EMACS if last frame
+    SPC w + and SPC w - to increase and decrease window height
+    SPC w > and SPC w < to increase and decrease window width
+    You can use vim motion keys to navigate between open windows for example SPC w H moves the window to the left.
+    Windows are panes in your screen
+
+-------------------------------------------------------------
+doom emacs를 사용중이고, ~/.config/doom/내에 config.el init.el packages.el 파일들이 있어. 그리고 하위 디렉토리 plugins에 org-preview-html.el 을 넣어두었어.
+ChatGPT
+
+Doom Emacs를 사용하고 계시군요! ~/.config/doom/ 디렉토리는 Doom Emacs의 설정 파일들이 위치하는 곳입니다. 각 파일들은 다음과 같은 역할을 합니다:
+
+    config.el: 주 설정 파일로, 사용자 정의 설정을 포함합니다.
+    init.el: Emacs 시작 시 초기화되는 설정을 담당합니다.
+    packages.el: 추가적인 패키지 설치 및 관리를 위한 설정 파일입니다.
+
+여기에 plugins라는 하위 디렉토리를 생성하셨고, 그 안에 org-preview-html.el 파일을 넣으셨군요. 이 파일을 Doom Emacs에서 사용하려면 몇 가지 추가적인 작업이 필요할 수 있습니다.
+
+    Doom Emacs 설정 파일에서 추가: org-preview-html.el 파일이 정상적으로 동작하도록 하려면, 이 파일을 config.el, init.el, 또는 packages.el 파일 중 하나에 추가해야 합니다.
+
+    예를 들어, org-preview-html.el 파일이 plugins 디렉토리에 위치한다면, config.el 파일에 다음과 같이 추가할 수 있습니다:
+
+    elisp
+
+(load! "plugins/org-preview-html.el")
+
+이 명령어는 plugins 디렉토리 안의 org-preview-html.el 파일을 Emacs에 로드하도록 지시합니다.
+
+Doom 모듈화 기능 활용: Doom Emacs는 모듈화된 설정을 지원하므로, plugins 디렉토리에 있는 파일들을 모듈로 만들어 관리할 수 있습니다. 이는 init.el 또는 config.el 파일에 추가하는 것으로 가능합니다. 예를 들어:
+
+elisp
+
+    ;; plugins/org-preview-html/init.el
+    (use-package org-preview-html
+      :load-path "plugins/org-preview-html.el")
+
+    이렇게 하면 Doom Emacs가 org-preview-html 모듈을 인식하고 관련 설정을 적용할 수 있습니다.
+
+    Doom Emacs를 재시작: 설정을 변경한 후에는 Emacs를 재시작하여 변경 사항이 적용되었는지 확인해야 합니다. 이는 SPC q r 키 조합으로 간단히 수행할 수 있습니다.
+
+위의 단계를 통해 org-preview-html.el 파일을 Doom Emacs에서 사용할 수 있게 됩니다. 설정 파일들의 구조와 로드 방식에 따라 세부적인 설정 방법이 달라질 수 있으니, 실제 환경에 맞게 적절히 수정하셔야 합니다.
+org mode작용 내용을 실시간으로 보여주는 패키지가 있을까?
+ChatGPT
+
+Org Mode에서 작성한 내용을 실시간으로 보여주는 패키지로는 다음과 같은 것들이 있습니다:
+
+    org-fragtog: 이 패키지는 Org Mode에서 LaTeX 수식을 작성할 때 실시간으로 미리보기를 제공합니다. 수식을 입력하면 바로 PDF로 렌더링하여 보여줍니다.
+
+        설치 방법: Emacs의 패키지 관리 시스템을 통해 설치할 수 있습니다. 예를 들어, M-x package-install RET org-fragtog RET 명령어를 사용합니다.
+
+        사용법: Org Mode에서 LaTeX 수식을 입력하면 자동으로 미리보기를 제공합니다. 설정이 간단하며 사용이 편리합니다.
+
+    org-preview-html: 이 패키지는 Org Mode에서 작성한 내용을 HTML로 변환하여 실시간으로 브라우저에서 보여줍니다.
+
+ ---------------------------------------------------------
+ Xwidgets support pgtk now
+News
+
+Thanks to Po Lu, Emacs's pgtk port could use xwidgets to browse web pages. You don't need to install any external packages, just compile the newest source code of Emacs (at least newer than this commit by Po Lu) with "--with-pgtk" together with "--with-xwidgets" flags. Then M-x xwidget-webkit-browse-url and enter a url, you could surf the Internet via Emacs!
+
+For people not familiar to this: pgtk port is the feature Emacs use pure GTK, which means it could run under pure Wayland. Xwidgets is a feature that allows Emacs to display GTK and NS widgets inside buffers. Xwidgets doesn't support pgtk before, Po Lu made it support pgtk.
+
+-------------------------------------------------------------
+저런 변수들에 대한 정보는 어디서 볼 수 있어?
+ChatGPT
+
+Emacs에서 변수들에 대한 정보는 여러 가지 방법으로 확인할 수 있습니다. 특히 Org mode와 같은 특정 모드에서 사용되는 변수들에 대한 정보를 찾는 몇 가지 방법은 다음과 같습니다:
+1. describe-variable 명령어 사용하기
+
+Emacs 내에서 describe-variable 명령어를 사용하여 특정 변수에 대한 자세한 정보를 확인할 수 있습니다. 이를 위해서는 다음과 같은 단계를 따릅니다:
+
+    M-x describe-variable을 입력합니다. (M-x는 Alt 키와 x 키를 동시에 누르는 것입니다.)
+    변수 이름(org-cycle-separator-lines)을 입력하고 Enter 키를 누릅니다.
+
+이 명령어는 해당 변수의 설명, 기본값, 현재 값 등을 포함한 자세한 정보를 표시합니다.
+2. Org mode 문서 확인하기
+
+Org mode는 매우 잘 문서화되어 있으며, Org mode 문서는 Emacs 내에서 쉽게 접근할 수 있습니다:
+
+    C-h i (info)를 입력합니다.
+    Org mode 매뉴얼을 선택합니다 (Org Mode).
+    필요한 항목을 찾아서 읽습니다. 변수들에 대한 정보는 주로 "Configuration"이나 "Customization" 섹션에 있습니다.
+
+3. Emacs Wiki와 공식 사이트
+
+Emacs Wiki와 Org mode 공식 웹사이트는 유용한 정보와 예제를 많이 제공합니다:
+
+    Emacs Wiki
+    Org mode 공식 사이트
+
+4. 코드와 주석 읽기
+
+Emacs 설정 파일이나 Org mode의 소스 코드를 직접 읽어보는 것도 좋은 방법입니다. 주석이나 문서화된 코드 블록을 통해 변수에 대한 자세한 정보를 얻을 수 있습니다.
+5. 커뮤니티와 포럼
+
+Emacs 사용자 그룹, Reddit의 Emacs 서브레딧, Stack Exchange의 Emacs 카테고리 등에서 질문을 하거나 정보를 찾을 수 있습니다:
+
+    Emacs Stack Exchange
+    Reddit - Emacs
+
+위의 방법들을 통해 Emacs와 Org mode의 다양한 변수들에 대한 정보를 찾고, 자신의 필요에 맞게 설정을 조정할 수 있습니다.
+-------------------------------------------------------
+
+10+ tips using org-mode in Doom Emacs | Why I Think Doom Emacs is the Best Writing Software
+https://www.youtube.com/watch?v=WyQ4zEo8_Ig
+
+-------------------------------------------------------
+
+Doom emacs의 5가지 모드
+1. Normal mode
+2. Insert mode
+3.Visual mode
+4. Command mode (:wq)
+5. Emacs mode (C-z) to toggle evil in current buffer.
+
+--------------------------------------------------------
+
+문단 구분
+
+출처: https://orgmode.org/manual/Paragraphs.html
+
+빈 한 줄 이상을 넣으면 문단이 구분된다.
+문단내에서 줄바꿈을 하려면 각 줄의 끝에 '\\'를 붙여준다.
+
+한 문단내에서 일정한 구역(region)에서만 줄바꿈, 들여쓰기, 빈 줄 삽입을
+하고자 하는 경우 다음의 구성들을 사용한다.
+
+#+BEGIN_VERSE
+....
+#+END_VERSE
+
+다른 문서에서 어떤 구절(passage)을 빌려오고 싶은 경우,
+문단 좌우에 여백을 주고 문단을 만들 수도 있다.
+
+#+BEGIN_QUOTE
+...
+#+END_QUOTE
+
+어떤 문장을 가운데 정렬하기를 원한다면,
+
+#+BEGIN_CENTER
+....
+#+END_CENTER
+
+-----------------------------------------------------------------
+
+In-Buffer Setting 요약
+(출처: https://orgmode.org/manual/In_002dbuffer-Settings.html)
+
+In-buffer settings start with ‘#+’, followed by a keyword, a colon, one or more spaces, and then a word for each setting. Org accepts multiple settings on the same line. Org also accepts multiple lines for a keyword. This manual describes these settings throughout. A summary follows here.
+
+C-c C-c activates any changes to the in-buffer settings. Closing and reopening the Org file in Emacs also activates the changes.
+
+‘#+ARCHIVE: %s_done::’
+    Sets the archive location of the agenda file. The corresponding variable is org-archive-location.
+
+‘#+CATEGORY’
+    Sets the category of the agenda file, which applies to the entire document.
+
+‘#+COLUMNS: %25ITEM ...’
+    Set the default format for columns view. This format applies when columns view is invoked in locations where no ‘COLUMNS’ property applies.
+
+‘#+CONSTANTS: name1=value1 ...’
+    Set file-local values for constants that table formulas can use. This line sets the local variable org-table-formula-constants-local. The global version of this variable is org-table-formula-constants.
+
+‘#+FILETAGS: :tag1:tag2:tag3:’
+    Set tags that all entries in the file inherit from, including the top-level entries.
+
+‘#+LINK: linkword replace’
+    Each line specifies one abbreviation for one link. Use multiple ‘LINK’ keywords for more, see Link Abbreviations. The corresponding variable is org-link-abbrev-alist.
+
+‘#+PRIORITIES: highest lowest default’
+    This line sets the limits and the default for the priorities. All three must be either letters A–Z or numbers 0–9. The highest priority must have a lower ASCII number than the lowest priority.
+
+‘#+PROPERTY: Property_Name Value’
+    This line sets a default inheritance value for entries in the current buffer, most useful for specifying the allowed values of a property.
+
+‘#+SETUPFILE: file’
+    The setup file or a URL pointing to such file is for additional in-buffer settings. Org loads this file and parses it for any settings in it when Org opens the main file. If URL is specified, the contents are downloaded and stored in a temporary file cache. C-c C-c on the settings line re-parses and re-loads the file, and also resets the temporary file cache.
+
+    Org also parses and loads in-buffer settings from the setup file during normal exporting process. Org parses the in-buffer settings as if it was included in the containing Org buffer. The rest of the contents of setup file is ignored.
+
+    To visit the setup file—not a URL—use C-c ' while point is on the line with the setup file name.
+
+‘#+STARTUP:’
+    Startup options Org uses when first visiting a file.
+
+    The first set of options deals with the initial visibility of the outline tree. The corresponding variable for global default settings is org-startup-folded with a default value of showeverything.
+    ‘overview’	Top-level headlines only.
+    ‘content’	All headlines.
+    ‘showall’	No folding on any entry.
+    ‘show2levels’	Headline levels 1-2.
+    ‘show3levels’	Headline levels 1-3.
+    ‘show4levels’	Headline levels 1-4.
+    ‘show5levels’	Headline levels 1-5.
+    ‘showeverything’	Show even drawer contents.
+
+    Dynamic virtual indentation is controlled by the variable org-startup-indented161.
+    ‘indent’	Start with Org Indent mode turned on.
+    ‘noindent’	Start with Org Indent mode turned off.
+
+    Dynamic virtual numeration of headlines is controlled by the variable org-startup-numerated.
+    ‘num’	Start with Org num mode turned on.
+    ‘nonum’	Start with Org num mode turned off.(디폴트값이 nonum이다.)
+
+    Aligns tables consistently upon visiting a file. The corresponding variable is org-startup-align-all-tables with nil as default value.
+    ‘align’	Align all tables.
+    ‘noalign’	Do not align tables on startup.
+
+    Shrink table columns with a width cookie. The corresponding variable is org-startup-shrink-all-tables with nil as default value.
+
+    When visiting a file, inline images can be automatically displayed. The corresponding variable is org-startup-with-inline-images, with a default value nil to avoid delays when visiting a file.
+    ‘inlineimages’	Show inline images.
+    ‘noinlineimages’	Do not show inline images on startup.
+
+    Bracket links in Org buffers are displayed hiding the link path and brackets. For example, ‘[[https://orgmode.org][Org Website]]’ is, by default, displayed as “Org Website”, hiding the link itself and just displaying its description. Alternatively, the links can be displayed in full. The corresponding variable is org-link-descriptive.
+    ‘descriptivelinks’	Hide path and brackets in links.
+    ‘literallinks’	Do not hide anything.
+
+    Logging the closing and reopening of TODO items and clock intervals can be configured using these options (see variables org-log-done, org-log-note-clock-out, and org-log-repeat).
+    ‘logdone’	Record a timestamp when an item is marked as done.
+    ‘lognotedone’	Record timestamp and a note when DONE.
+    ‘nologdone’	Do not record when items are marked as done.
+    ‘logrepeat’	Record a time when reinstating a repeating item.
+    ‘lognoterepeat’	Record a note when reinstating a repeating item.
+    ‘nologrepeat’	Do not record when reinstating repeating item.
+    ‘lognoteclock-out’	Record a note when clocking out.
+    ‘nolognoteclock-out’	Do not record a note when clocking out.
+    ‘logreschedule’	Record a timestamp when scheduling time changes.
+    ‘lognotereschedule’	Record a note when scheduling time changes.
+    ‘nologreschedule’	Do not record when a scheduling date changes.
+    ‘logredeadline’	Record a timestamp when deadline changes.
+    ‘lognoteredeadline’	Record a note when deadline changes.
+    ‘nologredeadline’	Do not record when a deadline date changes.
+    ‘logrefile’	Record a timestamp when refiling.
+    ‘lognoterefile’	Record a note when refiling.
+    ‘nologrefile’	Do not record when refiling.
+
+    Here are the options for hiding leading stars in outline headings, and for indenting outlines. The corresponding variables are org-hide-leading-stars and org-odd-levels-only, both with a default setting nil (meaning ‘showstars’ and ‘oddeven’).
+    ‘hidestars’	Make all but one of the stars starting a headline invisible.
+    ‘showstars’	Show all stars starting a headline.
+    ‘indent’	Virtual indentation according to outline level.
+    ‘noindent’	No virtual indentation according to outline level.
+    ‘odd’	Allow only odd outline levels (1, 3, …).
+    ‘oddeven’	Allow all outline levels.
+
+    To turn on custom format overlays over timestamps (variables org-display-custom-times and org-timestamp-custom-formats), use:
+    ‘customtime’	Overlay custom time format.
+
+    The following options influence the table spreadsheet (variable constants-unit-system).
+    ‘constcgs’	‘constants.el’ should use the c-g-s unit system.
+    ‘constSI’	‘constants.el’ should use the SI unit system.
+
+    To influence footnote settings, use the following keywords. The corresponding variables are org-footnote-define-inline, org-footnote-auto-label, and org-footnote-auto-adjust.
+    ‘fninline’	Define footnotes inline.
+    ‘fnnoinline’	Define footnotes in separate section.
+    ‘fnlocal’	Define footnotes near first reference, but not inline.
+    ‘fnprompt’	Prompt for footnote labels.
+    ‘fnauto’	Create ‘[fn:1]’-like labels automatically (default).
+    ‘fnconfirm’	Offer automatic label for editing or confirmation.
+    ‘fnadjust’	Automatically renumber and sort footnotes.
+    ‘nofnadjust’	Do not renumber and sort automatically.
+    ‘fnanon’	Create anonymous footnotes with org-footnote-new.
+
+    To hide blocks or drawers on startup, use these keywords. The corresponding variables are org-hide-block-startup and org-hide-drawer-startup.
+    ‘hideblocks’	Hide all begin/end blocks on startup.
+    ‘nohideblocks’	Do not hide blocks on startup.
+    ‘hidedrawers’	Hide all begin/end blocks on startup.
+    ‘nohidedrawers’	Do not hide blocks on startup.
+
+The display of entities as UTF-8 characters is governed by the variable org-pretty-entities and the keywords
+‘entitiespretty’	Show entities as UTF-8 characters where possible.
+‘entitiesplain’	Leave entities plain.
+
+‘#+TAGS: TAG1(c1) TAG2(c2)’
+    These lines (several such lines are allowed) specify the valid tags in this file, and (potentially) the corresponding fast tag selection keys. The corresponding variable is org-tag-alist.
+
+‘#+TODO:’, ‘#+SEQ_TODO:’, ‘#+TYP_TODO:’
+    These lines set the TODO keywords and their interpretation in the current file. The corresponding variable is org-todo-keywords.
+
+----------------------------------------------------------
+:q가 emacs를 종료하지 않게 하기
+
+(map!
+ [remap evil-quit] #'kill-current-buffer)
+
+-----------------------------------------------------------

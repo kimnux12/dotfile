@@ -51,3 +51,4 @@
 (package! markdown-soma)
 (package! vterm)
 (package! beacon)
+(unpin! org-roam company-org-roam)
