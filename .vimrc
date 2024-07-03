@@ -348,6 +348,10 @@ let g:airline_theme = "catppuccin_mocha"
 let g:airline_section_y = '' 
 let g:airline_section_warning= '' "마지막 status창 사용 안함
 set hidden
+inoremap <A-h> <left>
+inoremap <A-j> <down>
+inoremap <A-k> <up>
+inoremap <A-l> <right>
 "-----------------------------------------------------
 let g:ycm_rust_src_path = '/home/kimnux/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
 let g:slimv_swank_cmd = '! xterm -e sbcl --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
