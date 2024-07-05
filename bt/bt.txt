@@ -3,23 +3,18 @@
 
 블루투스 모듈이 제대로 로드되었는지 확인합니다.
 
-sh
-
 lsmod | grep bluetooth
 
 2. 블루투스 서비스 상태 확인
 
 블루투스 서비스가 제대로 작동 중인지 확인합니다.
 
-sh
-
+sudo jounalctl -u bluetooth
 sudo systemctl status bluetooth
 
 3. 블루투스 장치 리셋
 
 블루투스 모듈을 리셋합니다.
-
-sh
 
 sudo systemctl restart bluetooth
 
@@ -27,10 +22,12 @@ sudo systemctl restart bluetooth
 
 블루투스 장치가 하드웨어적으로 문제가 없는지 확인합니다. 다른 장치에서 해당 블루투스 키보드를 검색해 보세요.
 5. Bluetoothctl 명령어 사용
-
-bluetoothctl 명령어를 사용하여 블루투스 장치를 검색합니다.
-
-sh
+sudo pacman -S bluez bluez-utils
+sudo groupadd bluetooth
+sudo usermod -aG bluetooth $USER
+user usermod -aG lp $USER
+rfkill list
+sudo rfkill unlock bluetooth
 
 bluetoothctl
 power on
