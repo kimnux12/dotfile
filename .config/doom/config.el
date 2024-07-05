@@ -33,44 +33,11 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (beacon-mode 1)
-
+(setq doom-themes-enable-bold t
+      doom-themes-enable-italic t)
 (setq doom-theme 'doom-dracula)
-
-(after! org
-  (custom-set-faces
-   ;; TODO 및 DONE 키워드
-   '(org-todo ((t (:foreground "Red" :weight bold))))
-   '(org-done ((t (:foreground "Green" :weight bold))))
-   ;; Agenda 날짜 및 구조
-   '(org-agenda-date ((t (:foreground "Blue" :height 1.2))))
-   '(org-agenda-date-weekend ((t (:foreground "Orange" :weight bold))))
-   '(org-agenda-structure ((t (:foreground "Purple" :height 1.5 :weight bold))))
-   ;; 제목
-   '(org-level-1 ((t (:foreground "LightSkyBlue" :weight bold :height 1.3))))
-   '(org-level-2 ((t (:foreground "LightGoldenrod" :weight bold :height 1.2))))
-   '(org-level-3 ((t (:foreground "Cyan1" :weight bold :height 1.1))))
-   ;; 표
-   '(org-table ((t (:foreground "LightSteelBlue" :weight normal))))
-   ;; 링크
-   '(org-link ((t (:foreground "SkyBlue2" :underline t))))
-   ;; 날짜와 시간
-   '(org-date ((t (:foreground "LightSalmon" :underline t))))
-   '(org-scheduled ((t (:foreground "Green"))))
-   '(org-deadline ((t (:foreground "Red"))))
-   ;; 코드 블록
-   '(org-block ((t (:background "gray20" :foreground "gray80"))))
-   '(org-block-begin-line ((t (:background "gray30" :foreground "gray70"))))
-   '(org-block-end-line ((t (:background "gray30" :foreground "gray70"))))
-   ;; 인용
-   '(org-quote ((t (:foreground "LightGoldenrod" :slant italic))))
-   ;; 리스트
-   '(org-list-dt ((t (:foreground "LightSkyBlue" :weight bold))))
-   ;; 태그
-   '(org-tag ((t (:foreground "LightSalmon" :weight bold))))
-  )
-)
-
-(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 20))
+(setq doom-font (font-spec :family "JetBrainsMono NFM" :size 20))
+;;(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 20))
 (set-fontset-font "fontset-default" 'hangul (font-spec :family "NanumGothicCoding" :size 20))
 ;; 출처: https://codepractice.tistory.com/167 [코딩 연습:티스토리]
 ;; This determines the style of line numbers in effect. If set to `nil', line
@@ -79,6 +46,7 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
+(setq org-roam-directory "~/org/roam/")
 ;; emacs 내장 한글 입력기 사용
 ;;(setq default-input-method "korean-hangul")
 ;;출처: https://codepractice.tistory.com/128 [코딩 연습:티스토리]
@@ -131,138 +99,138 @@
 ;;;;
 ;;;;; Packages
 ;;
-;;(use-package! markdown-mode
-;;  :mode ("/README\\(?:\\.md\\)?\\'" . gfm-mode)
-;;  :init
-;;  (setq markdown-italic-underscore t
-;;        markdown-asymmetric-header t
-;;        markdown-gfm-additional-languages '("sh")
-;;        markdown-make-gfm-checkboxes-buttons t
-;;        markdown-fontify-whole-heading-line t
-;;
-;;        ;; `+markdown-compile' offers support for many transpilers (see
-;;        ;; `+markdown-compile-functions'), which it tries until one succeeds.
-;;        markdown-command #'+markdown-compile
-;;        ;; This is set to `nil' by default, which causes a wrong-type-arg error
-;;        ;; when you use `markdown-open'. These are more sensible defaults.
-;;        markdown-open-command
-;;        (cond ((featurep :system 'macos) "open")
-;;              ((featurep :system 'linux) "xdg-open"))
-;;
-;;        ;; A sensible and simple default preamble for markdown exports that
-;;        ;; takes after the github asthetic (plus highlightjs syntax coloring).
-;;        markdown-content-type "application/xhtml+xml"
-;;        markdown-css-paths
-;;        '("https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css"
-;;          "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/github.min.css")
-;;        markdown-xhtml-header-content
-;;        (concat "<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>"
-;;                "<style> body { box-sizing: border-box; max-width: 740px; width: 100%; margin: 40px auto; padding: 0 10px; } </style>"
-;;                "<script id='MathJax-script' async src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>"
-;;                "<script src='https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js'></script>"
-;;                "<script>document.addEventListener('DOMContentLoaded', () => { document.body.classList.add('markdown-body'); document.querySelectorAll('pre[lang] > code').forEach((code) => { code.classList.add(code.parentElement.lang); }); document.querySelectorAll('pre > code').forEach((code) => { hljs.highlightBlock(code); }); });</script>"))
-;;
-;;  ;; A shorter alias for org src blocks than "markdown"
-;;  (after! org-src
-;;    (add-to-list 'org-src-lang-modes '("md" . markdown)))
-;;
-;;  :config
-;;  (set-flyspell-predicate! '(markdown-mode gfm-mode)
-;;    #'+markdown-flyspell-word-p)
-;;  (set-lookup-handlers! '(markdown-mode gfm-mode)
-;;    ;; `markdown-follow-thing-at-point' may open an external program or a
-;;    ;; buffer. No good way to tell, so pretend it's async.
-;;    :file '(markdown-follow-thing-at-point :async t))
-;;
-;;  (sp-local-pair '(markdown-mode gfm-mode) "`" "`"
-;;                 :unless '(:add sp-point-before-word-p sp-point-before-same-p))
-;;
-;;  ;; Highly rust blocks correctly
-;;  (when (modulep! :lang rust)
-;;    (add-to-list 'markdown-code-lang-modes '("rust" . rustic-mode)))
-;;
-;;  ;; Don't trigger autofill in code blocks (see `auto-fill-mode')
-;;  (setq-hook! 'markdown-mode-hook
-;;    fill-nobreak-predicate (cons #'markdown-code-block-at-point-p
-;;                                 fill-nobreak-predicate))
-;;
-;;  ;; HACK Prevent mis-fontification of YAML metadata blocks in `markdown-mode'
-;;  ;;      which occurs when the first line contains a colon in it. See
-;;  ;;      jrblevin/markdown-mode#328.
-;;  (defadvice! +markdown-disable-front-matter-fontification-a (&rest _)
-;;    :override #'markdown-match-generic-metadata
-;;    (ignore (goto-char (point-max))))
-;;
-;;  (map! :map markdown-mode-map
-;;        :localleader
-;;        "'" #'markdown-edit-code-block
-;;        "o" #'markdown-open
-;;        "p" #'markdown-preview
-;;        "e" #'markdown-export
-;;        (:when (modulep! +grip)
-;;         "p" #'grip-mode)
-;;        (:prefix ("i" . "insert")
-;;         :desc "Table Of Content"  "T" #'markdown-toc-generate-toc
-;;         :desc "Image"             "i" #'markdown-insert-image
-;;         :desc "Link"              "l" #'markdown-insert-link
-;;         :desc "<hr>"              "-" #'markdown-insert-hr
-;;         :desc "Heading 1"         "1" #'markdown-insert-header-atx-1
-;;         :desc "Heading 2"         "2" #'markdown-insert-header-atx-2
-;;         :desc "Heading 3"         "3" #'markdown-insert-header-atx-3
-;;         :desc "Heading 4"         "4" #'markdown-insert-header-atx-4
-;;         :desc "Heading 5"         "5" #'markdown-insert-header-atx-5
-;;         :desc "Heading 6"         "6" #'markdown-insert-header-atx-6
-;;         :desc "Code block"        "C" #'markdown-insert-gfm-code-block
-;;         :desc "Pre region"        "P" #'markdown-pre-region
-;;         :desc "Blockquote region" "Q" #'markdown-blockquote-region
-;;         :desc "Checkbox"          "[" #'markdown-insert-gfm-checkbox
-;;         :desc "Bold"              "b" #'markdown-insert-bold
-;;         :desc "Inline code"       "c" #'markdown-insert-code
-;;         :desc "Italic"            "e" #'markdown-insert-italic
-;;         :desc "Footnote"          "f" #'markdown-insert-footnote
-;;         :desc "Header dwim"       "h" #'markdown-insert-header-dwim
-;;         :desc "Italic"            "i" #'markdown-insert-italic
-;;         :desc "Kbd"               "k" #'markdown-insert-kbd
-;;         :desc "Pre"               "p" #'markdown-insert-pre
-;;         :desc "New blockquote"    "q" #'markdown-insert-blockquote
-;;         :desc "Strike through"    "s" #'markdown-insert-strike-through
-;;         :desc "Table"             "t" #'markdown-insert-table
-;;         :desc "Wiki link"         "w" #'markdown-insert-wiki-link)
-;;        (:prefix ("t" . "toggle")
-;;         :desc "Inline LaTeX"      "e" #'markdown-toggle-math
-;;         :desc "Code highlights"   "f" #'markdown-toggle-fontify-code-blocks-natively
-;;         :desc "Inline images"     "i" #'markdown-toggle-inline-images
-;;         :desc "URL hiding"        "l" #'markdown-toggle-url-hiding
-;;         :desc "Markup hiding"     "m" #'markdown-toggle-markup-hiding
-;;         :desc "Wiki links"        "w" #'markdown-toggle-wiki-links
-;;         :desc "GFM checkbox"      "x" #'markdown-toggle-gfm-checkbox)))
-;;
-;;;;; ~/.doom.d/config.el
-;;
-;;(use-package! evil-markdown
-;;  :when (modulep! :editor evil +everywhere)
-;;  :hook (markdown-mode . evil-markdown-mode)
-;;  :config
-;;  (add-hook 'evil-markdown-mode-hook #'evil-normalize-keymaps)
-;;  (map! :map evil-markdown-mode-map
-;;        :n "TAB" #'markdown-cycle
-;;        :n [backtab] #'markdown-shifttab
-;;        :i "M-*" #'markdown-insert-list-item
-;;        :i "M-b" #'markdown-insert-bold
-;;        :i "M-i" #'markdown-insert-italic
-;;        :i "M-`" #'+markdown/insert-del
-;;        :i "M--" #'markdown-insert-hr
-;;        :n "M-r" #'browse-url-of-file
-;;        :m "]h"  #'markdown-next-visible-heading
-;;        :m "[h"  #'markdown-previous-visible-heading
-;;        :m "[p"  #'markdown-promote
-;;        :m "]p"  #'markdown-demote
-;;        :m "[l"  #'markdown-previous-link
-;;        :m "]l"  #'markdown-next-link))
+(use-package! markdown-mode
+  :mode ("/README\\(?:\\.md\\)?\\'" . gfm-mode)
+  :init
+  (setq markdown-italic-underscore t
+        markdown-asymmetric-header t
+        markdown-gfm-additional-languages '("sh")
+        markdown-make-gfm-checkboxes-buttons t
+        markdown-fontify-whole-heading-line t
+
+        ;; `+markdown-compile' offers support for many transpilers (see
+        ;; `+markdown-compile-functions'), which it tries until one succeeds.
+        markdown-command #'+markdown-compile
+        ;; This is set to `nil' by default, which causes a wrong-type-arg error
+        ;; when you use `markdown-open'. These are more sensible defaults.
+        markdown-open-command
+        (cond ((featurep :system 'macos) "open")
+              ((featurep :system 'linux) "xdg-open"))
+
+        ;; A sensible and simple default preamble for markdown exports that
+        ;; takes after the github asthetic (plus highlightjs syntax coloring).
+        markdown-content-type "application/xhtml+xml"
+        markdown-css-paths
+        '("https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css"
+          "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/github.min.css")
+        markdown-xhtml-header-content
+        (concat "<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>"
+                "<style> body { box-sizing: border-box; max-width: 740px; width: 100%; margin: 40px auto; padding: 0 10px; } </style>"
+                "<script id='MathJax-script' async src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>"
+                "<script src='https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js'></script>"
+                "<script>document.addEventListener('DOMContentLoaded', () => { document.body.classList.add('markdown-body'); document.querySelectorAll('pre[lang] > code').forEach((code) => { code.classList.add(code.parentElement.lang); }); document.querySelectorAll('pre > code').forEach((code) => { hljs.highlightBlock(code); }); });</script>"))
+
+  ;; A shorter alias for org src blocks than "markdown"
+  (after! org-src
+    (add-to-list 'org-src-lang-modes '("md" . markdown)))
+
+  :config
+  (set-flyspell-predicate! '(markdown-mode gfm-mode)
+    #'+markdown-flyspell-word-p)
+  (set-lookup-handlers! '(markdown-mode gfm-mode)
+    ;; `markdown-follow-thing-at-point' may open an external program or a
+    ;; buffer. No good way to tell, so pretend it's async.
+    :file '(markdown-follow-thing-at-point :async t))
+
+  (sp-local-pair '(markdown-mode gfm-mode) "`" "`"
+                 :unless '(:add sp-point-before-word-p sp-point-before-same-p))
+
+  ;; Highly rust blocks correctly
+  (when (modulep! :lang rust)
+    (add-to-list 'markdown-code-lang-modes '("rust" . rustic-mode)))
+
+  ;; Don't trigger autofill in code blocks (see `auto-fill-mode')
+  (setq-hook! 'markdown-mode-hook
+    fill-nobreak-predicate (cons #'markdown-code-block-at-point-p
+                                 fill-nobreak-predicate))
+
+  ;; HACK Prevent mis-fontification of YAML metadata blocks in `markdown-mode'
+  ;;      which occurs when the first line contains a colon in it. See
+  ;;      jrblevin/markdown-mode#328.
+  (defadvice! +markdown-disable-front-matter-fontification-a (&rest _)
+    :override #'markdown-match-generic-metadata
+    (ignore (goto-char (point-max))))
+
+  (map! :map markdown-mode-map
+        :localleader
+        "'" #'markdown-edit-code-block
+        "o" #'markdown-open
+        "p" #'markdown-preview
+        "e" #'markdown-export
+        (:when (modulep! +grip)
+         "p" #'grip-mode)
+        (:prefix ("i" . "insert")
+         :desc "Table Of Content"  "T" #'markdown-toc-generate-toc
+         :desc "Image"             "i" #'markdown-insert-image
+         :desc "Link"              "l" #'markdown-insert-link
+         :desc "<hr>"              "-" #'markdown-insert-hr
+         :desc "Heading 1"         "1" #'markdown-insert-header-atx-1
+         :desc "Heading 2"         "2" #'markdown-insert-header-atx-2
+         :desc "Heading 3"         "3" #'markdown-insert-header-atx-3
+         :desc "Heading 4"         "4" #'markdown-insert-header-atx-4
+         :desc "Heading 5"         "5" #'markdown-insert-header-atx-5
+         :desc "Heading 6"         "6" #'markdown-insert-header-atx-6
+         :desc "Code block"        "C" #'markdown-insert-gfm-code-block
+         :desc "Pre region"        "P" #'markdown-pre-region
+         :desc "Blockquote region" "Q" #'markdown-blockquote-region
+         :desc "Checkbox"          "[" #'markdown-insert-gfm-checkbox
+         :desc "Bold"              "b" #'markdown-insert-bold
+         :desc "Inline code"       "c" #'markdown-insert-code
+         :desc "Italic"            "e" #'markdown-insert-italic
+         :desc "Footnote"          "f" #'markdown-insert-footnote
+         :desc "Header dwim"       "h" #'markdown-insert-header-dwim
+         :desc "Italic"            "i" #'markdown-insert-italic
+         :desc "Kbd"               "k" #'markdown-insert-kbd
+         :desc "Pre"               "p" #'markdown-insert-pre
+         :desc "New blockquote"    "q" #'markdown-insert-blockquote
+         :desc "Strike through"    "s" #'markdown-insert-strike-through
+         :desc "Table"             "t" #'markdown-insert-table
+         :desc "Wiki link"         "w" #'markdown-insert-wiki-link)
+        (:prefix ("t" . "toggle")
+         :desc "Inline LaTeX"      "e" #'markdown-toggle-math
+         :desc "Code highlights"   "f" #'markdown-toggle-fontify-code-blocks-natively
+         :desc "Inline images"     "i" #'markdown-toggle-inline-images
+         :desc "URL hiding"        "l" #'markdown-toggle-url-hiding
+         :desc "Markup hiding"     "m" #'markdown-toggle-markup-hiding
+         :desc "Wiki links"        "w" #'markdown-toggle-wiki-links
+         :desc "GFM checkbox"      "x" #'markdown-toggle-gfm-checkbox)))
+
+;;; ~/.doom.d/config.el
+
+(use-package! evil-markdown
+  :when (modulep! :editor evil +everywhere)
+  :hook (markdown-mode . evil-markdown-mode)
+  :config
+  (add-hook 'evil-markdown-mode-hook #'evil-normalize-keymaps)
+  (map! :map evil-markdown-mode-map
+        :n "TAB" #'markdown-cycle
+        :n [backtab] #'markdown-shifttab
+        :i "M-*" #'markdown-insert-list-item
+        :i "M-b" #'markdown-insert-bold
+        :i "M-i" #'markdown-insert-italic
+        :i "M-`" #'+markdown/insert-del
+        :i "M--" #'markdown-insert-hr
+        :n "M-r" #'browse-url-of-file
+        :m "]h"  #'markdown-next-visible-heading
+        :m "[h"  #'markdown-previous-visible-heading
+        :m "[p"  #'markdown-promote
+        :m "]p"  #'markdown-demote
+        :m "[l"  #'markdown-previous-link
+        :m "]l"  #'markdown-next-link))
 
 ;; Change "theme name" to the selected highlightjs theme.
-(setq markdown-soma-highlightjs-theme "dracula")
-(setq markdown-soma-custom-css "~/.config/doom/plugins/github-dark.css")
+;;(setq markdown-soma-highlightjs-theme "dracula")
+;;(setq markdown-soma-custom-css "~/.config/doom/plugins/github-dark.css")
 ;;(add-hook! org-mode 'rainbow-mode)
 ;;(add-hook! prog-mode 'rainbow-mode)
 ;; plugins/org-preview-html/init.el
@@ -272,5 +240,78 @@
 
 ;; Load org-preview-html package
 (require 'org-preview-html)
-(map!
- [remap evil-quit] #'kill-current-buffer)
+;;(map!
+ ;;[remap evil-quit] #'kill-current-buffer)
+(defun my-kill-this-buffer ()
+  "Kill the current buffer."
+  (interactive)
+  (kill-this-buffer))
+(evil-ex-define-cmd "q" 'my-kill-this-buffer)
+(evil-ex-define-cmd "wq" 'doom/save-and-kill-buffer)
+(after! org
+  (map! :map org-mode-map
+        :n "M-j" #'org-metadown
+        :n "M-k" #'org-metaup)
+  (use-package org-fancy-priorities
+    :ensure t
+    :hook
+    (org-mode . org-fancy-priorities-mode)
+    :config
+;;    (setq org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿"))
+;;     위의 bullet을 적어주거나 아니면 org-bullet(동그라미로만 나옴)을 사용해도 된다.
+    (setq org-fancy-priorities-list '("⚡" "⬆" "⬇" "☕")))
+;;  (custom-set-faces
+;;   ;; TODO 및 DONE 키워드
+;;   '(org-todo ((t (:foreground "Red" :weight bold))))
+;;   '(org-done ((t (:foreground "Green" :weight bold))))
+;;   ;; Agenda 날짜 및 구조
+;;   '(org-agenda-date ((t (:foreground "Blue" :height 1.2))))
+;;   '(org-agenda-date-weekend ((t (:foreground "Orange" :weight bold))))
+;;   '(org-agenda-structure ((t (:foreground "Purple" :height 1.5 :weight bold))))
+;;   ;; 제목
+;;   '(org-level-1 ((t (:foreground "LightSkyBlue" :weight bold :height 1.2))))
+;;   '(org-level-2 ((t (:foreground "LightGoldenrod" :weight bold :height 1.1))))
+;;   '(org-level-3 ((t (:foreground "Cyan1" :weight bold :height 1.0))))
+;;   ;; 표
+;;   '(org-table ((t (:foreground "LightSteelBlue" :weight normal))))
+;;   ;; 링크
+;;   '(org-link ((t (:foreground "SkyBlue2" :underline t))))
+;;   ;; 날짜와 시간
+;;   '(org-date ((t (:foreground "LightSalmon" :underline t))))
+;;   '(org-scheduled ((t (:foreground "Green"))))
+;;   '(org-deadline ((t (:foreground "Red"))))
+;;   ;; 코드 블록
+;;   '(org-block ((t (:background "gray20" :foreground "gray80"))))
+;;   '(org-block-begin-line ((t (:background "gray30" :foreground "gray70"))))
+;;   '(org-block-end-line ((t (:background "gray30" :foreground "gray70"))))
+;;   ;; 인용
+;;   '(org-quote ((t (:foreground "LightGoldenrod" :slant italic))))
+;;   ;; 리스트
+;;   '(org-list-dt ((t (:foreground "LightSkyBlue" :weight bold))))
+;;   ;; 태그
+;;   '(org-tag ((t (:foreground "LightSalmon" :weight bold))))
+;;  )
+)
+(after! vterm
+  (setq vterm-max-scrollback 10000) ; 기본값은 100000입니다. 너무 큰 값을 줄이면 성능이 향상될 수 있습니다.
+  (setq vterm-timer-delay 0.002))    ; 기본값은 0.01입니다. 적절한 값을 조정해보세요.
+;; lsp-mode 최적화
+(after! lsp-mode
+  (setq lsp-idle-delay 0.300) ;; 기본값은 0.5초, 필요에 따라 조정
+  (setq lsp-log-io nil))      ;; IO 로깅 비활성화
+;; Emacs GC 최적화
+(setq gc-cons-threshold 100000000)
+(setq read-process-output-max (* 1024 1024)) ;; 1MB, 기본값은 4KB
+(use-package restart-emacs)
+(map! :leader
+      :desc "Restart Emacs"
+      "q r" #'restart-emacs)
+;;(when (featurep 'xwidget-internal)
+;;  (use-package xwidget
+;;    :ensure t
+;;    :config
+;;    (defun my-browse-url-xwidget (url &optional new-session)
+;;      "Browse URL with xwidget-webkit."
+;;      (interactive (browse-url-interactive-arg "URL: "))
+;;      (xwidget-webkit-browse-url url))
+;;    (setq browse-url-browser-function 'my-browse-url-xwidget)))
