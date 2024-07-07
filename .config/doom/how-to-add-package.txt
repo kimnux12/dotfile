@@ -143,6 +143,12 @@ org-preview-html-pop-window-to-frame - pops out the current window in to a frame
 테마 보기
 SPC h t
 
+emacs 종료
+SPC q q
+
+emacs 종료(emacsclient로 실행한 경우)
+SPC q f
+
 버퍼 끄기
 SPC b k
 
@@ -356,7 +362,7 @@ Doom emacs의 5가지 모드
 
 --------------------------------------------------------
 
-문단 구분
+org 문단 구분
 
 출처: https://orgmode.org/manual/Paragraphs.html
 
@@ -385,7 +391,7 @@ Doom emacs의 5가지 모드
 
 -----------------------------------------------------------------
 
-In-Buffer Setting 요약
+In-Buffer Setting (YAML metadata)요약
 (출처: https://orgmode.org/manual/In_002dbuffer-Settings.html)
 
 In-buffer settings start with ‘#+’, followed by a keyword, a colon, one or more spaces, and then a word for each setting. Org accepts multiple settings on the same line. Org also accepts multiple lines for a keyword. This manual describes these settings throughout. A summary follows here.
@@ -727,3 +733,210 @@ Doom Emacs에서 M-: (Alt + :)를 사용하여 표현식을 직접 평가할 수
 Doom Emacs에서 (featurep 'xwidget-internal) 표현식을 평가하려면 전체 표현식을 괄호로 감싸야 하며, *scratch* 버퍼나 eval-expression 명령어(M-:)를 사용하여 평가할 수 있습니다. 이를 통해 Emacs가 Xwidgets를 지원하는지 여부를 확인할 수 있습니다.
 
 ----------------------------------------------------------
+Comment command
+( https://www.gnu.org/software/emacs/manual/html_node/emacs/Comment-Commands.html )
+
+27.5.1 Comment Commands
+
+The following commands operate on comments:
+
+M-;
+
+    Insert or realign comment on current line; if the region is active, comment or uncomment the region instead (comment-dwim).
+C-x C-;
+
+    Comment or uncomment the current line (comment-line). If the region is active, comment or uncomment the lines in the region instead.
+C-u M-;
+
+    Kill comment on current line (comment-kill).
+C-x ;
+
+    Set comment column (comment-set-column).
+C-M-j
+M-j
+
+    Like RET followed by inserting and aligning a comment (default-indent-new-line). See Multiple Lines of Comments.
+M-x comment-region
+C-c C-c (in C-like modes)
+
+    Add comment delimiters to all the lines in the region.
+
+-----------------------------------------------------
+vterm에 C-x 시그널 보내는 방법
+
+C-q C-x로 시그널을 보낼수 있다.
+
+------------------------------------------------
+hugo 디렉토리와 git orphan branch 연결방법
+
+새 폴더를 만들어서 기존의 git에 만든 orphan branch에 연결하는 방법은?
+ChatGPT
+
+새로운 폴더를 만들어서 기존의 Git 저장소에 있는 orphan 브랜치와 연결하려면 다음 단계를 따릅니다. 이 방법은 새로운 폴더를 만들고, 그 폴더에서 기존 Git 저장소를 클론한 후 orphan 브랜치를 체크아웃하는 방식입니다.
+
+    새 폴더 생성:
+    원하는 위치에 새 폴더를 만듭니다.
+
+    bash
+
+mkdir new-folder
+cd new-folder
+
+기존 Git 저장소 클론:
+기존 Git 저장소를 새 폴더에 클론합니다. repository-url은 기존 Git 저장소의 URL입니다.
+
+bash
+
+git clone <repository-url> .
+
+점(.)을 사용하여 현재 디렉토리(new-folder)에 저장소를 클론합니다.
+
+orphan 브랜치 체크아웃:
+클론한 저장소에서 orphan 브랜치를 체크아웃합니다. 예를 들어, orphan 브랜치의 이름이 new-orphan-branch라면:
+
+bash
+
+    git checkout new-orphan-branch
+
+이 단계를 요약하면 다음과 같습니다:
+
+bash
+
+# 1. 새 폴더 생성
+mkdir new-folder
+cd new-folder
+
+# 2. 기존 Git 저장소 클론
+git clone <repository-url> .
+
+# 3. orphan 브랜치 체크아웃
+git checkout new-orphan-branch
+
+이제 new-folder 폴더에서 기존 Git 저장소의 new-orphan-branch 브랜치를 사용할 수 있습니다. 이 상태에서 새로운 파일을 추가하거나 기존 파일을 수정하고 커밋할 수 있습니다.
+repository-url이 뭐지?
+ChatGPT
+
+repository-url은 기존 Git 저장소의 URL을 의미합니다. 이는 클론하려는 원격 저장소의 위치를 가리키며, HTTPS URL이나 SSH URL을 사용할 수 있습니다. 예를 들어, GitHub에서 호스팅되는 저장소의 경우 URL은 다음과 같은 형식일 수 있습니다:
+
+    HTTPS URL: https://github.com/username/repository.git
+    SSH URL: git@github.com:username/repository.git
+
+따라서, 전체 과정은 다음과 같이 될 것입니다:
+
+    새 폴더 생성:
+    원하는 위치에 새 폴더를 만듭니다.
+
+    bash
+
+mkdir new-folder
+cd new-folder
+
+기존 Git 저장소 클론:
+기존 Git 저장소를 새 폴더에 클론합니다. 여기서 <repository-url>은 위에서 설명한 저장소의 URL입니다. 예를 들어, https://github.com/username/repository.git를 사용한다고 가정합니다.
+
+bash
+
+git clone https://github.com/username/repository.git .
+
+orphan 브랜치 체크아웃:
+클론한 저장소에서 orphan 브랜치를 체크아웃합니다. 예를 들어, orphan 브랜치의 이름이 new-orphan-branch라면:
+
+bash
+
+    git checkout new-orphan-branch
+
+요약하면 다음과 같습니다:
+
+bash
+
+# 1. 새 폴더 생성
+mkdir new-folder
+cd new-folder
+
+# 2. 기존 Git 저장소 클론
+git clone https://github.com/username/repository.git .
+
+# 3. orphan 브랜치 체크아웃
+git checkout new-orphan-branch
+
+이제 new-folder 폴더에서 기존 Git 저장소의 new-orphan-branch 브랜치를 사용할 수 있습니다. 이 상태에서 새로운 파일을 추가하거나 기존 파일을 수정하고 커밋할 수 있습니다.
+기존에 만들어서 작업 중인 폴더를 orphan branch에 연결하는 방법은?
+ChatGPT
+
+기존에 작업 중인 폴더를 orphan 브랜치에 연결하는 방법은 기존 폴더를 Git 저장소로 초기화한 후, orphan 브랜치를 생성하고 커밋하는 것입니다. 다음은 단계별 방법입니다:
+
+    현재 작업 중인 폴더로 이동:
+    작업 중인 폴더로 이동합니다.
+
+    bash
+
+cd path/to/your-existing-folder
+
+Git 저장소 초기화:
+폴더를 Git 저장소로 초기화합니다.
+
+bash
+
+git init
+
+원격 저장소 추가:
+기존 원격 저장소를 추가합니다. <repository-url>은 기존 Git 저장소의 URL입니다.
+
+bash
+
+git remote add origin <repository-url>
+
+orphan 브랜치 생성:
+orphan 브랜치를 생성합니다. 예를 들어 new-orphan-branch라는 이름의 orphan 브랜치를 생성합니다.
+
+bash
+
+git checkout --orphan new-orphan-branch
+
+현재 작업 디렉토리의 파일을 스테이징:
+현재 작업 디렉토리의 파일을 모두 스테이징합니다.
+
+bash
+
+git add .
+
+첫 커밋 생성:
+파일들을 커밋합니다.
+
+bash
+
+git commit -m "Initial commit on new-orphan-branch"
+
+orphan 브랜치를 원격 저장소에 푸시:
+orphan 브랜치를 원격 저장소에 푸시합니다.
+
+bash
+
+    git push origin new-orphan-branch
+
+요약하면, 다음 명령어들을 순서대로 실행합니다:
+
+bash
+
+# 현재 작업 중인 폴더로 이동
+cd path/to/your-existing-folder
+
+# Git 저장소 초기화
+git init
+
+# 원격 저장소 추가
+git remote add origin <repository-url>
+
+# orphan 브랜치 생성
+git checkout --orphan new-orphan-branch
+
+# 현재 작업 디렉토리의 파일을 스테이징
+git add .
+
+# 첫 커밋 생성
+git commit -m "Initial commit on new-orphan-branch"
+
+# orphan 브랜치를 원격 저장소에 푸시
+git push origin new-orphan-branch
+
+이 과정을 통해 기존에 작업 중인 폴더를 orphan 브랜치와 연결하고, 원격 저장소에 푸시할 수 있습니다.

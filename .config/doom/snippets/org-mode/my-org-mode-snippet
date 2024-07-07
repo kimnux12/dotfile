@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: my-org-snippet
+# key: org
+# --
+#+TITLE: ${1:Title}
+#+LANGUGE: ${2:en}
+#+AUTHOR: "kimnux"
+#+EMAIL : "kimnux@gmail.com"
+#+DATE : `(format-time-string "%Y-%m-%d")`$3
+#+KEYWORDS: ${4}
+#+OPTIONS: num:nil toc:nil
+
+$0

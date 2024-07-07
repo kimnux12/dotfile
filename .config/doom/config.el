@@ -33,10 +33,17 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (beacon-mode 1)
-(setq doom-themes-enable-bold t
-      doom-themes-enable-italic t)
 (setq doom-theme 'doom-dracula)
-(setq doom-font (font-spec :family "JetBrainsMono NFM" :size 20))
+(setq doom-font (font-spec :family "JetBrainsMono NFM" :size 20)
+      doom-variable-pitch-font (font-spec :family "Ubuntu" :size 20)
+      doom-big-font (font-spec :family "JetBrains Mono" :size 24))
+(after! doom-themes
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t))
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic)
+  '(font-lock-keyword-face :slant italic))
+
 ;;(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 20))
 (set-fontset-font "fontset-default" 'hangul (font-spec :family "NanumGothicCoding" :size 20))
 ;; 출처: https://codepractice.tistory.com/167 [코딩 연습:티스토리]
@@ -241,7 +248,7 @@
 ;; Load org-preview-html package
 (require 'org-preview-html)
 ;;(map!
- ;;[remap evil-quit] #'kill-current-buffer)
+;; [remap evil-quit] #'kill-current-buffer)
 (defun my-kill-this-buffer ()
   "Kill the current buffer."
   (interactive)
@@ -302,10 +309,6 @@
 ;; Emacs GC 최적화
 (setq gc-cons-threshold 100000000)
 (setq read-process-output-max (* 1024 1024)) ;; 1MB, 기본값은 4KB
-(use-package restart-emacs)
-(map! :leader
-      :desc "Restart Emacs"
-      "q r" #'restart-emacs)
 ;;(when (featurep 'xwidget-internal)
 ;;  (use-package xwidget
 ;;    :ensure t
@@ -315,3 +318,40 @@
 ;;      (interactive (browse-url-interactive-arg "URL: "))
 ;;      (xwidget-webkit-browse-url url))
 ;;    (setq browse-url-browser-function 'my-browse-url-xwidget)))
+(setq yas-snippet-dirs
+      '("~/.config/doom/snippets")) ;;personal snippets
+(yas-global-mode 1) ;; or M-x yas-reload-all if you've started YASnippet already
+;; config.el, setting templates for org-roam
+(setq org-roam-capture-templates
+      ;; org-hugo-export-to-md 명령으로 변환시킴
+      '(("m" "main" plain
+         "%?"
+         :if-new
+         (file+head "main/${slug}.org"
+          "#+title: ${title}
+          #+created: %U
+          #+last_modified: %U\n\n")
+         :immediate-finish t
+         :unnarrowed t)
+        ("r" "reference" plain
+         "%?"
+         :if-new
+         (file+head "reference/${title}.org"
+                    "#+title: ${title}
+                    #+created: %U
+                    #+last_modified: %U\n\n")
+         :immediate-finish t
+         :unnarrowed t)
+        ("a" "article" plain             ;;                (article)
+         "%?"
+         :if-new
+         (file+head "articles/${title}.org"
+                   "#+HUGO_BASE_DIR: ~/kimnux12.github.io
+                   #+HUGO_SECTION: ./content/post
+                   #+HUGO_AUTO_SET_LASTMOD: t
+                   #+TITLE: ${title}
+                   #+DATE: %U
+                   #+HUGO_TAGS: article
+                   #+HUGO_DRAFT: false\n")
+         :immediate-finish t
+         :unnarrowed t)))
