@@ -21,7 +21,7 @@
        ;;layout            ; auie,ctsrnm is the superior home row
 
        :completion
-       company           ; the ultimate code completion backend
+       (company +childframe)          ; the ultimate code completion backend
        ;;(corfu +orderless)  ; complete with cap(f), cape and a flying feather!
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
@@ -136,7 +136,7 @@
        ;;fsharp            ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
        ;;gdscript          ; the language you waited for
-       ;;(go +lsp)         ; the hipster dialect
+       (go +lsp)         ; the hipster dialect
        ;;(graphql +lsp)    ; Give queries a REST
        ;;(haskell +lsp)    ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
@@ -146,7 +146,7 @@
        (javascript +lsp)       ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
-       (latex +lsp)            ; writing papers in Emacs has never been so fun
+       ;;(latex +lsp)            ; writing papers in Emacs has never been so fun
        ;;lean              ; for folks with too much to prove
        ;;ledger            ; be audit you can be
        (lua +lsp)              ; one-based indices? one-based indices
@@ -154,11 +154,7 @@
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       (org                ; organize your plain lie in plain text
-        +present           ; using org-mode for presentations
-        +roam2             ; wander around notes
-        +pretty
-        +hugo)             ; use Emacs for hugo blogging
+       (org +present +roam2 +pretty +hugo)
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
@@ -197,9 +193,3 @@
        :config
        ;;literate
        (default +bindings +smartparens))
-(load (expand-file-name "~/quicklisp/slime-helper.el"))
-
-;; Replace "sbcl" with the path to your implementation
-
-(setq inferior-lisp-program "sbcl")
-(server-start)

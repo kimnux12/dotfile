@@ -47,9 +47,9 @@ EnumerateSkipFirst=False
 # Active By Default
 ActiveByDefault=True
 # Reset state on Focus In
-resetStateWhenFocusIn=All
+resetStateWhenFocusIn=No
 # Share Input State
-ShareInputState=All
+ShareInputState=No
 # Show preedit in application
 PreeditEnabledByDefault=True
 # Show Input Method Information when switch input method

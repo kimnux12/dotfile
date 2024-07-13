@@ -55,3 +55,7 @@
 (package! org-fancy-priorities)
 (package! markdown-soma)
 (package! org-bullets)
+(package! org-download)
+(package! org-ros)
+(package! python-black)
+(package! flycheck)

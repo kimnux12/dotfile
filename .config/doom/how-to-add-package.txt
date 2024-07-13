@@ -630,14 +630,13 @@ Note: | is your cursor position.
 ------------------------------------------------------
 
 org mode에 src block 넣기
-
+(org-tempo 패키지 이용)
 1. C-c C-, 입력후 원하는 단축키 넣기
 2 < + 원하는 단축키 + TAB
 
-n - notes
 a - export ascii
-c - center
-C - comment
+C - center
+c - comment
 e - example
 E - export
 h - export html

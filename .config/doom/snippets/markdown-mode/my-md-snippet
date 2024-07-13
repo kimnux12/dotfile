@@ -9,9 +9,6 @@ author: "kimnux"
 layout: post
 date: `(format-time-string "%Y-%m-%d")`$2
 tags:
-
     - $3
-
 ---
-
 $0
