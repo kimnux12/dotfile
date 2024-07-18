@@ -1,0 +1,60 @@
+#-*- mode: org -*-
+#+STARTUP: showall
+* Top Item
+
+** Top level 1st headline
+C-c C-w 누르고 Top Item 제목을 기입하고 엔터.\\
+이후 Top Item의 하위 레벨로 들어간다.
+* Welcome to Org Mode
+
+Welcome, and thanks for trying out Org mode. Making outlines in
+Org is very simple. It is just text! Just start typing.
+* This is a headline, It starts with one or more stars
+A heading has one star, a sub-heading two, etc.
+* Working with lists
+** Moving around in our outlines
+** Moving around headlines
+#+BEGIN_VERSE
+Great clouds overhead
+Tiny black birds rise and fall
+Snow covers Emacs
+
+    ---AlexSchroeder
+#+END_VERSE
+
+#+BEGIN_QUOTE
+Everything should be made as simple as possible,
+but not any simpler ---Albert Einstein
+#+END_QUOTE
+
+#+BEGIN_CENTER
+Everything should be made as simple as possible, \\
+but not any simpler
+#+END_CENTER
+** Test :wq :q work properly.
+
+
+
+* Lord of the Rings
+My favorite scenes are (in this order)
+1. The attack of the Rohirrim
+2. Eowyn's fight with the witch king
+   + this was already my favorite scene in the book
+   + I really like Miranda Otto.
+3. Peter Jackson being shot by Legolas
+   - on DVD only
+   He makes a really funny face when it happens.
+8. [@8] <favorite scenes 4 to 8 are skipped for brevity>
+But in the end, no individual scenes matter but the film as a whole.\\
+(But의 들여쓰기가 8. 보다 덜 들여쓰기 되어있으므로, But 위의 순차목록은 But 위에서 끝나게 된다.)\\
+(만약 8.과 But의 들여쓰기가 같다면 But이하 문단은 8.의 내용이 되버린다.)
+Important actors in this film are:
+- Elijah Wood :: He plays Frodo
+- Sean Astin :: He plays Sam, Frodo's friend.  I still remember him
+     very well from his role as Mikey Walsh in /The Goonies/.
+
+     #+begin_src elisp
+(+ 2 3 4 5)
+
+(defun great (name))
+     #+end_src

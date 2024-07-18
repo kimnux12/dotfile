@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-07-03 Wed 17:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<div id="outline-container-orgab4694e" class="outline-2">
+<h2 id="orgab4694e">org mode 단축키 모음</h2>
+<div class="outline-text-2" id="text-orgab4694e">
+<p>
+😆😁😀
+</p>
+</div>
+<div id="outline-container-orge2680b1" class="outline-3">
+<h3 id="orge2680b1">문서 작업 관련</h3>
+<div class="outline-text-3" id="text-orge2680b1">
+</div>
+<div id="outline-container-org8623f43" class="outline-4">
+<h4 id="org8623f43">새 버퍼(문서) 만들기</h4>
+<div class="outline-text-4" id="text-org8623f43">
+<p>
+SPC b N
+</p>
+</div>
+</div>
+<div id="outline-container-org6790f3f" class="outline-4">
+<h4 id="org6790f3f">새 문서 만들기</h4>
+<div class="outline-text-4" id="text-org6790f3f">
+<p>
+C-x b
+</p>
+</div>
+</div>
+<div id="outline-container-org874a969" class="outline-4">
+<h4 id="org874a969">파일 찾기</h4>
+<div class="outline-text-4" id="text-org874a969">
+<p>
+SPC f f
+</p>
+</div>
+</div>
+<div id="outline-container-orgff9393f" class="outline-4">
+<h4 id="orgff9393f">이전 버퍼</h4>
+<div class="outline-text-4" id="text-orgff9393f">
+<p>
+SPC b p
+</p>
+</div>
+</div>
+<div id="outline-container-org056c9cb" class="outline-4">
+<h4 id="org056c9cb">다음 버퍼</h4>
+<div class="outline-text-4" id="text-org056c9cb">
+<p>
+SPC b n
+</p>
+</div>
+</div>
+<div id="outline-container-orge22c8cd" class="outline-4">
+<h4 id="orge22c8cd">switch buffer</h4>
+<div class="outline-text-4" id="text-orge22c8cd">
+<p>
+SPC b B
+</p>
+</div>
+</div>
+<div id="outline-container-orgb85f71c" class="outline-4">
+<h4 id="orgb85f71c">clone buffer</h4>
+<div class="outline-text-4" id="text-orgb85f71c">
+<p>
+SPC b c
+</p>
+</div>
+</div>
+<div id="outline-container-orgad363a8" class="outline-4">
+<h4 id="orgad363a8">문서 변환해서 내보내기(org-pandoc-export)</h4>
+<div class="outline-text-4" id="text-orgad363a8">
+<p>
+SPC m e
+</p>
+</div>
+</div>
+<div id="outline-container-org8f0680d" class="outline-4">
+<h4 id="org8f0680d">export dispatcher 이용해서 내보내기(org-export-dispatch)</h4>
+<div class="outline-text-4" id="text-org8f0680d">
+<p>
+C-c C-e (<a href="https://orgmode.org/manual/The-Export-Dispatcher.html#The-Export-Dispatcher">https://orgmode.org/manual/The-Export-Dispatcher.html#The-Export-Dispatcher</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-org82a0fb9" class="outline-4">
+<h4 id="org82a0fb9">최근 작업한 문서들 나열</h4>
+<div class="outline-text-4" id="text-org82a0fb9">
+<p>
+SPC f r
+</p>
+</div>
+</div>
+<div id="outline-container-org222cb4a" class="outline-4">
+<h4 id="org222cb4a">버퍼 끄기</h4>
+<div class="outline-text-4" id="text-org222cb4a">
+<p>
+SPC b k
+</p>
+</div>
+</div>
+<div id="outline-container-org43b0060" class="outline-4">
+<h4 id="org43b0060">Switch Buffer(버퍼 나열)</h4>
+<div class="outline-text-4" id="text-org43b0060">
+<p>
+SPC b B
+</p>
+</div>
+</div>
+<div id="outline-container-org98ad660" class="outline-4">
+<h4 id="org98ad660">버퍼 저장하기</h4>
+<div class="outline-text-4" id="text-org98ad660">
+<p>
+SPC f s
+</p>
+</div>
+</div>
+<div id="outline-container-orga0b0549" class="outline-4">
+<h4 id="orga0b0549">다른이름으로 저장하기</h4>
+<div class="outline-text-4" id="text-orga0b0549">
+<p>
+SPC f S
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0a95cb0" class="outline-3">
+<h3 id="org0a95cb0">Doom emacs 관련</h3>
+<div class="outline-text-3" id="text-org0a95cb0">
+</div>
+<div id="outline-container-org74859db" class="outline-4">
+<h4 id="org74859db">Run Command(M-x)</h4>
+<div class="outline-text-4" id="text-org74859db">
+<p>
+SPC :
+</p>
+</div>
+</div>
+<div id="outline-container-org10274d5" class="outline-4">
+<h4 id="org10274d5">설정파일 열기</h4>
+<div class="outline-text-4" id="text-org10274d5">
+<p>
+SPC f p
+</p>
+</div>
+</div>
+<div id="outline-container-orgf922504" class="outline-4">
+<h4 id="orgf922504">터미널 열기</h4>
+<div class="outline-text-4" id="text-orgf922504">
+<p>
+SPC o t
+</p>
+</div>
+</div>
+<div id="outline-container-org428b993" class="outline-4">
+<h4 id="org428b993">이맥스 재실행</h4>
+<div class="outline-text-4" id="text-org428b993">
+<p>
+SPC q r
+</p>
+</div>
+</div>
+<div id="outline-container-org17e6859" class="outline-4">
+<h4 id="org17e6859">doom sync/doom reload</h4>
+<div class="outline-text-4" id="text-org17e6859">
+<p>
+SPC h r r
+</p>
+</div>
+</div>
+<div id="outline-container-org8701f10" class="outline-4">
+<h4 id="org8701f10">List Errors</h4>
+<div class="outline-text-4" id="text-org8701f10">
+<p>
+SCP c x
+</p>
+</div>
+</div>
+<div id="outline-container-org74db5e4" class="outline-4">
+<h4 id="org74db5e4">Next Error</h4>
+<div class="outline-text-4" id="text-org74db5e4">
+<p>
+]e
+</p>
+</div>
+</div>
+<div id="outline-container-org3f46554" class="outline-4">
+<h4 id="org3f46554">Previous Error</h4>
+<div class="outline-text-4" id="text-org3f46554">
+<p>
+[e
+</p>
+</div>
+</div>
+<div id="outline-container-org47b6608" class="outline-4">
+<h4 id="org47b6608">Switch Project(프로젝트 나열)</h4>
+<div class="outline-text-4" id="text-org47b6608">
+<p>
+SPC p p
+</p>
+</div>
+</div>
+<div id="outline-container-org6e023da" class="outline-4">
+<h4 id="org6e023da">프로젝트내의 파일찾기</h4>
+<div class="outline-text-4" id="text-org6e023da">
+<p>
+SPC SPC (SPC p f)
+</p>
+</div>
+</div>
+<div id="outline-container-org25dfce1" class="outline-4">
+<h4 id="org25dfce1">새 프로젝트 등록하기</h4>
+<div class="outline-text-4" id="text-org25dfce1">
+<p>
+SPC p a
+</p>
+</div>
+</div>
+<div id="outline-container-orgf1213d2" class="outline-4">
+<h4 id="orgf1213d2">테마 보기</h4>
+<div class="outline-text-4" id="text-orgf1213d2">
+<p>
+SPC h t
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org6b7107f" class="outline-3">
+<h3 id="org6b7107f">Window management</h3>
+<div class="outline-text-3" id="text-org6b7107f">
+<p>
+The following keys are all available under SPCw as well, if you prefer. <br />
+Key 	Description <br />
+<b>C-ws</b>  Split the window horizontally <br />
+<b>C-wv</b>  Split the window vertically <br />
+<b>C-wd</b>  Delete current window <br />
+<b>C-w {h,j,k,l}</b>  Select window in direction (left, below, above, right, respectively) <br />
+<b>C-w {S-h,S-j,S-k,S-l}</b>  Swap current window with window in direction <br />
+<b>C-w {C-S-h,C-S-j,C-S-k,C-S-l}</b>  Move current window to edge of frame in direction <br />
+<b>C-wu or C-wC-r</b>  Undo or redo last change to window configuration <br />
+<b>C-wo</b>  Enlargen current window. Again to undo. <br />
+<b>C-wmm</b>  Delete other windows. Again to undo. <br />
+<b>{N}C-w|</b>  Change width of current window to N (a number) <br />
+<b>{N}C-w_</b>  Change height of current window to N lines <br />
+</p>
+
+<p>
+Doom emacs의 명령어
+</p>
+
+<p>
+<b>SPC w v</b> window split vertically <br />
+<b>SPC w s</b> window split horizontally <br />
+<b>SPC w w</b> to switch windows <br />
+<b>SPC w q</b> to close window, frame, quit EMACS if last frame <br />
+<b>SPC w +</b> and <b>SPC w -</b> to increase and decrease window height <br />
+<b>SPC w &gt;</b> and <b>SPC w &lt;</b> to increase and decrease window width <br />
+</p>
+
+<p>
+You can use vim motion keys to navigate between open windows for example SPC w H moves the window to the left. <br />
+Windows are panes in your screen
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2024-07-03 Wed 17:07</p>
+</div>
+</body>
+</html>

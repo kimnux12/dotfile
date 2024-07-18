@@ -14,10 +14,6 @@
 ;;      Alternatively, press 'gd' (or 'C-c c d') on a module to browse its
 ;;      directory (for easy access to its source code).
 
-;;; Commentary:
-;; My commentary
-;;; Code:
-
 (doom! :input
        ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh
        ;;chinese
@@ -27,7 +23,7 @@
        :completion
        (company +childframe)          ; the ultimate code completion backend
        ;;(corfu +orderless)  ; complete with cap(f), cape and a flying feather!
-       ;;(helm +fuzzy)             ; the *other* search engine for love and life
+       ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        ;;ivy               ; a search engine for love and life
        vertico           ; the search engine of the future
@@ -85,8 +81,8 @@
        vterm             ; the best terminal emulation in Emacs
 
        :checkers
-       (syntax +childframe)  ; tasing you for every semicolon you forget(this include Flycheck)
-       (spell +flyspell) ; tasing you for misspelling mispelling
+       syntax              ; tasing you for every semicolon you forget
+       ;;(spell +flyspell) ; tasing you for misspelling mispelling
        ;;grammar           ; tasing grammar mistake every you make
 
        :tools
@@ -131,7 +127,7 @@
        ;;dhall
        ;;elixir            ; erlang done right
        ;;elm               ; care for a cup of TEA?
-       emacs-lisp        ; drown in parentheses
+       (emacs-lisp +lsp)        ; drown in parentheses
        ;;erlang            ; an elegant language for a more civilized age
        ;;ess               ; emacs speaks statistics
        ;;factor
@@ -180,7 +176,6 @@
        ;;web               ; the tubes
        (yaml +lsp)             ; JSON, but readable
        ;;zig               ; C, but simpler
-       (raku +lsp)
 
        :email
        ;;(mu4e +org +gmail)

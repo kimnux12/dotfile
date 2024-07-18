@@ -1,0 +1,19 @@
+#+TITLE: Change org to md
+#+AUTHOR: kimnux
+#+DATE: <2024-07-03 Wed>
+#+KEYWORDS: markdown, org-mode, pandoc
+#+OPTIONS: toc:nil, num:0
+
+* org mode로 작업한 문서를 markdown으로 변환
+#+begin_verse
+pandoc -s file.org -o file.md
+#+end_verse
+
+마크다운의 tag는 #+KEYWORDS란에 적으면 된다.
+
+* org mode 내에서 변환시키기
+SPC m e \\
+
+혹은 \\
+
+C-c C-e

@@ -1,0 +1,68 @@
+#+SEQ_TODO: NEXT(n) TODO(t) WAITING(w) SOMEDAY(s) PROJ(p) | DONE(d) CANCELLED(c)
+
+* GTD related things
+** TODO Weekly Review
+
+* Legal Obligations
+** NEXT Prepare tax declaration
+- Collect all documents for your tax lawyer
+** TODO [#A] Call the lawyer after the documents were sent
+
+* Maintenance
+** NEXT Wash the car
+- Washing from outside and cacuum cleaning the inside
+** PROJ Repair bicycle
+*** WAITING Delivery of spare part (chain)
+I have the chain ordered, needs to be delivered
+*** TODO [#B] Mount chain
+SCHEDULED: <2024-07-06 Sat>
+You probably need to re adjust the gear shifting
+
+* Family business
+** NEXT Get a birthday gift for wife
+** NEXT Watch concert of your kid in school
+- Dont's miss that, otherwise kid is disappointed
+
+* House stuff
+** SOMEDAY Build a bike port in the garden
+Budget is $200 for the whole thing
+*** TODO [#C] 3번째 해야할일
+org mode 강의 그냥 다 보기.
+#+begin_src python : results output
+print("Hello, World!")
+#+end_src
+
+
+
+#+begin_src C
+#include <stdio.h>
+
+int main() {
+    printf("Hello, World!\n");
+    return 0;
+}
+#+end_src
+
+#+RESULTS:
+| Hello | World! |
+
+#+begin_src sh
+echo "Hello, World!"
+#+end_src
+
+#+RESULTS:
+| Hello | World! |
+
+#+BEGIN_SRC python
+return 4
+#+END_SRC
+
+#+RESULTS:
+: 4
+
+#+BEGIN_SRC python :results output
+print(1)
+#+END_SRC
+
+#+RESULTS:
+: 1
