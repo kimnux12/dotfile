@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 24.2.4.2 (Linux)"/>
+	<meta name="created" content="2024-06-14T13:39:34.056485813"/>
+	<meta name="changed" content="2024-06-22T14:58:10.551996262"/>
+	<style type="text/css">
+		@page { size: 21.59cm 27.94cm; margin: 2cm }
+		p { line-height: 115%; margin-bottom: 0.25cm; background: transparent }
+		td p { orphans: 0; widows: 0; background: transparent }
+		a:link { color: #000080; text-decoration: underline }
+	</style>
+</head>
+<body lang="ko-KR" link="#000080" vlink="#800000" dir="ltr"><p><font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">1.
+xwindow</span></font></font>에서 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">wayland</span></font></font>로
+옮긴 이유<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p>  &nbsp;유튜브 동영상이 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">xwindow</span></font></font>에서는
+<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">30-40fps</span></font></font>정도로
+플레이되는 느낌<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p>  &nbsp;<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">hyprland</span></font></font>로
+옮기고 나서 제대로 부드럽게 동작함<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.&nbsp;</span></font></font></p>
+<p>  &nbsp;그리고 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">mesa
+24.1 + wayland + chromium </span></font></font>조합시 아이유 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">8k
+60fps </span></font></font>가능하게 됨<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p>   <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">(2024</span></font></font>년
+<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">6</span></font></font>월
+현재 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">chromium
+126 </span></font></font>버전은 버그로 인해 유튜브 동영상
+화면이 하얗게 표시된다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p> &nbsp; <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">chromium
+</span></font></font>설정에서 하드웨어 가속을 꺼야 화면이
+제대로 나온다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.
+</span></font></font>
+</p>
+<p>  &nbsp;문제는 하드웨어 가속을 끄면<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">,
+8k </span></font></font>가속이 되지 않는다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.
+</span></font></font>하드웨어 가속을 꺼도 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">4k</span></font></font>까지는
+아무 문제 없이 
+</p>
+<p>  &nbsp;잘 나온다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.)</span></font></font></p>
+<p>&nbsp;</p>
+<p>  &nbsp;<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">chromium</span></font></font>을
+다운 그레이드 하는 것도 한가지 해결 방법이다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.
+</span></font></font>이전에 받아놓은 캐쉬파일이 존재하는
+경우</p>
+<p>  &nbsp;아래 명령어를 입력하면 다운 그레이드된다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.
+</span></font></font>버전은 사용자마다 다를 수 있다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p>  &nbsp;<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">--&gt;
+sudo pacman -U
+<a href="//var/cache/pacman/pkg/chromium-125.0.6422.141-1-x86_64.pkg.tar.zst" target="_blank">file://var/cache/pacman/pkg/chromium-125.0.6422.141-1-x86_64.pkg.tar.zst</a></span></font></font></p>
+<p><br/>
+<br/>
+
+</p>
+<p><font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">2.
+xwindow</span></font></font>와 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">wayland(hyprland)</span></font></font>의
+한글 적용</p>
+<p><br/>
+<br/>
+
+</p>
+<p>&nbsp; <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">2-0.&nbsp;
+</span></font></font>추천 어플</p>
+<p>&nbsp;   터미널 에뮬레이터 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">:
+foot(wayland</span></font></font>용<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">),
+terminator(</span></font></font>우클릭으로 환경설정창을 띄워
+쉽게 설정가능<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">)</span></font></font></p>
+<p>&nbsp;   웹브라우저 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">:
+firefox</span></font></font></p>
+<p>   &nbsp;간단한 한글 설정만으로 편하게 한글을 사용할
+수 있다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p>   &nbsp;그러나<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">,
+firefox</span></font></font>나 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">google-chrome
+</span></font></font>등은 아직까지는 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">8k
+</span></font></font>가속이 제대로 지원되지 않는다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p><br/>
+<br/>
+
+</p>
+<p>&nbsp; <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">2-1.
+xwindow (kime </span></font></font>사용<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">)</span></font></font></p>
+<p>   &nbsp;<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">wayland</span></font></font>와
+비교 시 매우 간단하게 한글 적용이 가능하다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p>  &nbsp;참고 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">:
+https://velog.io/@nal-d/Manjaro-%EC%84%B8%ED%8C%85&nbsp;</span></font></font></p>
+<p>  &nbsp;<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.bash_profile</span></font></font>에
+환경변수만 적어주고 다시 로그인하면<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">,
+terminator</span></font></font>나 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">firefox</span></font></font>에서
+한글 사용가능<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p><br/>
+<br/>
+
+</p>
+<p>&nbsp; <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US"><b>2-3.
+wayland (hyprland, fcitx5 </b></span></font></font><b>사용</b><font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US"><b>)</b></span></font></font></p>
+<p>  &nbsp;위에서 추천한&nbsp; <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">terminator</span></font></font>와
+<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">firefox</span></font></font>를
+사용한다면<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">,
+kime</span></font></font>를 이용하여&nbsp; <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">xwindow</span></font></font>와
+동일하게 설정하거나<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">,</span></font></font></p>
+<p>  &nbsp;<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">~/.config/hypr/hyprland.conf</span></font></font>에
+변수를 설정<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">(</span></font></font>아래의
+<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">fcitx5
+</span></font></font>설정에서 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">fcitx</span></font></font>를
+<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">kime</span></font></font>로
+교체<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">)</span></font></font>하여
+</p>
+<p>  &nbsp;한글을 사용할 수 있다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p><br/>
+<br/>
+
+</p>
+<p>  &nbsp;다만<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">,
+kime</span></font></font>를 이용할 경우&nbsp; <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">8k
+</span></font></font>가속을 지원하는 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">chromium</span></font></font>과
+<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">gpu
+</span></font></font>가속 터미널들<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">(kitty,
+alacritty, </span></font></font>
+</p>
+<p>  &nbsp;<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">wezterm
+</span></font></font>등<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">)</span></font></font>에서
+한글이 처음에는 입력되다가 창을 다시 띄우거나 하면&nbsp;
+한글 입력이 되지 않는 등의</p>
+<p>&nbsp;  문제점이 발생한다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p>&nbsp;</p>
+<p>  결국<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">,
+</span></font></font>리눅스를 다시 굴리면서 사용해왔던
+<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">kime</span></font></font>에서
+<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">fcitx</span></font></font>로
+갈아타기로 했다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p>  구글링 결과&nbsp; <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">https://www.nemonein.xyz/2024/03/8742/
+,&nbsp;</span></font></font></p>
+<p> 
+&nbsp;<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US"><a href="https://blog.litehell.info/post/fcitx5_for_101_key_keyboard_kde_laptop" target="_blank">https://blog.litehell.info/post/fcitx5_for_101_key_keyboard_kde_laptop</a>
+</span></font></font>등을 참고하여 아래처럼 
+</p>
+<p>&nbsp;  설정하였다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p>&nbsp;<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US"><font color="#000000"><span style="background: #f66151">2-3-1.
+</span></font></font>설치 파일 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">(Arch
+linux</span></font></font>의 경우<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">)</span></font></font></span></font></p>
+<p>&nbsp;   <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">sudo
+pacman -S –need fcitx5 fcitx5-gtk fcitx5-configtool&nbsp;</span></font></font></p>
+<p>&nbsp;</p>
+<p><font color="#000000"><font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US"><span style="background: #f66151">2-3-2.
+</span></font></font>변수 설정</span></font></p>
+<p>&nbsp;   <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">wayland</span></font></font>에서는
+<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.bash_profile</span></font></font>등에
+환경변수로 선언하는 방법을 권장하지 않는다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p>&nbsp;   그냥 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">~/.config/hypr/hyprland.conf</span></font></font>에
+다음을 기입해준다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p><br/>
+<br/>
+
+</p>
+<p>         &nbsp; <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">#
+fcitx5 </span></font></font>환경변수 설정</p>
+<p><font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">	env
+= XDG_CURRENT_DESKTOP,Hyprland</span></font></font></p>
+<p><font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">	env
+= GTK_IM_MODULE,fcitx</span></font></font></p>
+<p><font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">	env
+= QT_IM_MODULE,fcitx</span></font></font></p>
+<p><font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">	env
+= SDL_IM_MODULE,fcitx</span></font></font></p>
+<p><font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">	env
+= GLFW_IM_MODULE,fcitx</span></font></font></p>
+<p><font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">	env
+= XMODIFIERS,@im=fcitx</span></font></font></p>
+<p><font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">	exec-once
+= fcitx5 -d</span></font></font></p>
+<p>&nbsp; 참고<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">)
+</span></font></font>
+</p>
+<p><img src="hyprland-korean_html_c3bbb64e.png" name="이미지1" alt="퀘이사존" align="bottom" width="652" height="366" border="0"/>
+</p>
+<p><font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">	Hyprland</span></font></font>를
+실행시킬 때 마다 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">wayland</span></font></font>는
+위의 그림처럼 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">wayland
+IME</span></font></font>가 있으니 
+</p>
+<p>&nbsp;<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">	GTK_IM_MODULE</span></font></font>을
+사용하지 말라는 알림을 매번 띄우는데<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">,&nbsp;
+</span></font></font>어쩔 수 없다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p>&nbsp;<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">	GTK_IM_MODULE</span></font></font>을
+선언하지 않으면 한글 입력이 되지 않는다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.
+</span></font></font>
+</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+알림창은 내버려두거나<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">,
+</span></font></font>클릭하면 사라진다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p><br/>
+<br/>
+
+</p>
+<p>&nbsp;<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US"><font color="#000000"><span style="background: #f66151">2-3-3.
+fcitx5-configtool </span></font></font>실행</span></font></p>
+<p><br/>
+<br/>
+
+</p>
+<p><img src="hyprland-korean_html_397ab675.png" name="이미지2" alt="퀘이사존" align="bottom" width="661" height="360" border="0"/>
+</p>
+<p>&nbsp; 화면 오른쪽에서 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">Hangul</span></font></font>을
+선택해서 왼쪽 화면에 넣어주고 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">Hangul</span></font></font>을
+왼쪽화면 제일 위로</p>
+<p>&nbsp; 올려 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">1</span></font></font>순위로
+올려준다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p>&nbsp;&nbsp;</p>
+<p>&nbsp; <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">2</span></font></font>순위
+시에 기본 입력이 한글이 되어 터미널 사용 시에 한영
+변환키를 눌러 줘야 영어 입력이 
+</p>
+<p>&nbsp; 가능해지기 때문에&nbsp; 오히려 더 번거롭게
+된다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.&nbsp;</span></font></font></p>
+<p>&nbsp; 혹시 우측에 한글 란이 보이지 않는다면 그림
+오른쪽 아래 화살표가 가리키는 곳의 체크를 풀어주고</p>
+<p>&nbsp; 표시되는 언어들 중에 선택하면 된다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p>&nbsp; 
+</p>
+<p>&nbsp; 만약 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">Hangul</span></font></font>을
+선택했는데<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">,
+</span></font></font>한글 입력이 되지 않는다면 오른쪽
+하단에 보이는 다른</p>
+<p>&nbsp; <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">Keyboard-Korean
+</span></font></font>중에서 선택해보기 바란다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.
+vxe75</span></font></font>의 경우</p>
+<p>&nbsp; <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">Hangul
+</span></font></font>선택 시 제대로 입력되고<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">,
+</span></font></font>다른 것들은 한글 입력이 되지 않았다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p><br/>
+<br/>
+
+</p>
+<p><img src="hyprland-korean_html_1f56f04c.png" name="이미지3" alt="퀘이사존" align="bottom" width="662" height="361" border="0"/>
+</p>
+<p>&nbsp; ‘<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">Global
+Options’</span></font></font>탭 선택 후 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">Trigger
+Input Method</span></font></font>에서 원하는 한영 전환 키를
+넣어준다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p>&nbsp; 기본은 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">shift+space</span></font></font>로
+되어있는데<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">,
+</span></font></font>오른쪽 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">alt</span></font></font>가
+편하다면 오른쪽 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">alt</span></font></font>키로
+바꿀 수 있다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">..</span></font></font></p>
+<p>&nbsp; 빨간 박스 칸을 마우스 클릭 후<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">,
+</span></font></font>키보드의 오른쪽 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">alt</span></font></font>키를
+누르면&nbsp; 빨간 박스처럼 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">Hangul</span></font></font>로
+바뀌게 된다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p><br/>
+<br/>
+
+</p>
+<p><img src="hyprland-korean_html_e9e621e7.png" name="이미지4" alt="퀘이사존" align="bottom" width="659" height="359" border="0"/>
+</p>
+<p>&nbsp; 스크롤을 내려보면 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">Show
+Input Method Information when switch input method</span></font></font>를&nbsp;</p>
+<p>&nbsp; 선택 해제한다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.
+fcitx</span></font></font>는 기본적으로 한영 전환 시 커서
+아래에 한영 전환을 보여 주는</p>
+<p>&nbsp; 작은 박스를 표시하는데 보기에 거슬리기
+때문이다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p><br/>
+<br/>
+
+</p>
+<p>※ 위와 같은 설정을 하면&nbsp; <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">kitty,
+alacritty </span></font></font>같은 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">gpu
+</span></font></font>가속 터미널에서도 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">kime</span></font></font>에서와
+같은 오류 없이</p>
+<p>&nbsp;&nbsp;&nbsp; 한글 입력이 된다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p>&nbsp; &nbsp; 다만<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">,
+kitty</span></font></font>나 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">alacritty</span></font></font>의
+경우 가끔 특정 키를 누르면 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">unbound
+keyseq</span></font></font>라는 메세지를 출력하면서<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">,&nbsp;</span></font></font></p>
+<p>&nbsp; &nbsp; 특정 키가 입력이 되지 않는 경우가
+생기는데<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">,
+</span></font></font>이는 위 터미널들의 버그라는 얘기도
+있다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.
+</span></font></font>
+</p>
+<p>&nbsp;&nbsp;&nbsp; <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">kitty</span></font></font>가
+특히 심하였으며<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">,&nbsp;
+</span></font></font>두 가지 중 하나를 반드시 써야겠다면<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">,
+alacritty</span></font></font>가 버그가 적은 듯 하다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p>&nbsp; 
+</p>
+<p>&nbsp;&nbsp; 마지막으로 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">,
+chromium</span></font></font>의 경우 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US"><font color="#000000"><span style="background: #ff0000">chromium-flags.conf</span></font></span></font></font>에
+다음과 같이 적어 주어야 
+</p>
+<p>&nbsp;&nbsp; 한글 입력과 동영상 하드웨어 가속이 제대로
+된다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.&nbsp;
+</span></font></font>
+</p>
+<p>&nbsp;&nbsp; <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">conf</span></font></font>파일은
+<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">~/.config
+</span></font></font>디렉토리 안에 넣어주면 된다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.(</span></font></font>제대로
+안되면 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">~/.config/chromium</span></font></font>에
+넣어볼 것<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">)</span></font></font></p>
+<p>&nbsp;&nbsp; <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">nvidia
+</span></font></font>그래픽 카드는 <font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">vulkan
+</span></font></font>옵션 줄들을 지워줘야 하고<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">,
+</span></font></font>다른 옵션이 필요한지는 잘 모르겠다<font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">.</span></font></font></p>
+<p><br/>
+<br/>
+
+</p>
+<table width="665" cellpadding="2" cellspacing="0">
+	<col width="661"/>
+	<tr>
+		<td width="661" style="border: none; padding: 0cm"><p><font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span lang="en-US">--enable-vulkan<br/>
+<br/>
+--enable-gpu-rasterization<br/>
+<br/>
+--canvas-oop-raterization<br/>
+<br/>
+--use-gl=angle<br/>
+<br/>
+--use-angle=vulkan<br/>
+<br/>
+--enable-accelerated-video-decode<br/>
+<br/>
+--enable-features=Vulkan,VulkanFromANGLE,DefaultANGLEVulkan,VaapiIgnoreDriverChecks,VaapiVideoDecoder,UseMultiPlaneFormatForHardwareVideo<br/>
+<br/>
+--enable-features=VaapiVideoDecodeLinuxGL<br/>
+<br/>
+--use-angle=gl<br/>
+<br/>
+--enable-features=UseOzonePlatform<br/>
+<br/>
+--ozone-platform-hint=auto<br/>
+<br/>
+--enable-wayland-ime<br/>
+<br/>
+--ignore-gpu-blocklist<br/>
+<br/>
+--enable-zero-copy<br/>
+<br/>
+--gtk-version=4</span></font></font></p>
+		</td>
+	</tr>
+</table>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+</body>
+</html>
