@@ -4,8 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(@ a dired-preview evil-tutor markdown-soma olivetti org-bullets
-     org-fancy-priorities org-modern org-preview-html)))
+   '(bui lsp-ui lsp-mode info-colors yaml which-key live-py-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -20,13 +19,13 @@
  '(org-date ((t (:foreground "LightSalmon" :underline t))))
  '(org-deadline ((t (:foreground "Red"))))
  '(org-done ((t (:foreground "Green" :weight bold))))
- '(org-level-1 ((t (:foreground "LightSkyBlue" :weight bold :height 1.3))))
- '(org-level-2 ((t (:foreground "LightGoldenrod" :weight bold :height 1.2))))
- '(org-level-3 ((t (:foreground "Cyan1" :weight bold :height 1.1))))
+ '(org-level-1 ((t (:foreground "LightSkyBlue" :weight bold :height 1.3 :family "본명조 KR"))))
+ '(org-level-2 ((t (:foreground "LightGoldenrod" :weight bold :height 1.2 :family "본명조 KR"))))
+ '(org-level-3 ((t (:foreground "Cyan1" :weight bold :height 1.1 :family "본명조 KR"))))
  '(org-link ((t (:foreground "SkyBlue2" :underline t))))
  '(org-list-dt ((t (:foreground "LightSkyBlue" :weight bold))))
  '(org-quote ((t (:foreground "LightGoldenrod" :slant italic))))
  '(org-scheduled ((t (:foreground "Green"))))
- '(org-table ((t (:foreground "LightSteelBlue" :weight normal))))
+ '(org-table ((t (:family "NanumGothicCoding" :height 1.0 :foreground "LightSteelBlue"))))
  '(org-tag ((t (:foreground "LightSalmon" :weight bold))))
  '(org-todo ((t (:foreground "Red" :weight bold)))))

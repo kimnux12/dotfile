@@ -1,4 +1,5 @@
-;;; -*- no-byte-compile: t; -*-
+;;; package --- Summary
+;; -*-no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
 
 ;; To install a package with Doom you must declare them here and run 'doom sync'
@@ -62,8 +63,23 @@
 (package! org-ros)
 ;;(package! python-black)
 (package! dap-cpptools :recipe (:host github :repo "emacs-lsp/dap-mode"))
+(package! treemacs)
+(package! treemacs-projectile)  ;; Treemacs와 projectile 통합을 위한 패키지
+(package! treemacs-magit)       ;; Treemacs와 magit 통합을 위한 패키지
+(package! lsp-mode)
+(package! lsp-ui)
 (package! lsp-docker)
-(package! flycheck)
+(package! lsp-treemacs)
 (package! company)
 (package! slime)
 (package! sly)
+
+;; ~/.doom.d/packages.el
+(package! embark)
+(package! embark-consult)
+(package! info-colors)
+;;(package! codeium :recipe (:host github :repo "Exafunction/codeium.el"))
+;; Local Variables:
+;; flycheck-disabled-checkers: (emacs-lisp-checkdoc emacs-lisp)
+;; End:
+;;; packages.el ends here

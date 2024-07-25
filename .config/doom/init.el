@@ -1,3 +1,4 @@
+;;; package --- Summary
 ;;; init.el -*- lexical-binding: t; -*-
 
 ;; This file controls what Doom modules are enabled and what order they load
@@ -25,7 +26,7 @@
        ;;layout            ; auie,ctsrnm is the superior home row
 
        :completion
-       (company +childframe)          ; the ultimate code completion backend
+       (company +childframe)          ; the ultimate code completion backend. (marginalia 내장)
        ;;(corfu +orderless)  ; complete with cap(f), cape and a flying feather!
        ;;(helm +fuzzy)             ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
@@ -198,3 +199,9 @@
        :config
        ;;literate
        (default +bindings +smartparens))
+
+
+;; Local Variables:
+;; flycheck-disabled-checkers: (emacs-lisp-checkdoc emacs-lisp)
+;; End:
+;;; init.el ends here
