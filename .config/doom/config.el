@@ -63,12 +63,13 @@
 (use-package org-superstar
  :hook (org-mode . org-superstar-mode)
  :config
- (setq org-superstar-headline-bullets-list '("◉" "○" "●" "○" "●" "○" "●"))
+;; (setq org-superstar-headline-bullets-list '("◉" "○" "●" "○" "●" "○" "●"))
+ (setq org-superstar-headline-bullets-list '("⦾" "▪" "▫" "•" "▪" "▫" "•"))
  (setq org-superstar-item-bullet-alist '((?* . ?•)
                                          (?+ . ?➤)
                                          (?- . ?•)))
- (set-face-attribute 'org-superstar-item nil :height 0.8)
- (set-face-attribute 'org-superstar-header-bullet nil :height 0.8))
+ (set-face-attribute 'org-superstar-item nil :height 1.0)
+ (set-face-attribute 'org-superstar-header-bullet nil :height 1.0))
 
 (use-package org-fancy-priorities
   :hook (org-mode . org-fancy-priorities-mode)
