@@ -73,6 +73,7 @@
 (package! company)
 (package! slime)
 (package! sly)
+(package! all-the-icons)
 
 ;; ~/.doom.d/packages.el
 (package! embark)

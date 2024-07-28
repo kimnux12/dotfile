@@ -13,5 +13,6 @@ Restart=on-failure
 [Install]
 WantedBy=default.target
 
-2. systemctl --user enable --now emacs
-3. systemctl --user status emacs.service
+2. ~/.config/systemd/user/에 복사
+3. systemctl --user enable --now emacs
+4. systemctl --user status emacs.service

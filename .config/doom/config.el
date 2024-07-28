@@ -1,12 +1,22 @@
 ;; -*- mode: emacs-lisp -*-
 
 (beacon-mode 1)
-(setq doom-theme 'doom-dracula)
 
-(setq fancy-splash-image "~/.config/doom/images/cat-train.png")
+(use-package doom-themes
+  :config
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  ;;(setq doom-theme 'doom-dracula)
+  (load-theme 'doom-dracula t)
+  (doom-themes-visual-bell-config)
+  ;; or for treemacs users
+  (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
+  (doom-themes-treemacs-config))
+
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
 (add-hook! '+doom-dashboard-functions :append
   (insert "\n" (+doom-dashboard--center +doom-dashboard--width "Powered by Emacs!")))
+(setq fancy-splash-image "~/.config/doom/images/cat-train.png")
 ;; fancy-startup-text는 init.el의 :ui에서
 ;; doom dashboard 대신 (startup +fancy)를 사용해야 적용된다.
 ;; doom dashboard에서는 실행이 되지 않는다.
@@ -59,12 +69,15 @@
  '(org-tag ((t (:foreground "LightSalmon" :weight bold))))
  '(org-todo ((t (:foreground "Red" :weight bold))))
 )
-
+(use-package all-the-icons
+  :if (display-graphic-p))
 (use-package org-superstar
  :hook (org-mode . org-superstar-mode)
  :config
 ;; (setq org-superstar-headline-bullets-list '("◉" "○" "●" "○" "●" "○" "●"))
- (setq org-superstar-headline-bullets-list '("⦾" "▪" "▫" "•" "▪" "▫" "•"))
+;; 아이콘들은 유니코드 특수 문자를 검색하면 나오는 것들.
+;; 위쪽 org-level-1,2,3에서 글자 크기를 조금씩 키워놨기때문에 bullet 아이콘들은 조금 작은걸 추천.
+ (setq org-superstar-headline-bullets-list '("⦾" "•" "▪" "▫" "•" "▪" "▫" "•"))
  (setq org-superstar-item-bullet-alist '((?* . ?•)
                                          (?+ . ?➤)
                                          (?- . ?•)))
@@ -74,7 +87,7 @@
 (use-package org-fancy-priorities
   :hook (org-mode . org-fancy-priorities-mode)
   :config
-  (setq org-fancy-priorities-list '("⚡" "⬆" "⬇" "☕")))
+  (setq org-fancy-priorities-list '("🚩" "📌" "📍" "☕")))
 
 (after! org
   (map! :map org-mode-map
@@ -195,6 +208,54 @@
 (after! company
   (add-hook 'lsp-mode-hook #'company-mode))
 
+;; treemacs 설정
+;; Set the key binding to open Treemacs
+;;(map! :leader
+;;      :desc "Open Treemacs" "f t" #'treemacs)
+(setq treemacs-show-hidden-files t)  ;; Show hidden files
+;; Define a custom function to go to the home directory in Treemacs
+;; 홈디렉토리(~/)로 이동하는 설정
+(defun my/treemacs-goto-home ()
+  "Navigate to the home directory in Treemacs."
+  (interactive)
+  (let ((home-dir (expand-file-name "~/")))
+    (treemacs-find-file home-dir)))
+
+;; Bind the custom function to a key
+(map! :leader
+      :desc "Go to Home Directory in Treemacs"
+      "f h" #'my/treemacs-goto-home)
+;; treemacs는 단순히 화면 왼쪽에 디렉토리 구조를 보여주는 것 이상의 기능을 제공합니다.
+;; treemacs는 강력한 파일 탐색기이자 프로젝트 관리 도구로, 다양한 기능을 갖추고 있습니다.
+;; 주요 기능은 다음과 같습니다:
+;;
+;; 1. 프로젝트 기반 탐색
+;; treemacs는 다양한 프로젝트를 지원하며, 현재 작업 중인 프로젝트의 파일 구조를 시각적으로 탐색할 수 있습니다.
+;; 여러 프로젝트를 동시에 열 수 있고, 각 프로젝트를 별도의 treemacs 창에서 관리할 수 있습니다.
+;;
+;; 2. 파일 및 디렉토리 관리
+;; 파일 및 디렉토리를 생성, 삭제, 이동, 복사하는 작업을 직접 treemacs에서 할 수 있습니다.
+;; 드래그 앤 드롭으로 파일과 디렉토리를 재배치할 수 있습니다.
+;;
+;; 3. 마크 및 필터링
+;; 파일 및 디렉토리에 마크를 추가하고, 이를 기반으로 작업할 수 있습니다.
+;; 필터링 기능을 통해 특정 파일 유형만 표시하거나, 특정 패턴에 맞는 파일만 볼 수 있습니다.
+;;
+;; 4. Git 통합
+;; Git 버전 관리를 사용하는 경우, treemacs는 Git 상태를 시각적으로 표시합니다.
+;; 변경된 파일을 표시하고, 커밋 및 브랜치 정보를 보여줄 수 있습니다.
+;;
+;; 5. LSP 통합
+;; treemacs는 Language Server Protocol (LSP)와 통합되어, 코드에 대한 정보를 제공하거나, 심볼을 쉽게 탐색할 수 있습니다.
+;;
+;; 6. 다양한 뷰 모드
+;; treemacs는 다양한 뷰 모드를 지원하여, 파일 탐색을 더 효율적으로 할 수 있습니다.
+;; icons, git, lsp 등 다양한 플러그인과 통합되어 사용자 맞춤형 뷰를 제공합니다.
+;;
+;; 7. 키 바인딩 및 커스터마이징
+;; treemacs는 다양한 키 바인딩을 제공하며, 사용자 맞춤형 키 바인딩을 설정할 수 있습니다.
+;; 커스터마이징이 용이하여, 개인의 작업 방식에 맞게 설정할 수 있습니다.
+
 (after! treemacs
   (setq treemacs-width 30)
   (setq treemacs-follow-mode t)
@@ -235,6 +296,7 @@
 ;; yasnippet 설정
 (require 'yasnippet)
 ;; yasnippet을 기본적인 텍스트입력모드에서도 사용
+;; fundamental-mode의 예 : scratch 버퍼
 (add-hook 'yas-minor-mode-hook (lambda()
                                   (yas-activate-extra-mode 'fundamental-mode)))
 
@@ -409,6 +471,47 @@
   (which-key-mode))                ;; which-key 모드 활성화
 
 ;; embark 설정
+;; embark를 사용하면 Emacs에서 다양한 작업을 컨텍스트에 맞게 쉽게 수행할 수 있습니다. 몇 가지 예를 들어 보겠습니다.
+;;
+;; 1. 링크 열기
+;; 웹 페이지의 링크나 파일 경로 등에서 링크를 열어야 할 때, embark를 사용하여 쉽게 열 수 있습니다.
+;;
+;; 예시:
+;; 커서가 링크에 위치할 때, C-;를 눌러 embark-act를 호출합니다.
+;; 링크를 열거나 복사하는 등의 작업이 가능한 액션 목록이 나타납니다.
+;; 링크를 열고 싶다면 목록에서 Open Link를 선택합니다.
+;;
+;; 2. 텍스트 검색
+;; 현재 버퍼에서 특정 텍스트를 검색하는 작업을 빠르게 수행할 수 있습니다.
+;;
+;; 예시:
+;; 커서가 검색할 텍스트에 위치할 때, C-;를 눌러 액션 목록을 호출합니다.
+;; Search 또는 Search for와 같은 액션이 제공됩니다.
+;; 원하는 액션을 선택하면 자동으로 텍스트 검색이 실행됩니다.
+;;
+;; 3. 파일 열기
+;; 파일 경로가 있는 버퍼에서 파일을 빠르게 열 수 있습니다.
+;;
+;; 예시:
+;; 커서가 파일 경로에 위치할 때, C-;를 눌러 액션 목록을 호출합니다.
+;; Open File과 같은 액션이 제공됩니다.
+;; 이 액션을 선택하면 해당 경로의 파일이 열립니다.
+;;
+;; 4. URL 복사
+;; 버퍼에 있는 URL을 클립보드에 복사하고 싶을 때, embark를 사용하여 간편하게 처리할 수 있습니다.
+;;
+;; 예시:
+;; 커서가 URL에 위치할 때, C-;를 눌러 액션 목록을 호출합니다.
+;; Copy URL과 같은 액션이 제공됩니다.
+;; 이 액션을 선택하면 URL이 클립보드에 복사됩니다.
+;;
+;; 5. 코드 정리 및 포맷
+;; 코드에서 특정 부분을 포맷하거나 정리할 때 유용합니다.
+;; 예시:
+;; 커서가 코드의 일부에 위치할 때, C-;를 눌러 액션 목록을 호출합니다.
+;; Format Code와 같은 액션이 제공됩니다.
+;; 이 액션을 선택하면 코드가 포맷됩니다.
+
 (use-package embark
   ;; :bind
   ;; (("C-." . embark-act)         ;; Pick some comfortable binding
@@ -432,28 +535,83 @@
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
+;; M-;를 눌렀을 때 embark-act를 실행하도록 설정
+;; SPC 조합은 evil-mode의 insert-mode와, 미니버퍼의 입력모드에서
+;; 공백으로 작용하느냐, 리더키로 작용하느냐의 문제때문에 설정이 힘들다.
+(map! :map global-map
+      :desc "Embark act" "M-]" #'embark-act
+      :desc "Embark do what I mean" "M-[" #'embark-dwim)
+
+;; Embark의 파일, 버퍼 관련 커스텀 액션 추가
+;; 파일 경로가 포함된 파일명에서 M-[ o를 누르면
+;; 파일 내용을 새로운 창에 띄운다.
+(defun my/embark-find-file-in-other-window ()
+  "Open file in another window."
+  (interactive)
+  (let ((file (thing-at-point 'filename)))
+    (when file
+      (find-file-other-window file))))
+
+(defun my/embark-switch-to-buffer-other-window ()
+  "Switch to buffer in another window."
+  (interactive)
+  (let ((buffer (thing-at-point 'buffer)))
+    (when buffer
+      (switch-to-buffer-other-window buffer))))
+
+(map! :map embark-file-map
+      :desc "Open file in other window" "o" #'my/embark-find-file-in-other-window)
+
+(map! :map embark-buffer-map
+      :desc "Switch to buffer in other window" "o" #'my/embark-switch-to-buffer-other-window)
+
+;; 미니버퍼에서 액션 선택을 위한 설정
+;; Embark 액션을 미니버퍼에서 쉽게 선택할 수 있도록 커스터마이징
+;; which-key와 같은 화면으로 선택창을 표시한다.
+(defun my/embark-act-with-completing-read ()
+  "Run embark-act with a completing-read prompt for selecting an action."
+  (interactive)
+  (let ((embark-prompter 'embark-completing-read-prompter)
+        (embark-indicators '(embark-minimal-indicator)))
+    (embark-act)))
+
+(map! :map global-map
+      :desc "Embark act with completing-read" "M-] a" #'my/embark-act-with-completing-read)
+
+;; Open file as root
+(defun my/embark-open-file-as-root ()
+  "Open file as root."
+  (interactive)
+  (let ((file (thing-at-point 'filename)))
+    (when file
+      (find-file (concat "/sudo:root@localhost:" file)))))
+
+(map! :map embark-file-map
+      :desc "Open file as root" "S" #'my/embark-open-file-as-root)
+
+
 ;; Doom Emacs의 리더 키를 사용하여 Embark 명령 설정
-(map! :leader
-      :desc "Embark act" "e a" #'embark-act
-      :desc "Embark do what I mean" "e d" #'embark-dwim)
+;; (map! :leader
+;;       :desc "Embark act" "e a" #'embark-act
+;;       :desc "Embark do what I mean" "e d" #'embark-dwim)
 
-;; 페이지 이동을 위한 키 바인딩 설정
-(after! evil
-;; Doom Emacs의 리더 키를 사용하여 Embark 명령 설정
-  ;; Insert 모드에서 공백 입력을 유지
-  (evil-define-key 'insert global-map
-    (kbd "SPC") 'self-insert-command)  ;; 공백 입력 유지
+;; ;; 페이지 이동을 위한 키 바인딩 설정
+;; (after! evil
+;; ;; Doom Emacs의 리더 키를 사용하여 Embark 명령 설정
+;;   ;; Insert 모드에서 공백 입력을 유지
+;;   (evil-define-key 'insert global-map
+;;     (kbd "SPC") 'self-insert-command)  ;; 공백 입력 유지
 
-  ;; Normal 모드에서 리더 키와 관련된 명령 바인딩
-  (evil-define-key 'normal global-map
-    (kbd "SPC e a") #'embark-act
-    (kbd "SPC e d") #'embark-dwim)
+;;   ;; Normal 모드에서 리더 키와 관련된 명령 바인딩
+;;   (evil-define-key 'normal global-map
+;;     (kbd "SPC e a") #'embark-act
+;;     (kbd "SPC e d") #'embark-dwim)
 
-  ;; Visual 모드에서 리더 키를 사용할 수 있도록 설정
-  (evil-define-key 'visual global-map
-    (kbd "SPC e a") #'embark-act
-    (kbd "SPC e d") #'embark-dwim))
-  
+;;   ;; Visual 모드에서 리더 키를 사용할 수 있도록 설정
+;;   (evil-define-key 'visual global-map
+;;     (kbd "SPC e a") #'embark-act
+;;     (kbd "SPC e d") #'embark-dwim))
+
 ;; Eldoc을 사용하여 Embark의 도움말 기능 설정
 (after! eldoc
   (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
