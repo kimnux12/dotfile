@@ -67,6 +67,8 @@
 (package! treemacs-projectile)  ;; Treemacs와 projectile 통합을 위한 패키지
 (package! treemacs-magit)       ;; Treemacs와 magit 통합을 위한 패키지
 (package! lsp-mode)
+(package! lsp-pyright)
+(package! lsp-clangd)
 (package! lsp-ui)
 (package! lsp-docker)
 (package! lsp-treemacs)
