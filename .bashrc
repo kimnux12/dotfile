@@ -14,6 +14,7 @@ eval "$(starship init bash)"
 #fi
 unset MANPATH
 #[[ $- != *i* ]] && return
+alias mpv='mpv --hwdec=vaapi --vo=gpu'
 alias vi='vim'
 alias cat='bat'
 #alias ls='colorls --sd --gs -a'
